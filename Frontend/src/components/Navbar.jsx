@@ -2754,7 +2754,7 @@ const Navbar = () => {
   // Navigation structure with multi-level dropdowns
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
+    { name: "About Us", href: "/AboutUs" },
     {
       name: "Our Services",
       href: "/services",
