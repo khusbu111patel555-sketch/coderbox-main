@@ -1710,6 +1710,360 @@
 
 
 
+
+
+
+// import React, { useState, useRef } from 'react';
+// import { motion } from 'framer-motion';
+// import { ArrowRight, Brain, Monitor, Server, Lock, Sparkles, Zap, Shield, TrendingUp, ChevronLeft, ChevronRight, Code, Palette, Cloud, Smartphone } from 'lucide-react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
+// import 'swiper/css';
+// import 'swiper/css/effect-coverflow';
+// import 'swiper/css/pagination';
+// import 'swiper/css/navigation';
+// import AnimatedSection from './AnimatedSection';
+
+// const ServicesSection = () => {
+//   const [activeIndex, setActiveIndex] = useState(0);
+//   const swiperRef = useRef(null);
+
+//   // ===== CODERBOX WEBSITE SE LIYE GAYE REAL SERVICES =====
+//   const services = [
+//     {
+//       title: 'Web Development',
+//       subtitle: 'Custom websites tailored to your business needs',
+//       location: 'Full Stack Solutions',
+//       icon: Code,
+//       gradient: 'from-blue-500 to-cyan-500',
+//       image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Popular'
+//     },
+//     {
+//       title: 'AI Solutions',
+//       subtitle: 'Intelligent automation & decision-making',
+//       location: 'Machine Learning & AI',
+//       icon: Brain,
+//       gradient: 'from-purple-500 to-pink-500',
+//       image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=500&fit=crop&crop=center',
+//       badge: 'AI Powered'
+//     },
+//     {
+//       title: 'Digital Marketing',
+//       subtitle: 'Strategic marketing for online growth',
+//       location: 'SEO, Social Media & Branding',
+//       icon: TrendingUp,
+//       gradient: 'from-orange-500 to-red-500',
+//       image: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Growth'
+//     },
+//     {
+//       title: 'UI/UX Design',
+//       subtitle: 'Stunning interfaces & seamless experiences',
+//       location: 'Creative Design Solutions',
+//       icon: Palette,
+//       gradient: 'from-pink-500 to-rose-500',
+//       image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Creative'
+//     },
+//     {
+//       title: 'Cloud Services',
+//       subtitle: 'Scalable infrastructure & cloud solutions',
+//       location: 'Cloud Migration & Management',
+//       icon: Cloud,
+//       gradient: 'from-cyan-500 to-blue-500',
+//       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Enterprise'
+//     },
+//     {
+//       title: 'Mobile App Development',
+//       subtitle: 'Native & cross-platform mobile solutions',
+//       location: 'iOS & Android Apps',
+//       icon: Smartphone,
+//       gradient: 'from-green-500 to-emerald-500',
+//       image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Mobile'
+//     },
+//     {
+//       title: 'Cyber Security',
+//       subtitle: 'Advanced security for your digital assets',
+//       location: 'Threat Protection & Compliance',
+//       icon: Shield,
+//       gradient: 'from-red-500 to-orange-500',
+//       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Secure'
+//     },
+//     {
+//       title: 'IT Consulting',
+//       subtitle: 'Expert guidance for digital transformation',
+//       location: 'Strategic IT Solutions',
+//       icon: Server,
+//       gradient: 'from-indigo-500 to-purple-500',
+//       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Consulting'
+//     }
+//   ];
+
+//   return (
+//     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a2a] to-[#0a0a1a] overflow-hidden">
+      
+//       {/* Animated Background Elements - Smaller */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div 
+//           className="absolute top-0 left-1/4 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"
+//           animate={{ x: [0, 50, -50, 0], y: [0, -30, 30, 0], scale: [1, 1.2, 0.8, 1] }}
+//           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div 
+//           className="absolute bottom-0 right-1/4 w-40 h-40 bg-purple-600/10 rounded-full blur-3xl"
+//           animate={{ x: [0, -50, 50, 0], y: [0, 30, -30, 0], scale: [1, 0.8, 1.2, 1] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+      
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+        
+//         {/* Header - Compact */}
+//         <AnimatedSection className="text-center mb-4 sm:mb-5 md:mb-6">
+//           <motion.span 
+//             className="text-[#01adf0] font-semibold text-[10px] sm:text-xs tracking-widest uppercase bg-[#01adf0]/10 backdrop-blur-sm px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-[#01adf0]/20 inline-block"
+//             whileHover={{ scale: 1.05 }}
+//             animate={{ y: [0, -3, 0] }}
+//             transition={{ duration: 2, repeat: Infinity }}
+//           >
+//             Our Services
+//           </motion.span>
+//           <motion.h2 
+//             className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mt-1.5 sm:mt-2 leading-tight"
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.5, delay: 0.15 }}
+//           >
+//             Best IT Solutions{' '}
+//             <span className="bg-gradient-to-r from-[#01adf0] to-purple-500 bg-clip-text text-transparent">by CoderBox</span>
+//           </motion.h2>
+//           <motion.p 
+//             className="text-blue-200/80 mt-1 max-w-2xl mx-auto text-[10px] sm:text-xs"
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.5, delay: 0.2 }}
+//           >
+//             Comprehensive technology solutions designed to drive innovation and growth for your business
+//           </motion.p>
+//         </AnimatedSection>
+
+//         {/* ===== RESPONSIVE CAROUSEL - COMPACT ===== */}
+//         <div className="relative max-w-6xl mx-auto">
+//           <Swiper
+//             ref={swiperRef}
+//             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+//             effect="coverflow"
+//             grabCursor={true}
+//             centeredSlides={true}
+//             slidesPerView="auto"
+//             coverflowEffect={{
+//               rotate: 20,
+//               stretch: 0,
+//               depth: 250,
+//               modifier: 1,
+//               slideShadows: true,
+//             }}
+//             pagination={{
+//               clickable: true,
+//               dynamicBullets: true,
+//             }}
+//             navigation={{
+//               prevEl: '.swiper-button-prev-custom',
+//               nextEl: '.swiper-button-next-custom',
+//             }}
+//             autoplay={{
+//               delay: 3500,
+//               disableOnInteraction: false,
+//               pauseOnMouseEnter: true,
+//             }}
+//             loop={true}
+//             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+//             breakpoints={{
+//               320: {
+//                 slidesPerView: 1,
+//                 spaceBetween: 12,
+//               },
+//               640: {
+//                 slidesPerView: 2,
+//                 spaceBetween: 16,
+//               },
+//               1024: {
+//                 slidesPerView: 3,
+//                 spaceBetween: 20,
+//               },
+//             }}
+//             className="py-4 px-2 sm:px-6"
+//           >
+//             {services.map((service, index) => (
+//               <SwiperSlide key={index} className="pb-6">
+//                 {({ isActive }) => (
+//                   <motion.div
+//                     className={`relative rounded-xl overflow-hidden transition-all duration-500 ${
+//                       isActive 
+//                         ? 'scale-100 shadow-2xl shadow-[#01adf0]/20 ring-2 ring-[#01adf0]/30' 
+//                         : 'scale-95 opacity-70'
+//                     }`}
+//                     whileHover={{ scale: 1.02 }}
+//                   >
+//                     {/* Image Background */}
+//                     <div className="relative w-full aspect-[4/3]">
+//                       <img 
+//                         src={service.image} 
+//                         alt={service.title}
+//                         className="w-full h-full object-cover"
+//                         loading="lazy"
+//                       />
+                      
+//                       {/* Gradient Overlay */}
+//                       <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-60 mix-blend-multiply`}></div>
+//                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      
+//                       {/* Content - Smaller */}
+//                       <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4">
+//                         {/* Badge */}
+//                         {isActive && service.badge && (
+//                           <motion.div
+//                             initial={{ opacity: 0, y: -10 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             className="absolute top-2 right-2 bg-[#01adf0] text-white text-[7px] font-semibold px-2 py-0.5 rounded-full shadow-lg"
+//                           >
+//                             {service.badge}
+//                           </motion.div>
+//                         )}
+
+//                         {/* Icon - Smaller */}
+//                         <motion.div 
+//                           className={`w-8 h-8 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-1.5 shadow-lg shadow-blue-500/20`}
+//                           whileHover={{ scale: 1.1, rotate: 8 }}
+//                         >
+//                           <service.icon className="h-4 w-4 text-white" />
+//                         </motion.div>
+
+//                         {/* Title */}
+//                         <h3 className={`text-sm sm:text-base md:text-lg font-bold text-white mb-0.5 leading-tight ${
+//                           isActive ? 'opacity-100' : 'opacity-80'
+//                         }`}>
+//                           {service.title}
+//                         </h3>
+                        
+//                         {/* Subtitle */}
+//                         <p className="text-white/80 text-[8px] sm:text-[9px] mb-0.5">
+//                           {service.subtitle}
+//                         </p>
+                        
+//                         {/* Location */}
+//                         <div className="flex items-center gap-1">
+//                           <span className="text-[#01adf0] text-[8px]">📍</span>
+//                           <span className="text-white/60 text-[7px] sm:text-[8px]">
+//                             {service.location}
+//                           </span>
+//                         </div>
+
+//                         {/* Learn More - Only Active */}
+//                         {isActive && (
+//                           <motion.a
+//                             href="#"
+//                             initial={{ opacity: 0, y: 8 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             transition={{ delay: 0.15 }}
+//                             className="inline-flex items-center gap-1 text-[#01adf0] font-medium mt-1.5 text-[8px] sm:text-[9px] group"
+//                           >
+//                             Learn More
+//                             <ArrowRight className="h-2.5 w-2.5 transition-transform group-hover:translate-x-1" />
+//                           </motion.a>
+//                         )}
+//                       </div>
+
+//                       {/* Featured Badge */}
+//                       {isActive && (
+//                         <motion.div
+//                           initial={{ opacity: 0, scale: 0.8 }}
+//                           animate={{ opacity: 1, scale: 1 }}
+//                           className="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-white text-[6px] px-1.5 py-0.5 rounded-full border border-white/20"
+//                         >
+//                           ★ Featured
+//                         </motion.div>
+//                       )}
+//                     </div>
+//                   </motion.div>
+//                 )}
+//               </SwiperSlide>
+//             ))}
+//           </Swiper>
+
+//           {/* Custom Navigation Buttons - Smaller */}
+//           <button
+//             className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-[#01adf0] backdrop-blur-sm rounded-full p-1.5 sm:p-2 border border-white/10 hover:border-[#01adf0] transition-all duration-300"
+//             onClick={() => swiperRef.current?.slidePrev()}
+//           >
+//             <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+//           </button>
+//           <button
+//             className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-[#01adf0] backdrop-blur-sm rounded-full p-1.5 sm:p-2 border border-white/10 hover:border-[#01adf0] transition-all duration-300"
+//             onClick={() => swiperRef.current?.slideNext()}
+//           >
+//             <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+//           </button>
+//         </div>
+
+//         {/* Pagination Dots - Smaller */}
+//         <div className="flex items-center justify-center gap-1.5 mt-1">
+//           {services.map((_, idx) => (
+//             <button
+//               key={idx}
+//               onClick={() => swiperRef.current?.slideTo(idx)}
+//               className={`h-1 rounded-full transition-all duration-300 ${
+//                 idx === activeIndex
+//                   ? 'w-6 bg-[#01adf0]'
+//                   : 'w-1 bg-white/20 hover:bg-white/40'
+//               }`}
+//               aria-label={`Go to slide ${idx + 1}`}
+//             />
+//           ))}
+//         </div>
+
+//         {/* Bottom CTA - Compact */}
+//         <motion.div 
+//           className="text-center mt-3 sm:mt-4"
+//           initial={{ opacity: 0, y: 15 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.4, delay: 0.15 }}
+//           viewport={{ once: true }}
+//         >
+//           <motion.a
+//             href="/contact"
+//             whileHover={{ 
+//               scale: 1.04,
+//               boxShadow: "0 10px 25px rgba(1,173,240,0.3)",
+//               y: -2
+//             }}
+//             whileTap={{ scale: 0.95 }}
+//             className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#01adf0] text-white font-semibold hover:shadow-xl transition-all duration-300 text-[8px] sm:text-[9px] md:text-[10px]"
+//           >
+//             Explore All Services
+//             <motion.span
+//               animate={{ x: [0, 4, 0] }}
+//               transition={{ duration: 1.5, repeat: Infinity }}
+//             >
+//               <ArrowRight className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
+//             </motion.span>
+//           </motion.a>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default ServicesSection;
+
+
+
+
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Brain, Monitor, Server, Lock, Sparkles, Zap, Shield, TrendingUp, ChevronLeft, ChevronRight, Code, Palette, Cloud, Smartphone } from 'lucide-react';
@@ -1802,12 +2156,12 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a2a] to-[#0a0a1a] overflow-hidden">
+    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#f1f1f1] overflow-hidden">
       
-      {/* Animated Background Elements - Smaller */}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div 
-          className="absolute top-0 left-1/4 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"
+          className="absolute top-0 left-1/4 w-40 h-40 bg-[#01adf0]/10 rounded-full blur-3xl"
           animate={{ x: [0, 50, -50, 0], y: [0, -30, 30, 0], scale: [1, 1.2, 0.8, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -1831,7 +2185,7 @@ const ServicesSection = () => {
             Our Services
           </motion.span>
           <motion.h2 
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mt-1.5 sm:mt-2 leading-tight"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mt-1.5 sm:mt-2 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
@@ -1840,7 +2194,7 @@ const ServicesSection = () => {
             <span className="bg-gradient-to-r from-[#01adf0] to-purple-500 bg-clip-text text-transparent">by CoderBox</span>
           </motion.h2>
           <motion.p 
-            className="text-blue-200/80 mt-1 max-w-2xl mx-auto text-[10px] sm:text-xs"
+            className="text-gray-600 mt-1 max-w-2xl mx-auto text-[10px] sm:text-xs"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -1902,7 +2256,7 @@ const ServicesSection = () => {
                   <motion.div
                     className={`relative rounded-xl overflow-hidden transition-all duration-500 ${
                       isActive 
-                        ? 'scale-100 shadow-2xl shadow-[#01adf0]/20 ring-2 ring-[#01adf0]/30' 
+                        ? 'scale-100 shadow-2xl shadow-[#01adf0]/30 ring-2 ring-[#01adf0]/50' 
                         : 'scale-95 opacity-70'
                     }`}
                     whileHover={{ scale: 1.02 }}
@@ -1993,18 +2347,18 @@ const ServicesSection = () => {
             ))}
           </Swiper>
 
-          {/* Custom Navigation Buttons - Smaller */}
+          {/* Custom Navigation Buttons */}
           <button
-            className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-[#01adf0] backdrop-blur-sm rounded-full p-1.5 sm:p-2 border border-white/10 hover:border-[#01adf0] transition-all duration-300"
+            className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-[#01adf0] backdrop-blur-sm rounded-full p-1.5 sm:p-2 border border-gray-200 hover:border-[#01adf0] shadow-md transition-all duration-300"
             onClick={() => swiperRef.current?.slidePrev()}
           >
-            <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+            <ChevronLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-700 hover:text-white" />
           </button>
           <button
-            className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-[#01adf0] backdrop-blur-sm rounded-full p-1.5 sm:p-2 border border-white/10 hover:border-[#01adf0] transition-all duration-300"
+            className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-[#01adf0] backdrop-blur-sm rounded-full p-1.5 sm:p-2 border border-gray-200 hover:border-[#01adf0] shadow-md transition-all duration-300"
             onClick={() => swiperRef.current?.slideNext()}
           >
-            <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
+            <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-700 hover:text-white" />
           </button>
         </div>
 
@@ -2017,7 +2371,7 @@ const ServicesSection = () => {
               className={`h-1 rounded-full transition-all duration-300 ${
                 idx === activeIndex
                   ? 'w-6 bg-[#01adf0]'
-                  : 'w-1 bg-white/20 hover:bg-white/40'
+                  : 'w-1 bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

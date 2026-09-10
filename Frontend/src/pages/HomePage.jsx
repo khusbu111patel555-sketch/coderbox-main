@@ -19,9 +19,9 @@ import HowWeWorkSection from '../components/home/HowWeWorkSection';
 import ServicesSection from '../components/home/ServicesSection';
 import TeamSection from '../components/home/TeamSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
-import FaqSection from '../components/home/FaqSection';
 import WhyChooseUsSection from '../components/home/WhyChooseUsSection';
 import BlogSection from '../components/home/BlogSection';
+import FaqSection from '../components/home/FaqSection';
 import ContactSection from '../components/home/ContactSection';
 import FloatingChatButton from '../components/home/FloatingChatButton';
 
@@ -34,9 +34,9 @@ const HomePage = () => {
       <ServicesSection />
       <TeamSection />
       <TestimonialsSection />
-      <FaqSection />
       <WhyChooseUsSection />
       <BlogSection />
+      <FaqSection />
       <ContactSection />
       <FloatingChatButton />
     </div>
