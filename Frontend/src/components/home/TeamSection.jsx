@@ -1660,26 +1660,265 @@
 
 
 
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import { motion } from 'framer-motion';
+// import { MapPin, Mail, Star, Users, Briefcase } from 'lucide-react';
+// import { FaLinkedinIn, FaTwitter, FaDribbble } from 'react-icons/fa';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
+// import 'swiper/css';
+// import 'swiper/css/effect-coverflow';
+// import 'swiper/css/pagination';
+// import AnimatedSection from './AnimatedSection';
+
+// const TeamSection = () => {
+//   const [activeIndex, setActiveIndex] = useState(0);
+
+//   const teamMembers = [
+//     { name: 'Preeti Rai', role: 'Senior Consultant', location: 'India', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face', email: 'preeti@coderbox.com', experience: '10+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
+//     { name: 'Rahul Sharma', role: 'AI Specialist', location: 'India', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face', email: 'rahul@coderbox.com', experience: '8+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
+//     { name: 'Ananya Singh', role: 'Digital Marketing Head', location: 'India', image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=face', email: 'ananya@coderbox.com', experience: '12+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
+//     { name: 'Vikram Mehta', role: 'Full Stack Developer', location: 'India', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face', email: 'vikram@coderbox.com', experience: '6+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
+//     { name: 'Sneha Patel', role: 'UI/UX Designer', location: 'India', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&crop=face', email: 'sneha@coderbox.com', experience: '5+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } }
+//   ];
+
+//   return (
+//     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a2a] to-[#0a0a1a] overflow-hidden">
+
+//       {/* Animated Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div
+//           className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-3xl"
+//           animate={{ x: [0, -60, 60, 0], y: [0, 60, -60, 0], scale: [1, 1.3, 0.7, 1] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div
+//           className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-3xl"
+//           animate={{ x: [0, 60, -60, 0], y: [0, -60, 60, 0], scale: [1, 0.7, 1.3, 1] }}
+//           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         {[...Array(20)].map((_, i) => (
+//           <motion.div
+//             key={i}
+//             className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
+//             style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%` }}
+//             animate={{ y: [0, -30, 0], opacity: [0, 0.5, 0], x: [0, Math.random() * 15 - 7, 0] }}
+//             transition={{ duration: 3 + Math.random() * 4, repeat: Infinity, delay: Math.random() * 3 }}
+//           />
+//         ))}
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+
+//         {/* ===== HEADER — Using index.css classes ===== */}
+//         <AnimatedSection className="text-center mb-6 sm:mb-8">
+          
+//           {/* Badge — sec-badge class */}
+//           <span className="sec-badge inline-flex items-center gap-1.5">
+//             <Users className="h-3 w-3" />
+//             Our Team
+//           </span>
+
+//           {/* Heading — sec-h2 class */}
+//           <h2 className="sec-h2 sec-text-light mt-2 leading-tight">
+//             Meet Our{' '}
+//             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+//               Expert Team
+//             </span>
+//           </h2>
+
+//           {/* Paragraph — sec-p class */}
+//           <p className="sec-p sec-text-light-soft mt-1.5 max-w-2xl mx-auto">
+//             Our experienced team is dedicated to delivering excellence and driving your success
+//           </p>
+//         </AnimatedSection>
+
+//         {/* ===== SWIPER SLIDER (NO ARROWS) ===== */}
+//         <div className="relative max-w-5xl mx-auto">
+//           <Swiper
+//             modules={[EffectCoverflow, Pagination, Autoplay]}
+//             effect="coverflow"
+//             grabCursor={true}
+//             centeredSlides={true}
+//             slidesPerView="auto"
+//             coverflowEffect={{
+//               rotate: 50,
+//               stretch: 0,
+//               depth: 100,
+//               modifier: 1,
+//               slideShadows: true,
+//             }}
+//             pagination={{ clickable: true, dynamicBullets: true }}
+//             autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+//             loop={true}
+//             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+//             breakpoints={{
+//               320: { slidesPerView: 1, spaceBetween: 15 },
+//               640: { slidesPerView: 2, spaceBetween: 20 },
+//               1024: { slidesPerView: 3, spaceBetween: 30 },
+//             }}
+//             className="py-10 px-2 sm:px-6"
+//           >
+//             {teamMembers.map((member, index) => (
+//               <SwiperSlide key={index} className="pb-10">
+//                 {({ isActive }) => {
+
+//                   // Card tilt logic
+//                   let tiltClass = '';
+//                   if (!isActive) {
+//                     const cardPosition = (index - activeIndex + teamMembers.length) % teamMembers.length;
+//                     if (cardPosition === 1 || cardPosition === teamMembers.length - 1) {
+//                       tiltClass = index > activeIndex ? 'rotate-[8deg]' : 'rotate-[-8deg]';
+//                     }
+//                   }
+
+//                   return (
+//                     <motion.div
+//                       className={`group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-5 hover:shadow-2xl transition-all duration-500 border ${
+//                         isActive
+//                           ? 'border-blue-500/50 shadow-2xl shadow-blue-500/20 scale-100 rotate-0'
+//                           : 'border-white/10 scale-95 rotate-[-6deg] opacity-80'
+//                       } text-center overflow-hidden ${tiltClass}`}
+//                       whileHover={{
+//                         y: -4,
+//                         rotate: 0,
+//                         scale: isActive ? 1.02 : 1
+//                       }}
+//                     >
+//                       <motion.div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 blur-xl transition-all duration-400 -z-10" />
+
+//                       <div className="relative z-10">
+//                         {/* Profile Image */}
+//                         <div className="relative mb-3 mx-auto w-20 h-20 sm:w-24 sm:h-24">
+//                           <motion.div
+//                             className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden ring-2 ring-blue-500/20 group-hover:ring-blue-500/50 shadow-xl shadow-blue-500/10 transition-all duration-300"
+//                             whileHover={{ scale: 1.05 }}
+//                           >
+//                             <img
+//                               src={member.image}
+//                               alt={member.name}
+//                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+//                             />
+//                           </motion.div>
+
+//                           {/* Status dot */}
+//                           <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-400 border-2 border-[#0a0a1a] shadow-lg shadow-green-400/30">
+//                             <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75"></div>
+//                           </div>
+
+//                           {/* Rating */}
+//                           <div className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-[7px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-yellow-400/30 flex items-center gap-0.5">
+//                             <Star className="h-2 w-2 fill-current" />
+//                             4.9
+//                           </div>
+//                         </div>
+
+//                         {/* Name — sec-h3 class */}
+//                         <h3 className="sec-h3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+//                           {member.name}
+//                         </h3>
+
+//                         {/* Role — sec-p class */}
+//                         <p className="sec-p text-blue-400 font-medium mt-0.5">{member.role}</p>
+
+//                         {/* Location & Experience — sec-p class */}
+//                         <div className="flex items-center justify-center gap-2 sec-p text-blue-200/40 mt-1.5">
+//                           <span className="flex items-center gap-0.5">
+//                             <MapPin className="h-3 w-3" />
+//                             {member.location}
+//                           </span>
+//                           <span className="w-px h-2.5 bg-white/10"></span>
+//                           <span className="flex items-center gap-0.5">
+//                             <Briefcase className="h-3 w-3" />
+//                             {member.experience}
+//                           </span>
+//                         </div>
+
+//                         {/* Divider */}
+//                         <div className="w-6 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto my-2 rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
+
+//                         {/* Email — sec-p class */}
+//                         <motion.a
+//                           href={`mailto:${member.email}`}
+//                           whileHover={{ x: 2 }}
+//                           className="sec-p flex items-center justify-center gap-0.5 text-blue-200/40 hover:text-blue-400 transition-colors"
+//                         >
+//                           <Mail className="h-3 w-3" />
+//                           {member.email}
+//                         </motion.a>
+
+//                         {/* Social Links */}
+//                         <div className="flex items-center justify-center gap-2 mt-2.5">
+//                           {[
+//                             { icon: FaLinkedinIn, href: member.socials.linkedin, color: 'hover:bg-blue-600/30 hover:text-blue-400' },
+//                             { icon: FaTwitter, href: member.socials.twitter, color: 'hover:bg-sky-600/30 hover:text-sky-400' },
+//                             { icon: FaDribbble, href: member.socials.dribbble, color: 'hover:bg-pink-600/30 hover:text-pink-400' }
+//                           ].map((social, i) => (
+//                             <motion.a
+//                               key={i}
+//                               href={social.href}
+//                               whileHover={{ scale: 1.15, y: -2 }}
+//                               className={`w-7 h-7 rounded-full bg-white/5 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-transparent ${social.color}`}
+//                             >
+//                               <social.icon className="h-3 w-3" />
+//                             </motion.a>
+//                           ))}
+//                         </div>
+//                       </div>
+//                     </motion.div>
+//                   );
+//                 }}
+//               </SwiperSlide>
+//             ))}
+//           </Swiper>
+//         </div>
+
+//         {/* ===== BOTTOM CTA — Using sec-btn class ===== */}
+//         <motion.div
+//           className="text-center mt-6 sm:mt-8"
+//           initial={{ opacity: 0, y: 15 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.4, delay: 0.1 }}
+//           viewport={{ once: true }}
+//         >
+//           <motion.a
+//             href="/careers"
+//             whileTap={{ scale: 0.95 }}
+//             className="sec-btn"
+//           >
+//             Join Our Team
+//             <span className="sec-btn-arrow">→</span>
+//           </motion.a>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default TeamSection;
+
+
+import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Star, Users, Briefcase } from 'lucide-react';
-import { FaLinkedinIn, FaTwitter, FaDribbble } from 'react-icons/fa';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
+import { Users } from 'lucide-react';
+import { FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import AnimatedSection from './AnimatedSection';
 
 const TeamSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const teamMembers = [
-    { name: 'Preeti Rai', role: 'Senior Consultant', location: 'India', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face', email: 'preeti@coderbox.com', experience: '10+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
-    { name: 'Rahul Sharma', role: 'AI Specialist', location: 'India', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face', email: 'rahul@coderbox.com', experience: '8+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
-    { name: 'Ananya Singh', role: 'Digital Marketing Head', location: 'India', image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=face', email: 'ananya@coderbox.com', experience: '12+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
-    { name: 'Vikram Mehta', role: 'Full Stack Developer', location: 'India', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face', email: 'vikram@coderbox.com', experience: '6+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } },
-    { name: 'Sneha Patel', role: 'UI/UX Designer', location: 'India', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&crop=face', email: 'sneha@coderbox.com', experience: '5+ Years', socials: { linkedin: '#', twitter: '#', dribbble: '#' } }
+    {
+      name: 'Ashwin Singh',
+      role: 'Founder/CEO',
+      location: 'India',
+      image: 'https://thecoderbox.com/wp-content/uploads/2025/04/team-img1.png',
+      email: 'ashwin@coderbox.com',
+      experience: '10+ Years',
+      socials: {
+        instagram: '#',
+        linkedin: 'https://www.linkedin.com/in/ashwin-singh-%E0%A4%86shu-%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9-6704a5101/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+        twitter: '#'
+      }
+    }
   ];
 
   return (
@@ -1710,16 +1949,13 @@ const TeamSection = () => {
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
 
-        {/* ===== HEADER — Using index.css classes ===== */}
+        {/* ===== HEADER ===== */}
         <AnimatedSection className="text-center mb-6 sm:mb-8">
-          
-          {/* Badge — sec-badge class */}
           <span className="sec-badge inline-flex items-center gap-1.5">
             <Users className="h-3 w-3" />
             Our Team
           </span>
 
-          {/* Heading — sec-h2 class */}
           <h2 className="sec-h2 sec-text-light mt-2 leading-tight">
             Meet Our{' '}
             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -1727,153 +1963,97 @@ const TeamSection = () => {
             </span>
           </h2>
 
-          {/* Paragraph — sec-p class */}
           <p className="sec-p sec-text-light-soft mt-1.5 max-w-2xl mx-auto">
             Our experienced team is dedicated to delivering excellence and driving your success
           </p>
         </AnimatedSection>
 
-        {/* ===== SWIPER SLIDER (NO ARROWS) ===== */}
-        <div className="relative max-w-5xl mx-auto">
-          <Swiper
-            modules={[EffectCoverflow, Pagination, Autoplay]}
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView="auto"
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: true,
-            }}
-            pagination={{ clickable: true, dynamicBullets: true }}
-            autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-            loop={true}
-            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            breakpoints={{
-              320: { slidesPerView: 1, spaceBetween: 15 },
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              1024: { slidesPerView: 3, spaceBetween: 30 },
-            }}
-            className="py-10 px-2 sm:px-6"
-          >
-            {teamMembers.map((member, index) => (
-              <SwiperSlide key={index} className="pb-10">
-                {({ isActive }) => {
+        {/* ===== SINGLE TEAM MEMBER — CENTERED ===== */}
+        <div className="flex justify-center items-center">
+          {teamMembers.map((member, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="group relative w-full max-w-[320px] sm:max-w-[360px] mx-auto bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/50 shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500"
+            >
+              {/* Glow effect */}
+              <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 blur-xl transition-all duration-500 -z-10"></div>
 
-                  // Card tilt logic
-                  let tiltClass = '';
-                  if (!isActive) {
-                    const cardPosition = (index - activeIndex + teamMembers.length) % teamMembers.length;
-                    if (cardPosition === 1 || cardPosition === teamMembers.length - 1) {
-                      tiltClass = index > activeIndex ? 'rotate-[8deg]' : 'rotate-[-8deg]';
-                    }
-                  }
+              {/* ===== IMAGE ===== */}
+              <div className="relative aspect-[4/5] overflow-hidden">
+                {/* Main Image */}
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
 
-                  return (
-                    <motion.div
-                      className={`group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl p-4 sm:p-5 hover:shadow-2xl transition-all duration-500 border ${
-                        isActive
-                          ? 'border-blue-500/50 shadow-2xl shadow-blue-500/20 scale-100 rotate-0'
-                          : 'border-white/10 scale-95 rotate-[-6deg] opacity-80'
-                      } text-center overflow-hidden ${tiltClass}`}
-                      whileHover={{
-                        y: -4,
-                        rotate: 0,
-                        scale: isActive ? 1.02 : 1
-                      }}
-                    >
-                      <motion.div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 blur-xl transition-all duration-400 -z-10" />
+                {/* Dark gradient overlay (bottom — default) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
-                      <div className="relative z-10">
-                        {/* Profile Image */}
-                        <div className="relative mb-3 mx-auto w-20 h-20 sm:w-24 sm:h-24">
-                          <motion.div
-                            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden ring-2 ring-blue-500/20 group-hover:ring-blue-500/50 shadow-xl shadow-blue-500/10 transition-all duration-300"
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            <img
-                              src={member.image}
-                              alt={member.name}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                          </motion.div>
+                {/* Name at bottom (default view) */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+                  <h5 className="text-xl font-bold text-white">
+                    {member.name}
+                  </h5>
+                </div>
 
-                          {/* Status dot */}
-                          <div className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-green-400 border-2 border-[#0a0a1a] shadow-lg shadow-green-400/30">
-                            <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75"></div>
-                          </div>
+                {/* ===== HOVER BACKDROP — LIGHT BLUE/PURPLE GRADIENT ===== */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-purple-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-end p-6">
+                  <div className="text-center transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+                    {/* Name */}
+                    <h5 className="text-2xl font-bold text-white mb-1">
+                      {member.name}
+                    </h5>
 
-                          {/* Rating */}
-                          <div className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-[7px] font-bold px-1.5 py-0.5 rounded-full shadow-lg shadow-yellow-400/30 flex items-center gap-0.5">
-                            <Star className="h-2 w-2 fill-current" />
-                            4.9
-                          </div>
-                        </div>
+                    {/* Position */}
+                    <p className="text-sm text-blue-300 font-medium mb-4">
+                      {member.role}
+                    </p>
 
-                        {/* Name — sec-h3 class */}
-                        <h3 className="sec-h3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-                          {member.name}
-                        </h3>
+                    {/* Social Icons */}
+                    <div className="flex items-center justify-center gap-3">
+                      <motion.a
+                        href={member.socials.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        className="w-9 h-9 rounded-full bg-white/15 hover:bg-gradient-to-br hover:from-pink-500 hover:to-purple-500 flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+                      >
+                        <FaInstagram className="h-3.5 w-3.5" />
+                      </motion.a>
 
-                        {/* Role — sec-p class */}
-                        <p className="sec-p text-blue-400 font-medium mt-0.5">{member.role}</p>
+                      <motion.a
+                        href={member.socials.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        className="w-9 h-9 rounded-full bg-white/15 hover:bg-blue-600 flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+                      >
+                        <FaLinkedinIn className="h-3.5 w-3.5" />
+                      </motion.a>
 
-                        {/* Location & Experience — sec-p class */}
-                        <div className="flex items-center justify-center gap-2 sec-p text-blue-200/40 mt-1.5">
-                          <span className="flex items-center gap-0.5">
-                            <MapPin className="h-3 w-3" />
-                            {member.location}
-                          </span>
-                          <span className="w-px h-2.5 bg-white/10"></span>
-                          <span className="flex items-center gap-0.5">
-                            <Briefcase className="h-3 w-3" />
-                            {member.experience}
-                          </span>
-                        </div>
-
-                        {/* Divider */}
-                        <div className="w-6 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto my-2 rounded-full opacity-50 group-hover:opacity-100 transition-opacity" />
-
-                        {/* Email — sec-p class */}
-                        <motion.a
-                          href={`mailto:${member.email}`}
-                          whileHover={{ x: 2 }}
-                          className="sec-p flex items-center justify-center gap-0.5 text-blue-200/40 hover:text-blue-400 transition-colors"
-                        >
-                          <Mail className="h-3 w-3" />
-                          {member.email}
-                        </motion.a>
-
-                        {/* Social Links */}
-                        <div className="flex items-center justify-center gap-2 mt-2.5">
-                          {[
-                            { icon: FaLinkedinIn, href: member.socials.linkedin, color: 'hover:bg-blue-600/30 hover:text-blue-400' },
-                            { icon: FaTwitter, href: member.socials.twitter, color: 'hover:bg-sky-600/30 hover:text-sky-400' },
-                            { icon: FaDribbble, href: member.socials.dribbble, color: 'hover:bg-pink-600/30 hover:text-pink-400' }
-                          ].map((social, i) => (
-                            <motion.a
-                              key={i}
-                              href={social.href}
-                              whileHover={{ scale: 1.15, y: -2 }}
-                              className={`w-7 h-7 rounded-full bg-white/5 flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-transparent ${social.color}`}
-                            >
-                              <social.icon className="h-3 w-3" />
-                            </motion.a>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                }}
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                      <motion.a
+                        href={member.socials.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        className="w-9 h-9 rounded-full bg-white/15 hover:bg-sky-500 flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+                      >
+                        <FaTwitter className="h-3.5 w-3.5" />
+                      </motion.a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* ===== BOTTOM CTA — Using sec-btn class ===== */}
+        {/* ===== BOTTOM CTA ===== */}
         <motion.div
           className="text-center mt-6 sm:mt-8"
           initial={{ opacity: 0, y: 15 }}
