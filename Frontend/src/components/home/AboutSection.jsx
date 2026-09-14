@@ -3245,6 +3245,373 @@
 
 
 
+// import React, { useState, useRef } from 'react';
+// import { motion, AnimatePresence } from 'framer-motion';
+// import { ArrowRight, Clock, Users, Award, ThumbsUp, Play, Zap, Shield, TrendingUp, X } from 'lucide-react';
+
+// const AboutSection = () => {
+//   const [isVideoOpen, setIsVideoOpen] = useState(false);
+//   const [isPlaying, setIsPlaying] = useState(false);
+//   const videoRef = useRef(null);
+
+//   const videoUrl = "/Your business doesn’t need more noise.It needs the right digital system.From web design & develo.mp4";
+
+//   const openVideo = () => {
+//     setIsVideoOpen(true);
+//     setIsPlaying(true);
+//     setTimeout(() => {
+//       if (videoRef.current) {
+//         videoRef.current.play();
+//       }
+//     }, 300);
+//   };
+
+//   const closeVideo = () => {
+//     setIsVideoOpen(false);
+//     setIsPlaying(false);
+//     if (videoRef.current) {
+//       videoRef.current.pause();
+//     }
+//   };
+
+//   // ===== STATS DATA — ICONS WITH GRID PATTERN =====
+//   const statsData = [
+//     {
+//       label: 'Years Exp.',
+//       value: '10+',
+//       icon: <Clock className="h-5 w-5 sm:h-6 sm:w-6" />,
+//       iconClass: 'stat-icon stat-icon-cyan',
+//       valueColor: 'text-[#01adf0]'
+//     },
+//     {
+//       label: 'Clients',
+//       value: '8K+',
+//       icon: <Users className="h-5 w-5 sm:h-6 sm:w-6" />,
+//       iconClass: 'stat-icon stat-icon-purple',
+//       valueColor: 'text-purple-600'
+//     },
+//     {
+//       label: 'Awards',
+//       value: '12+',
+//       icon: <Award className="h-5 w-5 sm:h-6 sm:w-6" />,
+//       iconClass: 'stat-icon stat-icon-yellow',
+//       valueColor: 'text-orange-500'
+//     },
+//     {
+//       label: 'Satisfaction',
+//       value: '100%',
+//       icon: <ThumbsUp className="h-5 w-5 sm:h-6 sm:w-6" />,
+//       iconClass: 'stat-icon stat-icon-green',
+//       valueColor: 'text-green-600'
+//     }
+//   ];
+
+//   const containerVariants = {
+//     hidden: { opacity: 0 },
+//     visible: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.1 } }
+//   };
+
+//   const itemVariants = {
+//     hidden: { opacity: 0, y: 15 },
+//     visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.215, 0.61, 0.355, 1] } }
+//   };
+
+//   return (
+//     <>
+//       <section className="relative py-6 sm:py-8 md:py-10 bg-[#f5f5f5] overflow-hidden">
+        
+//         {/* Background Blobs */}
+//         <div className="absolute inset-0 pointer-events-none">
+//           <motion.div
+//             className="absolute -top-40 -right-40 w-[300px] h-[300px] rounded-full bg-[#01adf0]/10 blur-3xl"
+//             animate={{ x: [0, 40, -40, 0], y: [0, -20, 20, 0], scale: [1, 1.1, 0.9, 1] }}
+//             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+//           />
+//           <motion.div
+//             className="absolute -bottom-40 -left-40 w-[300px] h-[300px] rounded-full bg-purple-500/10 blur-3xl"
+//             animate={{ x: [0, -40, 40, 0], y: [0, 20, -20, 0], scale: [1, 0.9, 1.1, 1] }}
+//             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//           />
+//         </div>
+
+//         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 max-w-7xl">
+//           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-start">
+            
+//             {/* ===== LEFT COLUMN ===== */}
+//             <motion.div
+//               initial={{ opacity: 0, x: -15 }}
+//               whileInView={{ opacity: 1, x: 0 }}
+//               transition={{ duration: 0.5 }}
+//               viewport={{ once: true }}
+//               className="max-w-md lg:max-w-lg"
+//             >
+//               <motion.span 
+//                 className="sec-badge inline-block mb-3"
+//                 whileHover={{ scale: 1.05 }}
+//               >
+//                 About Us
+//               </motion.span>
+
+//               <motion.h2 
+//                 className="sec-hero-heading max-w-sm sm:max-w-md"
+//                 initial={{ opacity: 0, y: 15 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.5, delay: 0.1 }}
+//                 viewport={{ once: true }}
+//               >
+//                 Grow Your Business{' '}
+//                 <span className="bg-gradient-to-r from-[#01adf0] to-purple-600 bg-clip-text text-transparent">
+//                   With Coderbox
+//                 </span>
+//               </motion.h2>
+
+//               <motion.p 
+//                 className="sec-p sec-text-dark-soft mb-5 max-w-md"
+//                 initial={{ opacity: 0, y: 15 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.5, delay: 0.2 }}
+//                 viewport={{ once: true }}
+//               >
+//                 Over 10 years of helping companies reach their financial and branding goals. We help our clients succeed by creating brand identities and digital experiences.
+//               </motion.p>
+              
+//               <motion.div 
+//                 className="space-y-3 mb-5 max-w-md"
+//                 variants={containerVariants}
+//                 initial="hidden"
+//                 whileInView="visible"
+//                 viewport={{ once: true }}
+//               >
+//                 {[
+//                   { label: 'Brand Presence', value: 92 },
+//                   { label: 'Digital Presence', value: 95 },
+//                   { label: 'Optimization', value: 95 }
+//                 ].map((item, index) => (
+//                   <motion.div key={index} variants={itemVariants}>
+//                     <div className="flex justify-between mb-1">
+//                       <span className="sec-p sec-text-dark font-bold">{item.label}</span>
+//                       <span className="sec-p text-[#01adf0] font-bold">{item.value}%</span>
+//                     </div>
+//                     <div className="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+//                       <motion.div 
+//                         className="h-1.5 rounded-full bg-gradient-to-r from-[#01adf0] to-purple-500"
+//                         initial={{ width: 0 }}
+//                         whileInView={{ width: `${item.value}%` }}
+//                         transition={{ duration: 1, delay: 0.15 + index * 0.08, ease: [0.215, 0.61, 0.355, 1] }}
+//                         viewport={{ once: true }}
+//                       />
+//                     </div>
+//                   </motion.div>
+//                 ))}
+//               </motion.div>
+              
+//               <motion.div
+//                 initial={{ opacity: 0, y: 10 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.4, delay: 0.3 }}
+//                 viewport={{ once: true }}
+//                 className="mt-6"
+//               >
+//                 <motion.a
+//                   href="/contact"
+//                   whileTap={{ scale: 0.95 }}
+//                   className="sec-btn"
+//                 >
+//                   Know More About Us
+//                   <ArrowRight className="h-4 w-4 sec-btn-arrow" />
+//                 </motion.a>
+//               </motion.div>
+//             </motion.div>
+
+//             {/* ===== RIGHT COLUMN ===== */}
+//             <motion.div
+//               initial={{ opacity: 0, x: 15 }}
+//               whileInView={{ opacity: 1, x: 0 }}
+//               transition={{ duration: 0.5 }}
+//               viewport={{ once: true }}
+//               className="space-y-3 w-full"
+//             >
+              
+//               {/* Stats Grid */}
+//               <div className="grid grid-cols-2 gap-3">
+//                 {statsData.map((item, index) => (
+//                   <motion.div
+//                     key={index}
+//                     initial={{ opacity: 0, y: 15 }}
+//                     whileInView={{ opacity: 1, y: 0 }}
+//                     transition={{ duration: 0.35, delay: 0.04 * index }}
+//                     viewport={{ once: true }}
+//                     whileHover={{ y: -3 }}
+//                     className="group relative bg-white rounded-lg px-4 py-3 shadow-sm hover:shadow-md border border-gray-100 hover:border-[#01adf0]/30 transition-all duration-300"
+//                   >
+//                     <div className="flex items-center gap-3">
+//                       {/* ICON WITH GRID PATTERN */}
+//                       <motion.div 
+//                         className={`flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 ${item.iconClass}`}
+//                         whileHover={{ rotate: 8 }}
+//                       >
+//                         <span className="relative z-10">{item.icon}</span>
+//                       </motion.div>
+
+//                       <div className="min-w-0">
+//                         <p className={`text-xl sm:text-2xl font-bold ${item.valueColor} leading-none`}>
+//                           {item.value}
+//                         </p>
+//                         <h3 className="sec-p sec-text-muted mt-0.5">
+//                           {item.label}
+//                         </h3>
+//                       </div>
+//                     </div>
+//                   </motion.div>
+//                 ))}
+//               </div>
+
+//               {/* Why Choose Coderbox Card */}
+//               <motion.div
+//                 initial={{ opacity: 0, y: 10 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.4, delay: 0.3 }}
+//                 viewport={{ once: true }}
+//                 className="relative bg-white rounded-lg p-4 shadow-sm border border-gray-100"
+//               >
+//                 <div className="flex items-center justify-between mb-2">
+//                   <div>
+//                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-0">Why Choose Coderbox?</h3>
+//                     <p className="sec-p sec-text-muted">We deliver excellence</p>
+//                   </div>
+//                   <motion.div
+//                     whileHover={{ scale: 1.1, rotate: 8 }}
+//                     className="bg-gradient-to-r from-[#01adf0] to-purple-500 p-1.5 rounded-lg flex-shrink-0"
+//                   >
+//                     <Shield className="h-3.5 w-3.5 text-white" />
+//                   </motion.div>
+//                 </div>
+
+//                 <div className="grid grid-cols-2 gap-2 mb-3">
+//                   {[
+//                     { icon: Zap, label: 'Fast Delivery' },
+//                     { icon: TrendingUp, label: 'Growth Focus' }
+//                   ].map((item, index) => (
+//                     <motion.div
+//                       key={index}
+//                       whileHover={{ scale: 1.03 }}
+//                       className="flex items-center gap-2 bg-gray-50 rounded-md px-3 py-2 border border-gray-100 hover:border-[#01adf0]/30 transition-colors"
+//                     >
+//                       <item.icon className="h-3.5 w-3.5 text-[#01adf0] flex-shrink-0" />
+//                       <span className="sec-p sec-text-dark font-medium">{item.label}</span>
+//                     </motion.div>
+//                   ))}
+//                 </div>
+
+//                 {/* Video Thumbnail */}
+//                 <motion.div
+//                   whileHover={{ scale: 1.01 }}
+//                   onClick={openVideo}
+//                   className="relative rounded-md overflow-hidden cursor-pointer group/video"
+//                 >
+//                   <div className="relative w-full aspect-[16/8]">
+//                     <img
+//                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZzSpL3Jdz_jPNDd9aN5_0YiS4IuR1O1A5e0Fx5kX1o2DjzWcuN74buxc&s=10"
+//                       alt="Watch Our Story"
+//                       className="w-full h-full object-cover opacity-90 group-hover/video:opacity-100 group-hover/video:scale-105 transition-all duration-500"
+//                     />
+                    
+//                     <div className="absolute inset-0 bg-black/20 group-hover/video:bg-black/10 transition-all duration-300"></div>
+                    
+//                     <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+//                       <motion.div
+//                         className="w-12 h-12 rounded-full bg-[#01adf0] flex items-center justify-center shadow-2xl shadow-[#01adf0]/50 relative"
+//                         animate={{
+//                           boxShadow: [
+//                             '0 0 15px rgba(1,173,240,0.4)',
+//                             '0 0 35px rgba(1,173,240,0.6)',
+//                             '0 0 15px rgba(1,173,240,0.4)'
+//                           ],
+//                           scale: [1, 1.05, 1]
+//                         }}
+//                         transition={{ duration: 2, repeat: Infinity }}
+//                       >
+//                         <motion.div
+//                           className="absolute inset-0 rounded-full border-2 border-white/40"
+//                           animate={{ scale: [1, 1.4, 1], opacity: [0.8, 0, 0.8] }}
+//                           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+//                         />
+//                         <Play className="h-5 w-5 text-white ml-0.5 relative z-10" fill="currentColor" />
+//                       </motion.div>
+                      
+//                       <motion.p 
+//                         className="text-white text-xs font-semibold mt-1.5 drop-shadow-lg"
+//                         animate={{ y: [0, -2, 0] }}
+//                         transition={{ duration: 2, repeat: Infinity }}
+//                       >
+//                         Watch
+//                       </motion.p>
+//                     </div>
+//                   </div>
+//                 </motion.div>
+//               </motion.div>
+//             </motion.div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Video Modal */}
+//       <AnimatePresence>
+//         {isVideoOpen && (
+//           <motion.div
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-xl p-3"
+//             onClick={closeVideo}
+//           >
+//             <motion.div
+//               initial={{ scale: 0.8, opacity: 0 }}
+//               animate={{ scale: 1, opacity: 1 }}
+//               exit={{ scale: 0.8, opacity: 0 }}
+//               transition={{ duration: 0.35, ease: [0.215, 0.61, 0.355, 1] }}
+//               className="relative w-full max-w-3xl bg-black/50 rounded-xl overflow-hidden shadow-2xl shadow-[#01adf0]/15 border border-white/10"
+//               onClick={(e) => e.stopPropagation()}
+//             >
+//               <button
+//                 onClick={closeVideo}
+//                 className="absolute top-2 right-2 z-20 bg-black/60 hover:bg-black/80 backdrop-blur-sm p-1.5 rounded-full text-white transition-all duration-300 hover:scale-110 border border-white/20"
+//               >
+//                 <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+//               </button>
+
+//               <div className="relative aspect-video bg-black">
+//                 <video
+//                   ref={videoRef}
+//                   src={videoUrl}
+//                   className="w-full h-full object-contain"
+//                   controls
+//                   autoPlay
+//                   onClick={(e) => e.stopPropagation()}
+//                   onPlay={() => setIsPlaying(true)}
+//                   onPause={() => setIsPlaying(false)}
+//                 />
+//               </div>
+
+//               <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-black/80 to-transparent">
+//                 <p className="text-xs sm:text-sm text-white flex items-center gap-1.5">
+//                   <span className="inline-block w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+//                   Now Playing: Our Story
+//                 </p>
+//               </div>
+//             </motion.div>
+//           </motion.div>
+//         )}
+//       </AnimatePresence>
+//     </>
+//   );
+// };
+
+// export default AboutSection;
+
+
+
+
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Clock, Users, Award, ThumbsUp, Play, Zap, Shield, TrendingUp, X } from 'lucide-react';
@@ -3274,34 +3641,34 @@ const AboutSection = () => {
     }
   };
 
-  // ===== STATS DATA — ICONS WITH GRID PATTERN =====
+  // ===== STATS DATA — SOLID COLOR BACKGROUND ICONS =====
   const statsData = [
     {
       label: 'Years Exp.',
       value: '10+',
-      icon: <Clock className="h-5 w-5 sm:h-6 sm:w-6" />,
-      iconClass: 'stat-icon stat-icon-cyan',
+      icon: <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-white" />,
+      bgClass: 'bg-gradient-to-br from-[#00c6fb] to-[#01adf0]',
       valueColor: 'text-[#01adf0]'
     },
     {
       label: 'Clients',
       value: '8K+',
-      icon: <Users className="h-5 w-5 sm:h-6 sm:w-6" />,
-      iconClass: 'stat-icon stat-icon-purple',
+      icon: <Users className="h-4 w-4 sm:h-5 sm:w-5 text-white" />,
+      bgClass: 'bg-gradient-to-br from-[#8b5cf6] to-[#6d28d9]',
       valueColor: 'text-purple-600'
     },
     {
       label: 'Awards',
       value: '12+',
-      icon: <Award className="h-5 w-5 sm:h-6 sm:w-6" />,
-      iconClass: 'stat-icon stat-icon-yellow',
+      icon: <Award className="h-4 w-4 sm:h-5 sm:w-5 text-white" />,
+      bgClass: 'bg-gradient-to-br from-[#fbbf24] to-[#f59e0b]',
       valueColor: 'text-orange-500'
     },
     {
       label: 'Satisfaction',
       value: '100%',
-      icon: <ThumbsUp className="h-5 w-5 sm:h-6 sm:w-6" />,
-      iconClass: 'stat-icon stat-icon-green',
+      icon: <ThumbsUp className="h-4 w-4 sm:h-5 sm:w-5 text-white" />,
+      bgClass: 'bg-gradient-to-br from-[#10b981] to-[#059669]',
       valueColor: 'text-green-600'
     }
   ];
@@ -3318,7 +3685,8 @@ const AboutSection = () => {
 
   return (
     <>
-      <section className="relative py-6 sm:py-8 md:py-10 bg-[#f5f5f5] overflow-hidden">
+      {/* ✅ Height kam ki — py-4 sm:py-6 md:py-8 */}
+      <section className="relative py-4 sm:py-6 md:py-8 bg-[#f5f5f5] overflow-hidden">
         
         {/* Background Blobs */}
         <div className="absolute inset-0 pointer-events-none">
@@ -3335,7 +3703,8 @@ const AboutSection = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-start">
+          {/* ✅ gap kam kiya — gap-6 lg:gap-8 */}
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
             
             {/* ===== LEFT COLUMN ===== */}
             <motion.div
@@ -3343,17 +3712,19 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="max-w-md lg:max-w-lg"
+              className="max-w-lg"
             >
+              {/* ✅ Badge chhota */}
               <motion.span 
-                className="sec-badge inline-block mb-3"
+                className="inline-block px-3 py-1 rounded-full bg-[#01adf0]/10 text-[#01adf0] text-[10px] font-bold tracking-wider uppercase mb-3"
                 whileHover={{ scale: 1.05 }}
               >
                 About Us
               </motion.span>
 
+              {/* ✅ Heading size thoda kam */}
               <motion.h2 
-                className="sec-hero-heading max-w-sm sm:max-w-md"
+                className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight mb-3"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -3365,8 +3736,9 @@ const AboutSection = () => {
                 </span>
               </motion.h2>
 
+              {/* ✅ Paragraph margin kam + text chhota */}
               <motion.p 
-                className="sec-p sec-text-dark-soft mb-5 max-w-md"
+                className="text-gray-500 text-xs sm:text-sm leading-relaxed mb-4 max-w-md"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -3375,6 +3747,7 @@ const AboutSection = () => {
                 Over 10 years of helping companies reach their financial and branding goals. We help our clients succeed by creating brand identities and digital experiences.
               </motion.p>
               
+              {/* ✅ Progress bars spacing kam */}
               <motion.div 
                 className="space-y-3 mb-5 max-w-md"
                 variants={containerVariants}
@@ -3389,9 +3762,10 @@ const AboutSection = () => {
                 ].map((item, index) => (
                   <motion.div key={index} variants={itemVariants}>
                     <div className="flex justify-between mb-1">
-                      <span className="sec-p sec-text-dark font-bold">{item.label}</span>
-                      <span className="sec-p text-[#01adf0] font-bold">{item.value}%</span>
+                      <span className="text-xs sm:text-sm font-semibold text-gray-800">{item.label}</span>
+                      <span className="text-xs sm:text-sm font-bold text-[#01adf0]">{item.value}%</span>
                     </div>
+                    {/* ✅ Bar height kam — h-1.5 */}
                     <div className="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
                       <motion.div 
                         className="h-1.5 rounded-full bg-gradient-to-r from-[#01adf0] to-purple-500"
@@ -3410,15 +3784,16 @@ const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="mt-6"
               >
+                {/* ✅ Button chhota */}
                 <motion.a
                   href="/contact"
-                  whileTap={{ scale: 0.95 }}
-                  className="sec-btn"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 bg-[#01adf0] hover:bg-[#0196d1] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-[#01adf0]/30 transition-all duration-300"
                 >
                   Know More About Us
-                  <ArrowRight className="h-4 w-4 sec-btn-arrow" />
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </motion.a>
               </motion.div>
             </motion.div>
@@ -3432,8 +3807,8 @@ const AboutSection = () => {
               className="space-y-3 w-full"
             >
               
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-3">
+              {/* Stats Grid — ✅ gap kam */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {statsData.map((item, index) => (
                   <motion.div
                     key={index}
@@ -3442,22 +3817,23 @@ const AboutSection = () => {
                     transition={{ duration: 0.35, delay: 0.04 * index }}
                     viewport={{ once: true }}
                     whileHover={{ y: -3 }}
-                    className="group relative bg-white rounded-lg px-4 py-3 shadow-sm hover:shadow-md border border-gray-100 hover:border-[#01adf0]/30 transition-all duration-300"
+                    className="group bg-white rounded-lg px-4 py-3 shadow-sm hover:shadow-md border border-gray-100 hover:border-[#01adf0]/30 transition-all duration-300"
                   >
                     <div className="flex items-center gap-3">
-                      {/* ICON WITH GRID PATTERN */}
+                      {/* ✅ Icon size kam — w-10 h-10 */}
                       <motion.div 
-                        className={`flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 ${item.iconClass}`}
-                        whileHover={{ rotate: 8 }}
+                        className={`flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-lg ${item.bgClass} flex items-center justify-center shadow-md`}
+                        whileHover={{ rotate: 6, scale: 1.05 }}
                       >
-                        <span className="relative z-10">{item.icon}</span>
+                        {item.icon}
                       </motion.div>
 
                       <div className="min-w-0">
-                        <p className={`text-xl sm:text-2xl font-bold ${item.valueColor} leading-none`}>
+                        {/* ✅ Value size kam */}
+                        <p className={`text-lg sm:text-xl font-extrabold ${item.valueColor} leading-none`}>
                           {item.value}
                         </p>
-                        <h3 className="sec-p sec-text-muted mt-0.5">
+                        <h3 className="text-[10px] sm:text-xs text-gray-500 mt-0.5 font-medium">
                           {item.label}
                         </h3>
                       </div>
@@ -3466,7 +3842,7 @@ const AboutSection = () => {
                 ))}
               </div>
 
-              {/* Why Choose Coderbox Card */}
+              {/* Why Choose Coderbox Card — ✅ padding kam */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -3474,19 +3850,21 @@ const AboutSection = () => {
                 viewport={{ once: true }}
                 className="relative bg-white rounded-lg p-4 shadow-sm border border-gray-100"
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-0">Why Choose Coderbox?</h3>
-                    <p className="sec-p sec-text-muted">We deliver excellence</p>
+                    {/* ✅ Heading chhota */}
+                    <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-0.5">Why Choose Coderbox?</h3>
+                    <p className="text-[10px] text-gray-500">We deliver excellence</p>
                   </div>
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 8 }}
-                    className="bg-gradient-to-r from-[#01adf0] to-purple-500 p-1.5 rounded-lg flex-shrink-0"
+                    className="bg-gradient-to-r from-[#01adf0] to-purple-500 p-1.5 rounded-lg flex-shrink-0 shadow-md"
                   >
                     <Shield className="h-3.5 w-3.5 text-white" />
                   </motion.div>
                 </div>
 
+                {/* ✅ gap kam */}
                 <div className="grid grid-cols-2 gap-2 mb-3">
                   {[
                     { icon: Zap, label: 'Fast Delivery' },
@@ -3495,21 +3873,21 @@ const AboutSection = () => {
                     <motion.div
                       key={index}
                       whileHover={{ scale: 1.03 }}
-                      className="flex items-center gap-2 bg-gray-50 rounded-md px-3 py-2 border border-gray-100 hover:border-[#01adf0]/30 transition-colors"
+                      className="flex items-center gap-2 bg-gray-50 rounded-md px-2.5 py-2 border border-gray-100 hover:border-[#01adf0]/30 transition-colors"
                     >
                       <item.icon className="h-3.5 w-3.5 text-[#01adf0] flex-shrink-0" />
-                      <span className="sec-p sec-text-dark font-medium">{item.label}</span>
+                      <span className="text-[10px] sm:text-xs font-medium text-gray-700">{item.label}</span>
                     </motion.div>
                   ))}
                 </div>
 
-                {/* Video Thumbnail */}
+                {/* Video Thumbnail — ✅ aspect ratio thoda kam (16/7) */}
                 <motion.div
                   whileHover={{ scale: 1.01 }}
                   onClick={openVideo}
-                  className="relative rounded-md overflow-hidden cursor-pointer group/video"
+                  className="relative rounded-lg overflow-hidden cursor-pointer group/video"
                 >
-                  <div className="relative w-full aspect-[16/8]">
+                  <div className="relative w-full aspect-[16/7]">
                     <img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZzSpL3Jdz_jPNDd9aN5_0YiS4IuR1O1A5e0Fx5kX1o2DjzWcuN74buxc&s=10"
                       alt="Watch Our Story"
@@ -3519,8 +3897,9 @@ const AboutSection = () => {
                     <div className="absolute inset-0 bg-black/20 group-hover/video:bg-black/10 transition-all duration-300"></div>
                     
                     <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                      {/* ✅ Play button chhota — w-11 h-11 */}
                       <motion.div
-                        className="w-12 h-12 rounded-full bg-[#01adf0] flex items-center justify-center shadow-2xl shadow-[#01adf0]/50 relative"
+                        className="w-11 h-11 rounded-full bg-[#01adf0] flex items-center justify-center shadow-2xl shadow-[#01adf0]/50 relative"
                         animate={{
                           boxShadow: [
                             '0 0 15px rgba(1,173,240,0.4)',
@@ -3536,11 +3915,11 @@ const AboutSection = () => {
                           animate={{ scale: [1, 1.4, 1], opacity: [0.8, 0, 0.8] }}
                           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         />
-                        <Play className="h-5 w-5 text-white ml-0.5 relative z-10" fill="currentColor" />
+                        <Play className="h-4 w-4 text-white ml-0.5 relative z-10" fill="currentColor" />
                       </motion.div>
                       
                       <motion.p 
-                        className="text-white text-xs font-semibold mt-1.5 drop-shadow-lg"
+                        className="text-white text-[10px] font-semibold mt-1.5 drop-shadow-lg"
                         animate={{ y: [0, -2, 0] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
@@ -3555,7 +3934,7 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Video Modal */}
+      {/* Video Modal — same as before */}
       <AnimatePresence>
         {isVideoOpen && (
           <motion.div
