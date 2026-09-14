@@ -3432,20 +3432,20 @@ const Footer = () => {
             className="lg:col-span-1"
           >
             {/* Fixed Logo — No Hover Animation */}
-            <img 
-              src="coderBoxlogo3.png"
-              alt="CoderBox Logo"
-              className="w-24 h-24 sm:w-32 sm:h-32 object-contain mb-3"
-              style={{ 
-                pointerEvents: 'none',
-                userSelect: 'none',
-                transform: 'none'
-              }}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'https://via.placeholder.com/96/2563eb/ffffff?text=CB';
-              }}
-            />
+           <img 
+  src="coderBoxlogo3.png"
+  alt="CoderBox Logo"
+  className="h-10 sm:h-10 w-auto object-contain mb-3"
+  style={{ 
+    pointerEvents: 'none',
+    userSelect: 'none',
+    transform: 'none'
+  }}
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = 'https://via.placeholder.com/96/2563eb/ffffff?text=CB';
+  }}
+/>
             
             <p 
               className="sec-p leading-relaxed mb-3"
