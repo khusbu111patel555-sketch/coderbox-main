@@ -16,6 +16,7 @@
   background: #154d7c;
 }
 
+
 /* ============================================
    CUSTOM TYPOGRAPHY & UI CLASSES
    ============================================ */
@@ -98,7 +99,7 @@
   background-color: #01adf0;
   color: #ffffff;
   font-weight: 600;
-  font-size: 0.625rem;
+  font-size: 1.625rem;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;

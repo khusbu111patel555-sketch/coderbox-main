@@ -687,23 +687,351 @@
 // export default ContactSection;
 
 
+// import React from 'react';
+// import { motion } from 'framer-motion';
+// import { Send, CheckCircle } from 'lucide-react';
+
+// const ContactSection = () => {
+//   return (
+//     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#0a0a1a] to-[#12122a] overflow-hidden">
+      
+//       {/* Animated Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div
+//           className="absolute -top-40 -right-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-600/10 to-purple-600/10 blur-3xl"
+//           animate={{ x: [0, 50, -50, 0], y: [0, -50, 50, 0], scale: [1, 1.2, 0.8, 1] }}
+//           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div
+//           className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-purple-600/10 to-pink-600/10 blur-3xl"
+//           animate={{ x: [0, -50, 50, 0], y: [0, 50, -50, 0], scale: [1, 0.8, 1.2, 1] }}
+//           transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+        
+//         {/* Centered Form */}
+//         <div className="max-w-2xl mx-auto">
+          
+//           {/* Header */}
+//           <motion.div 
+//             initial={{ opacity: 0, y: 20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6 }}
+//             viewport={{ once: true }}
+//             className="text-center mb-6 sm:mb-8"
+//           >
+//             <motion.span 
+//               className="sec-badge inline-block"
+//               whileHover={{ scale: 1.05 }}
+//               animate={{ y: [0, -3, 0] }}
+//               transition={{ duration: 2, repeat: Infinity }}
+//             >
+//               Let's Talk!
+//             </motion.span>
+            
+//             <motion.h2 
+//               className="sec-h2 sec-text-light mt-2 sm:mt-3 mb-2 sm:mb-3 leading-tight"
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.6, delay: 0.15 }}
+//             >
+//               Contact <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Us!</span>
+//             </motion.h2>
+            
+//             <motion.p 
+//               className="sec-p sec-text-light-soft"
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.6, delay: 0.2 }}
+//             >
+//               Benefit of the society where we operate. A success website obviously needs great.
+//             </motion.p>
+//           </motion.div>
+
+//           {/* Form Card */}
+//           <motion.div
+//             initial={{ opacity: 0, y: 20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.3 }}
+//             viewport={{ once: true }}
+//             className="bg-white/15 backdrop-blur-xl rounded-xl p-4 sm:p-5 md:p-6 border border-white/20 shadow-2xl hover:shadow-[0_20px_70px_-15px_rgba(99,102,241,0.3)] transition-all duration-500"
+//           >
+//             <div className="mb-3 text-center">
+//               {/* Subheading (h3) */}
+//               <h3 className="sec-h3 sec-text-light">Send Us a Message</h3>
+//               {/* Paragraph (p) */}
+//               <p className="sec-p sec-text-light-soft mt-0.5">We'll get back to you as soon as possible</p>
+//             </div>
+
+//             <form className="space-y-2.5 sm:space-y-3">
+//               <div>
+//                 <label className="block sec-p font-semibold sec-text-light mb-0.5">Your Name</label>
+//                 <input 
+//                   type="text" 
+//                   className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 sec-p"
+//                   placeholder="Enter your name"
+//                 />
+//               </div>
+//               <div>
+//                 <label className="block sec-p font-semibold sec-text-light mb-0.5">Your Email</label>
+//                 <input 
+//                   type="email" 
+//                   className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 sec-p"
+//                   placeholder="Enter your email"
+//                 />
+//               </div>
+//               <div>
+//                 <label className="block sec-p font-semibold sec-text-light mb-0.5">Your Subject</label>
+//                 <input 
+//                   type="text" 
+//                   className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 sec-p"
+//                   placeholder="Enter subject"
+//                 />
+//               </div>
+//               <div>
+//                 <label className="block sec-p font-semibold sec-text-light mb-0.5">Message</label>
+//                 <textarea 
+//                   rows="3"
+//                   className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 resize-none sec-p"
+//                   placeholder="Write your message..."
+//                 />
+//               </div>
+              
+//               {/* Submit Button */}
+//               <motion.button 
+//                 type="submit"
+//                 whileTap={{ scale: 0.98 }}
+//                 className="sec-btn w-full justify-center"
+//               >
+//                 <span>Submit Now</span>
+//                 <Send className="h-3.5 w-3.5 sec-btn-arrow" />
+//               </motion.button>
+//             </form>
+
+//             {/* Trust Badges */}
+//             <div className="mt-3 flex items-center justify-center gap-2 sec-p sec-text-light-soft">
+//               <span className="flex items-center gap-0.5">
+//                 <CheckCircle className="h-2.5 w-2.5 text-green-400" />
+//                 Secure
+//               </span>
+//               <span className="w-px h-2.5 bg-white/20"></span>
+//               <span className="flex items-center gap-0.5">
+//                 <CheckCircle className="h-2.5 w-2.5 text-green-400" />
+//                 Encrypted
+//               </span>
+//               <span className="w-px h-2.5 bg-white/20"></span>
+//               <span className="flex items-center gap-0.5">
+//                 <CheckCircle className="h-2.5 w-2.5 text-green-400" />
+//                 Private
+//               </span>
+//             </div>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default ContactSection;
+
+
+
+
+// import React from 'react';
+// import { motion } from 'framer-motion';
+// import { Send, CheckCircle } from 'lucide-react';
+
+// const ContactSection = () => {
+//   // Google Maps embed URL (Vinir Tower, BTM Layout)
+//   const mapEmbedUrl = 'https://www.google.com/maps?q=Vinir+Tower,+6,+Outer+Ring+Rd,+Old+Madiwala,+Jay+Bheema+Nagar,+1st+Stage,+BTM+Layout,+Bengaluru,+Karnataka+560068&output=embed';
+
+//   return (
+//     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#0a0a1a] to-[#12122a] overflow-hidden">
+      
+//       {/* Animated Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div
+//           className="absolute -top-40 -right-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-600/10 to-purple-600/10 blur-3xl"
+//           animate={{ x: [0, 50, -50, 0], y: [0, -50, 50, 0], scale: [1, 1.2, 0.8, 1] }}
+//           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div
+//           className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-purple-600/10 to-pink-600/10 blur-3xl"
+//           animate={{ x: [0, -50, 50, 0], y: [0, 50, -50, 0], scale: [1, 0.8, 1.2, 1] }}
+//           transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+        
+//         {/* ===== HEADER ===== */}
+//         <motion.div 
+//           initial={{ opacity: 0, y: 20 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.6 }}
+//           viewport={{ once: true }}
+//           className="text-center mb-6 sm:mb-8"
+//         >
+//           <motion.span 
+//             className="sec-badge inline-block"
+//             whileHover={{ scale: 1.05 }}
+//             animate={{ y: [0, -3, 0] }}
+//             transition={{ duration: 2, repeat: Infinity }}
+//           >
+//             Let's Talk!
+//           </motion.span>
+          
+//           <motion.h2 
+//             className="sec-h2 sec-text-light mt-2 sm:mt-3 mb-2 sm:mb-3 leading-tight"
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.15 }}
+//           >
+//             Contact <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Us!</span>
+//           </motion.h2>
+          
+//           <motion.p 
+//             className="sec-p sec-text-light-soft"
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.2 }}
+//           >
+//             Benefit of the society where we operate. A success website obviously needs great.
+//           </motion.p>
+//         </motion.div>
+
+//         {/* ===== 2-COLUMN LAYOUT: MAP LEFT (equal height), FORM RIGHT ===== */}
+//         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+          
+//           {/* ===== LEFT SIDE — GOOGLE MAP (equal height to form) ===== */}
+//           <motion.div
+//             initial={{ opacity: 0, x: -30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.6, delay: 0.2 }}
+//             viewport={{ once: true }}
+//             className="bg-white/15 backdrop-blur-xl rounded-xl p-2 sm:p-3 border border-white/20 shadow-2xl flex"
+//           >
+//             <iframe
+//               src={mapEmbedUrl}
+//               style={{ border: 0 }}
+//               allowFullScreen=""
+//               loading="lazy"
+//               referrerPolicy="no-referrer-when-downgrade"
+//               title="CoderBox Office Location"
+//               className="w-full h-full min-h-[420px] sm:min-h-[480px] lg:min-h-full rounded-lg"
+//             ></iframe>
+//           </motion.div>
+
+//           {/* ===== RIGHT SIDE — FORM (WHITE BG) ===== */}
+//           <motion.div
+//             initial={{ opacity: 0, x: 30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.6, delay: 0.3 }}
+//             viewport={{ once: true }}
+//             className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-2xl flex flex-col"
+//           >
+//             <div className="mb-4 text-center">
+//               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">Send Us a Message</h3>
+//               <p className="text-xs sm:text-sm text-gray-500">We'll get back to you as soon as possible</p>
+//             </div>
+
+//             <form className="space-y-3 flex-1 flex flex-col">
+//               <div>
+//                 <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Your Name</label>
+//                 <input 
+//                   type="text" 
+//                   className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#01adf0] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 text-sm"
+//                   placeholder="Enter your name"
+//                 />
+//               </div>
+//               <div>
+//                 <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Your Email</label>
+//                 <input 
+//                   type="email" 
+//                   className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#01adf0] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 text-sm"
+//                   placeholder="Enter your email"
+//                 />
+//               </div>
+//               <div>
+//                 <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Your Subject</label>
+//                 <input 
+//                   type="text" 
+//                   className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#01adf0] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 text-sm"
+//                   placeholder="Enter subject"
+//                 />
+//               </div>
+//               <div className="flex-1 flex flex-col">
+//                 <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Message</label>
+//                 <textarea 
+//                   rows="4"
+//                   className="w-full flex-1 px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#01adf0] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 resize-none text-sm min-h-[100px]"
+//                   placeholder="Write your message..."
+//                 />
+//               </div>
+              
+//               {/* Submit Button */}
+//               <motion.button 
+//                 type="submit"
+//                 whileHover={{ scale: 1.02 }}
+//                 whileTap={{ scale: 0.98 }}
+//                 className="w-full inline-flex items-center justify-center gap-2 bg-[#01adf0] hover:bg-[#0196d1] text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 shadow-lg shadow-[#01adf0]/30 text-sm mt-auto"
+//               >
+//                 <span>Submit Now</span>
+//                 <Send className="h-3.5 w-3.5" />
+//               </motion.button>
+//             </form>
+
+//             {/* ✅ Trust Badges — Icons ab #01adf0 color me */}
+//             <div className="mt-3 flex items-center justify-center gap-3 text-xs text-gray-500">
+//               <span className="flex items-center gap-1">
+//                 <CheckCircle className="h-3 w-3 text-[#01adf0]" />
+//                 Secure
+//               </span>
+//               <span className="w-px h-3 bg-gray-200"></span>
+//               <span className="flex items-center gap-1">
+//                 <CheckCircle className="h-3 w-3 text-[#01adf0]" />
+//                 Encrypted
+//               </span>
+//               <span className="w-px h-3 bg-gray-200"></span>
+//               <span className="flex items-center gap-1">
+//                 <CheckCircle className="h-3 w-3 text-[#01adf0]" />
+//                 Private
+//               </span>
+//             </div>
+//           </motion.div>
+
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default ContactSection;
+
+
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
 
 const ContactSection = () => {
+  // Google Maps embed URL (Vinir Tower, BTM Layout)
+  const mapEmbedUrl = 'https://www.google.com/maps?q=Vinir+Tower,+6,+Outer+Ring+Rd,+Old+Madiwala,+Jay+Bheema+Nagar,+1st+Stage,+BTM+Layout,+Bengaluru,+Karnataka+560068&output=embed';
+
   return (
     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#0a0a1a] to-[#12122a] overflow-hidden">
       
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements — #008df1 + #005b8f */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          className="absolute -top-40 -right-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-600/10 to-purple-600/10 blur-3xl"
+          className="absolute -top-40 -right-40 w-[400px] h-[400px] rounded-full bg-[#008df1]/10 blur-3xl"
           animate={{ x: [0, 50, -50, 0], y: [0, -50, 50, 0], scale: [1, 1.2, 0.8, 1] }}
           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-purple-600/10 to-pink-600/10 blur-3xl"
+          className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-[#005b8f]/10 blur-3xl"
           animate={{ x: [0, -50, 50, 0], y: [0, 50, -50, 0], scale: [1, 0.8, 1.2, 1] }}
           transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -711,123 +1039,143 @@ const ContactSection = () => {
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
         
-        {/* Centered Form */}
-        <div className="max-w-2xl mx-auto">
-          
-          {/* Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-6 sm:mb-8"
+        {/* ===== HEADER ===== */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-6 sm:mb-8"
+        >
+          <motion.span 
+            className="sec-badge inline-block"
+            whileHover={{ scale: 1.05 }}
+            animate={{ y: [0, -3, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            <motion.span 
-              className="sec-badge inline-block"
-              whileHover={{ scale: 1.05 }}
-              animate={{ y: [0, -3, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Let's Talk!
-            </motion.span>
-            
-            <motion.h2 
-              className="sec-h2 sec-text-light mt-2 sm:mt-3 mb-2 sm:mb-3 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-            >
-              Contact <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Us!</span>
-            </motion.h2>
-            
-            <motion.p 
-              className="sec-p sec-text-light-soft"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Benefit of the society where we operate. A success website obviously needs great.
-            </motion.p>
+            Let's Talk!
+          </motion.span>
+          
+          {/* Heading — #00c6fb highlighted (solid) */}
+          <motion.h2 
+            className="sec-h2 sec-text-light mt-2 sm:mt-3 mb-2 sm:mb-3 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            Contact <span style={{ color: '#00c6fb' }}>Us!</span>
+          </motion.h2>
+          
+          <motion.p 
+            className="sec-p sec-text-light-soft"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Benefit of the society where we operate. A success website obviously needs great.
+          </motion.p>
+        </motion.div>
+
+        {/* ===== 2-COLUMN LAYOUT: MAP LEFT, FORM RIGHT ===== */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+          
+          {/* ===== LEFT SIDE — GOOGLE MAP ===== */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-white/15 backdrop-blur-xl rounded-xl p-2 sm:p-3 border border-white/20 shadow-2xl flex"
+          >
+            <iframe
+              src={mapEmbedUrl}
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="CoderBox Office Location"
+              className="w-full h-full min-h-[420px] sm:min-h-[480px] lg:min-h-full rounded-lg"
+            ></iframe>
           </motion.div>
 
-          {/* Form Card */}
+          {/* ===== RIGHT SIDE — FORM (WHITE BG) ===== */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="bg-white/15 backdrop-blur-xl rounded-xl p-4 sm:p-5 md:p-6 border border-white/20 shadow-2xl hover:shadow-[0_20px_70px_-15px_rgba(99,102,241,0.3)] transition-all duration-500"
+            className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-2xl flex flex-col"
           >
-            <div className="mb-3 text-center">
-              {/* Subheading (h3) */}
-              <h3 className="sec-h3 sec-text-light">Send Us a Message</h3>
-              {/* Paragraph (p) */}
-              <p className="sec-p sec-text-light-soft mt-0.5">We'll get back to you as soon as possible</p>
+            <div className="mb-4 text-center">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">Send Us a Message</h3>
+              <p className="text-xs sm:text-sm text-gray-500">We'll get back to you as soon as possible</p>
             </div>
 
-            <form className="space-y-2.5 sm:space-y-3">
+            <form className="space-y-3 flex-1 flex flex-col">
               <div>
-                <label className="block sec-p font-semibold sec-text-light mb-0.5">Your Name</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Your Name</label>
                 <input 
                   type="text" 
-                  className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 sec-p"
+                  className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#008df1] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 text-sm"
                   placeholder="Enter your name"
                 />
               </div>
               <div>
-                <label className="block sec-p font-semibold sec-text-light mb-0.5">Your Email</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Your Email</label>
                 <input 
                   type="email" 
-                  className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 sec-p"
+                  className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#008df1] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 text-sm"
                   placeholder="Enter your email"
                 />
               </div>
               <div>
-                <label className="block sec-p font-semibold sec-text-light mb-0.5">Your Subject</label>
+                <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Your Subject</label>
                 <input 
                   type="text" 
-                  className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 sec-p"
+                  className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#008df1] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 text-sm"
                   placeholder="Enter subject"
                 />
               </div>
-              <div>
-                <label className="block sec-p font-semibold sec-text-light mb-0.5">Message</label>
+              <div className="flex-1 flex flex-col">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1">Message</label>
                 <textarea 
-                  rows="3"
-                  className="w-full px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-white/20 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-white placeholder-white/50 resize-none sec-p"
+                  rows="4"
+                  className="w-full flex-1 px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-[#008df1] focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-400 resize-none text-sm min-h-[100px]"
                   placeholder="Write your message..."
                 />
               </div>
               
-              {/* Submit Button */}
+              {/* Submit Button — #008df1 */}
               <motion.button 
                 type="submit"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="sec-btn w-full justify-center"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#008df1] hover:bg-[#006fa6] text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 shadow-lg shadow-[#008df1]/30 text-sm mt-auto"
               >
                 <span>Submit Now</span>
-                <Send className="h-3.5 w-3.5 sec-btn-arrow" />
+                <Send className="h-3.5 w-3.5" />
               </motion.button>
             </form>
 
-            {/* Trust Badges */}
-            <div className="mt-3 flex items-center justify-center gap-2 sec-p sec-text-light-soft">
-              <span className="flex items-center gap-0.5">
-                <CheckCircle className="h-2.5 w-2.5 text-green-400" />
+            {/* Trust Badges — #008df1 icons */}
+            <div className="mt-3 flex items-center justify-center gap-3 text-xs text-gray-500">
+              <span className="flex items-center gap-1">
+                <CheckCircle className="h-3 w-3 text-[#008df1]" />
                 Secure
               </span>
-              <span className="w-px h-2.5 bg-white/20"></span>
-              <span className="flex items-center gap-0.5">
-                <CheckCircle className="h-2.5 w-2.5 text-green-400" />
+              <span className="w-px h-3 bg-gray-200"></span>
+              <span className="flex items-center gap-1">
+                <CheckCircle className="h-3 w-3 text-[#008df1]" />
                 Encrypted
               </span>
-              <span className="w-px h-2.5 bg-white/20"></span>
-              <span className="flex items-center gap-0.5">
-                <CheckCircle className="h-2.5 w-2.5 text-green-400" />
+              <span className="w-px h-3 bg-gray-200"></span>
+              <span className="flex items-center gap-1">
+                <CheckCircle className="h-3 w-3 text-[#008df1]" />
                 Private
               </span>
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>
