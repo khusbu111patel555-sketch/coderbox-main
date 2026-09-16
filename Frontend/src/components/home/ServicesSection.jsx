@@ -3452,6 +3452,361 @@
 
 
 
+
+
+
+
+
+
+// import React, { useState, useRef } from 'react';
+// import { motion } from 'framer-motion';
+// import { ArrowRight, Brain, Monitor, Server, Lock, Sparkles, Zap, Shield, TrendingUp, ChevronLeft, ChevronRight, Code, Palette, Cloud, Smartphone } from 'lucide-react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
+// import 'swiper/css';
+// import 'swiper/css/effect-coverflow';
+// import 'swiper/css/pagination';
+// import 'swiper/css/navigation';
+// import AnimatedSection from './AnimatedSection';
+
+// const ServicesSection = () => {
+//   const [activeIndex, setActiveIndex] = useState(0);
+//   const swiperRef = useRef(null);
+
+//   // ===== UPDATED SERVICES DATA WITH BLUE SHADES PALETTE =====
+//   const services = [
+//     {
+//       title: 'Web Development',
+//       subtitle: 'Custom websites tailored to your business needs',
+//       location: 'Full Stack Solutions',
+//       icon: Code,
+//       gradient: 'from-[#00C6FB] to-[#01ADF0]',
+//       image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Popular'
+//     },
+//     {
+//       title: 'AI Solutions',
+//       subtitle: 'Intelligent automation & decision-making',
+//       location: 'Machine Learning & AI',
+//       icon: Brain,
+//       gradient: 'from-[#01ADF0] to-[#003F7D]',
+//       image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=500&fit=crop&crop=center',
+//       badge: 'AI Powered'
+//     },
+//     {
+//       title: 'Digital Marketing',
+//       subtitle: 'Strategic marketing for online growth',
+//       location: 'SEO, Social Media & Branding',
+//       icon: TrendingUp,
+//       gradient: 'from-[#03B4F6] to-[#008FD1]',
+//       image: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Growth'
+//     },
+//     {
+//       title: 'UI/UX Design',
+//       subtitle: 'Stunning interfaces & seamless experiences',
+//       location: 'Creative Design Solutions',
+//       icon: Palette,
+//       gradient: 'from-[#4DD3FF] to-[#006FA6]',
+//       image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Creative'
+//     },
+//     {
+//       title: 'Cloud Services',
+//       subtitle: 'Scalable infrastructure & cloud solutions',
+//       location: 'Cloud Migration & Management',
+//       icon: Cloud,
+//       gradient: 'from-[#A7E8FF] to-[#005B8F]',
+//       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Enterprise'
+//     },
+//     {
+//       title: 'Mobile App Development',
+//       subtitle: 'Native & cross-platform mobile solutions',
+//       location: 'iOS & Android Apps',
+//       icon: Smartphone,
+//       gradient: 'from-[#00C6FB] to-[#008FD1]',
+//       image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Mobile'
+//     },
+//     {
+//       title: 'Cyber Security',
+//       subtitle: 'Advanced security for your digital assets',
+//       location: 'Threat Protection & Compliance',
+//       icon: Shield,
+//       gradient: 'from-[#01ADF0] to-[#005B8F]',
+//       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Secure'
+//     },
+//     {
+//       title: 'IT Consulting',
+//       subtitle: 'Expert guidance for digital transformation',
+//       location: 'Strategic IT Solutions',
+//       icon: Server,
+//       gradient: 'from-[#03B4F6] to-[#003F7D]',
+//       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&crop=center',
+//       badge: 'Consulting'
+//     }
+//   ];
+
+//   return (
+//     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#f1f1f1] overflow-hidden">
+      
+//       {/* Animated Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div 
+//           className="absolute top-0 left-1/4 w-40 h-40 bg-[#01ADF0]/10 rounded-full blur-3xl"
+//           animate={{ x: [0, 50, -50, 0], y: [0, -30, 30, 0], scale: [1, 1.2, 0.8, 1] }}
+//           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div 
+//           className="absolute bottom-0 right-1/4 w-40 h-40 bg-[#00C6FB]/10 rounded-full blur-3xl"
+//           animate={{ x: [0, -50, 50, 0], y: [0, 30, -30, 0], scale: [1, 0.8, 1.2, 1] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+      
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+        
+//         {/* Header */}
+//         <AnimatedSection className="text-center mb-4 sm:mb-5 md:mb-6">
+//           <motion.span 
+//             className="sec-badge inline-block"
+//             whileHover={{ scale: 1.05 }}
+//             animate={{ y: [0, -3, 0] }}
+//             transition={{ duration: 2, repeat: Infinity }}
+//           >
+//             Our Services
+//           </motion.span>
+//           <motion.h2 
+//             className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.5, delay: 0.15 }}
+//           >
+//             Best IT Solutions{' '}
+//             <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
+//               by CoderBox
+//             </span>
+//           </motion.h2>
+//           <motion.p 
+//             className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.5, delay: 0.2 }}
+//           >
+//             Comprehensive technology solutions designed to drive innovation and growth for your business
+//           </motion.p>
+//         </AnimatedSection>
+
+//         {/* ===== RESPONSIVE CAROUSEL ===== */}
+//         {/* 👇 max-w-6xl ko max-w-7xl kar diya taaki cards aur bade ho sakein */}
+//         <div className="relative max-w-7xl mx-auto">
+//           <Swiper
+//             ref={swiperRef}
+//             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+//             effect="coverflow"
+//             grabCursor={true}
+//             centeredSlides={true}
+//             slidesPerView="auto"
+//             coverflowEffect={{
+//               rotate: 20,
+//               stretch: 0,
+//               depth: 250,
+//               modifier: 1,
+//               slideShadows: true,
+//             }}
+//             pagination={{
+//               clickable: true,
+//               dynamicBullets: true,
+//             }}
+//             navigation={{
+//               prevEl: '.swiper-button-prev-custom',
+//               nextEl: '.swiper-button-next-custom',
+//             }}
+//             autoplay={{
+//               delay: 3500,
+//               disableOnInteraction: false,
+//               pauseOnMouseEnter: true,
+//             }}
+//             loop={true}
+//             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+//             // 👇 slidesPerView kam kiya taaki har card BADA dikhe
+//             breakpoints={{
+//               320: { slidesPerView: 1, spaceBetween: 12 },      // 1 card full width
+//               640: { slidesPerView: 1.5, spaceBetween: 16 },    // 1.5 cards (peek of next)
+//               1024: { slidesPerView: 2, spaceBetween: 24 },     // 2 cards on desktop
+//             }}
+//             className="py-4 px-2 sm:px-6"
+//           >
+//             {services.map((service, index) => (
+//               <SwiperSlide key={index} className="pb-6">
+//                 {({ isActive }) => (
+//                   <motion.div
+//                     className={`relative rounded-xl overflow-hidden transition-all duration-500 ${
+//                       isActive 
+//                         ? 'scale-100 shadow-2xl shadow-[#01ADF0]/30 ring-2 ring-[#01ADF0]/50' 
+//                         : 'scale-95 opacity-70'
+//                     }`}
+//                     whileHover={{ scale: 1.02 }}
+//                   >
+//                     {/* 👇 IMAGE BACKGROUND — Aspect ratio badla (4/3 → 4/5) aur bade card ke saath image bhi badi */}
+//                     <div className="relative w-full aspect-[4/5]">
+//                       <img 
+//                         src={service.image} 
+//                         alt={service.title}
+//                         className="w-full h-full object-cover"
+//                         loading="lazy"
+//                       />
+                      
+//                       <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-60 mix-blend-multiply`}></div>
+//                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      
+//                       {/* 👇 Padding badhai taaki content bade card me acha lage */}
+//                       <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6 md:p-7">
+//                         {/* ===== BADGE — Font size BADA kiya (7px → 12px) ===== */}
+//                         {isActive && service.badge && (
+//                           <motion.div
+//                             initial={{ opacity: 0, y: -10 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             className="absolute top-4 right-4 bg-[#01ADF0] text-white text-xs sm:text-sm font-semibold px-3 py-1 rounded-full shadow-lg"
+//                           >
+//                             {service.badge}
+//                           </motion.div>
+//                         )}
+
+//                         {/* 👇 Icon size bada kiya (8x8 → 12x12) */}
+//                         <motion.div 
+//                           className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-3 shadow-lg shadow-[#01ADF0]/20`}
+//                           whileHover={{ scale: 1.1, rotate: 8 }}
+//                         >
+//                           <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+//                         </motion.div>
+
+//                         {/* 👇 Title — Font bada */}
+//                         <h3 className={`text-xl sm:text-2xl font-bold text-white mb-2 leading-tight ${
+//                           isActive ? 'opacity-100' : 'opacity-80'
+//                         }`}>
+//                           {service.title}
+//                         </h3>
+                        
+//                         {/* 👇 Subtitle — Font bada */}
+//                         <p className="text-sm sm:text-base text-white/85 mb-2">
+//                           {service.subtitle}
+//                         </p>
+                        
+//                         {/* 👇 Location — Font bada */}
+//                         <div className="flex items-center gap-1.5">
+//                           <span className="text-[#00C6FB] text-sm">📍</span>
+//                           <span className="text-sm sm:text-base text-white/70">
+//                             {service.location}
+//                           </span>
+//                         </div>
+
+//                         {/* 👇 Learn More — Font bada */}
+//                         {isActive && (
+//                           <motion.a
+//                             href="#"
+//                             initial={{ opacity: 0, y: 8 }}
+//                             animate={{ opacity: 1, y: 0 }}
+//                             transition={{ delay: 0.15 }}
+//                             className="inline-flex items-center gap-2 text-[#00C6FB] font-semibold mt-3 text-sm sm:text-base group"
+//                           >
+//                             Learn More
+//                             <motion.span
+//                               animate={{ x: [0, 6, 0] }}
+//                               transition={{ duration: 1.5, repeat: Infinity }}
+//                             >
+//                               <ArrowRight className="h-4 w-4" />
+//                             </motion.span>
+//                           </motion.a>
+//                         )}
+//                       </div>
+
+//                       {/* ===== FEATURED BADGE — Font size BADA kiya ===== */}
+//                       {isActive && (
+//                         <motion.div
+//                           initial={{ opacity: 0, scale: 0.8 }}
+//                           animate={{ opacity: 1, scale: 1 }}
+//                           className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs sm:text-sm font-medium px-3 py-1 rounded-full border border-white/20"
+//                         >
+//                           ★ Featured
+//                         </motion.div>
+//                       )}
+//                     </div>
+//                   </motion.div>
+//                 )}
+//               </SwiperSlide>
+//             ))}
+//           </Swiper>
+
+//           {/* Navigation Buttons */}
+//           <button
+//             className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-[#01ADF0] backdrop-blur-sm rounded-full p-2 sm:p-3 border border-gray-200 hover:border-[#01ADF0] shadow-md transition-all duration-300"
+//             onClick={() => swiperRef.current?.slidePrev()}
+//           >
+//             <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 hover:text-white" />
+//           </button>
+//           <button
+//             className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-[#01ADF0] backdrop-blur-sm rounded-full p-2 sm:p-3 border border-gray-200 hover:border-[#01ADF0] shadow-md transition-all duration-300"
+//             onClick={() => swiperRef.current?.slideNext()}
+//           >
+//             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700 hover:text-white" />
+//           </button>
+//         </div>
+
+//         {/* Pagination Dots */}
+//         <div className="flex items-center justify-center gap-1.5 mt-1">
+//           {services.map((_, idx) => (
+//             <button
+//               key={idx}
+//               onClick={() => swiperRef.current?.slideTo(idx)}
+//               className={`h-1 rounded-full transition-all duration-300 ${
+//                 idx === activeIndex
+//                   ? 'w-6 bg-[#01ADF0]'
+//                   : 'w-1 bg-gray-300 hover:bg-gray-400'
+//               }`}
+//               aria-label={`Go to slide ${idx + 1}`}
+//             />
+//           ))}
+//         </div>
+
+//         {/* Bottom CTA */}
+//         <motion.div 
+//           className="text-center mt-3 sm:mt-4"
+//           initial={{ opacity: 0, y: 15 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.4, delay: 0.15 }}
+//           viewport={{ once: true }}
+//         >
+//           <motion.a
+//             href="/contact"
+//             whileTap={{ scale: 0.95 }}
+//             className="sec-btn"
+//           >
+//             Explore All Services
+//             <motion.span
+//               animate={{ x: [0, 6, 0] }}
+//               transition={{ duration: 1.5, repeat: Infinity }}
+//             >
+//               <ArrowRight className="h-4 w-4" />
+//             </motion.span>
+//           </motion.a>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default ServicesSection;
+
+
+
+
+
+
+
+
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Brain, Monitor, Server, Lock, Sparkles, Zap, Shield, TrendingUp, ChevronLeft, ChevronRight, Code, Palette, Cloud, Smartphone } from 'lucide-react';
@@ -3594,7 +3949,6 @@ const ServicesSection = () => {
         </AnimatedSection>
 
         {/* ===== RESPONSIVE CAROUSEL ===== */}
-        {/* 👇 max-w-6xl ko max-w-7xl kar diya taaki cards aur bade ho sakein */}
         <div className="relative max-w-7xl mx-auto">
           <Swiper
             ref={swiperRef}
@@ -3625,11 +3979,10 @@ const ServicesSection = () => {
             }}
             loop={true}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            // 👇 slidesPerView kam kiya taaki har card BADA dikhe
             breakpoints={{
-              320: { slidesPerView: 1, spaceBetween: 12 },      // 1 card full width
-              640: { slidesPerView: 1.5, spaceBetween: 16 },    // 1.5 cards (peek of next)
-              1024: { slidesPerView: 2, spaceBetween: 24 },     // 2 cards on desktop
+              320: { slidesPerView: 1, spaceBetween: 12 },
+              640: { slidesPerView: 1.5, spaceBetween: 16 },
+              1024: { slidesPerView: 2, spaceBetween: 24 },
             }}
             className="py-4 px-2 sm:px-6"
           >
@@ -3644,7 +3997,7 @@ const ServicesSection = () => {
                     }`}
                     whileHover={{ scale: 1.02 }}
                   >
-                    {/* 👇 IMAGE BACKGROUND — Aspect ratio badla (4/3 → 4/5) aur bade card ke saath image bhi badi */}
+                    {/* Image Background */}
                     <div className="relative w-full aspect-[4/5]">
                       <img 
                         src={service.image} 
@@ -3656,9 +4009,8 @@ const ServicesSection = () => {
                       <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-60 mix-blend-multiply`}></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                       
-                      {/* 👇 Padding badhai taaki content bade card me acha lage */}
                       <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6 md:p-7">
-                        {/* ===== BADGE — Font size BADA kiya (7px → 12px) ===== */}
+                        {/* Badge (top-right) */}
                         {isActive && service.badge && (
                           <motion.div
                             initial={{ opacity: 0, y: -10 }}
@@ -3669,7 +4021,7 @@ const ServicesSection = () => {
                           </motion.div>
                         )}
 
-                        {/* 👇 Icon size bada kiya (8x8 → 12x12) */}
+                        {/* Icon */}
                         <motion.div 
                           className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-3 shadow-lg shadow-[#01ADF0]/20`}
                           whileHover={{ scale: 1.1, rotate: 8 }}
@@ -3677,19 +4029,19 @@ const ServicesSection = () => {
                           <service.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                         </motion.div>
 
-                        {/* 👇 Title — Font bada */}
+                        {/* Title */}
                         <h3 className={`text-xl sm:text-2xl font-bold text-white mb-2 leading-tight ${
                           isActive ? 'opacity-100' : 'opacity-80'
                         }`}>
                           {service.title}
                         </h3>
                         
-                        {/* 👇 Subtitle — Font bada */}
+                        {/* Subtitle */}
                         <p className="text-sm sm:text-base text-white/85 mb-2">
                           {service.subtitle}
                         </p>
                         
-                        {/* 👇 Location — Font bada */}
+                        {/* Location */}
                         <div className="flex items-center gap-1.5">
                           <span className="text-[#00C6FB] text-sm">📍</span>
                           <span className="text-sm sm:text-base text-white/70">
@@ -3697,7 +4049,7 @@ const ServicesSection = () => {
                           </span>
                         </div>
 
-                        {/* 👇 Learn More — Font bada */}
+                        {/* Learn More */}
                         {isActive && (
                           <motion.a
                             href="#"
@@ -3717,16 +4069,8 @@ const ServicesSection = () => {
                         )}
                       </div>
 
-                      {/* ===== FEATURED BADGE — Font size BADA kiya ===== */}
-                      {isActive && (
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs sm:text-sm font-medium px-3 py-1 rounded-full border border-white/20"
-                        >
-                          ★ Featured
-                        </motion.div>
-                      )}
+                      {/* 👈 FEATURED BADGE YAHAN SE HATA DIYA HAI */}
+
                     </div>
                   </motion.div>
                 )}
