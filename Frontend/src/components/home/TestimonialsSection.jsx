@@ -3934,7 +3934,7 @@ const TestimonialsSection = () => {
             <ChevronRight className="h-4 w-4 text-gray-600 group-hover:text-[#008df1] transition-colors" />
           </button>
 
-          {/* Cards Container — 👇 pt add kiya taaki heading se door rahe */}
+          {/* Cards Container */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-center px-8 sm:px-16 lg:px-20 pt-6">
             {getVisibleTestimonials().map((testimonial, idx) => {
               const isCenter = testimonial.position === 'center';
@@ -3946,7 +3946,6 @@ const TestimonialsSection = () => {
                   animate={{
                     opacity: isCenter ? 1 : 0.7,
                     scale: isCenter ? 1.12 : 0.9,
-                    // 👇 y ko -16 se -4 kar diya (upar chhup raha tha, ab nahi chhupega)
                     y: isCenter ? -4 : 12,
                   }}
                   transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -4012,8 +4011,8 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* ===== DOT INDICATORS ===== */}
-        <div className="flex items-center justify-center gap-1.5 mt-5">
+        {/* ===== DOT INDICATORS — 👇 mt-8 kiya (pehle mt-5 tha) ===== */}
+        <div className="flex items-center justify-center gap-1.5 mt-8">
           {testimonials.map((_, idx) => (
             <button
               key={idx}
