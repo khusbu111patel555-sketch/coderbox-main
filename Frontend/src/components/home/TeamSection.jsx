@@ -3427,16 +3427,519 @@
 
 
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Users, ArrowRight, ChevronDown } from 'lucide-react';
+// import React, { useState } from 'react';
+// import { motion, AnimatePresence } from 'framer-motion';
+// import { Users, ArrowRight, ChevronDown } from 'lucide-react';
+// import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
+// import AnimatedSection from './AnimatedSection';
+
+// const TeamSection = () => {
+//   const [isExpanded, setIsExpanded] = useState(false);
+
+//   const teamMembers = [
+//     {
+//       name: 'Ashwin Singh',
+//       role: 'Founder/CEO',
+//       location: 'India',
+//       image: '/founder.jpeg',
+//       email: 'ashwin@coderbox.com',
+//       experience: '10+ Years',
+//       socials: {
+//         instagram: 'https://www.instagram.com/thecoderbox?stkn=MjZ1NnVkbGt1ZW8y',
+//         linkedin: 'https://www.linkedin.com/company/thecoderbox/home/',
+//         facebook: 'https://www.facebook.com/thecoderbox/'
+//       }
+//     }
+//   ];
+
+//   return (
+//     // 👇 TOP aur BOTTOM dono padding kam ki hai
+//     <section className="relative pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-4 sm:pb-6 md:pb-8 lg:pb-10 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a2a] to-[#0a0a1a] overflow-hidden">
+      
+//       {/* Animated Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div
+//           className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#008df1]/10 blur-3xl"
+//           animate={{ x: [0, -60, 60, 0], y: [0, 60, -60, 0], scale: [1, 1.3, 0.7, 1] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div
+//           className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#005b8f]/15 blur-3xl"
+//           animate={{ x: [0, 60, -60, 0], y: [0, -60, 60, 0], scale: [1, 0.7, 1.3, 1] }}
+//           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+        
+//         {/* ===== HEADER ===== */}
+//         {/* 👇 Header ka bottom margin bhi thoda kam kiya */}
+//         <AnimatedSection className="text-center mb-6 sm:mb-8 lg:mb-10">
+//           <span 
+//             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008df1]/10 border border-[#00c6fb]/30 backdrop-blur-sm"
+//             style={{ color: '#00c6fb' }}
+//           >
+//             <Users className="h-3.5 w-3.5" />
+//             <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Our Team</span>
+//           </span>
+
+//           <h2 className="sec-h2 text-white mt-2 leading-tight">
+//             Meet Our Expert Team
+//           </h2>
+
+//           <p className="sec-p sec-text-light-soft mt-1.5 max-w-2xl mx-auto">
+//             Our experienced team is dedicated to delivering excellence and driving your success
+//           </p>
+//         </AnimatedSection>
+
+//         {/* ===== MAIN GRID LAYOUT ===== */}
+//         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          
+//           {/* ===== LEFT SIDE: DETAILED TEXT ===== */}
+//           <motion.div
+//             initial={{ opacity: 0, x: -30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.6 }}
+//             className="space-y-5 text-left"
+//           >
+//             {/* Heading */}
+//             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+//               Ashwin R. Singh <br />
+//               <span className="text-[#00c6fb] text-xl sm:text-2xl lg:text-3xl">(Aashu Singh)</span>
+//             </h3>
+
+//             {/* Paragraphs */}
+//             <div className="space-y-4 text-sm sm:text-base text-gray-300 leading-relaxed max-w-xl">
+              
+//               {/* ✅ Pehle 3 paragraphs — hamesha visible */}
+//               <p>
+//                 Ashwin R. Singh (Aashu Singh) is a tech entrepreneur, investor, and LinkedIn Top Voice with 13+ years of experience building technology-led businesses and turning emerging technologies into practical business solutions.
+//               </p>
+//               <p>
+//                 With a background in Computer Science and AI, Ashwin has worked across FinTech, HealthTech, EdTech, SaaS, automation, and enterprise technology, leading products and ventures from idea to execution. As Founder, CEO, and CTO across CoderBox Digital, Quantus Infosystems, and Envi Pack Pvt. Ltd., he has built technology teams, shaped product strategies, and helped businesses navigate digital transformation.
+//               </p>
+//               <p>
+//                 His work extends beyond his own ventures. Ashwin has mentored and advised 100+ startups, helping founders strengthen their technology, product-market fit, fundraising readiness, and go-to-market strategies. He has also supported 106+ startups in raising capital through technology and business advisory.
+//               </p>
+
+//               {/* ✅ Read More / Read Less Button — paragraph 3 ke baad */}
+//               <button
+//                 onClick={() => setIsExpanded(!isExpanded)}
+//                 className="inline-flex items-center gap-1.5 mt-2 text-[#00c6fb] text-sm font-bold hover:text-white transition-all duration-300 group"
+//               >
+//                 {isExpanded ? 'Read Less' : 'Read More'}
+//                 <motion.span
+//                   animate={{ rotate: isExpanded ? 180 : 0 }}
+//                   transition={{ duration: 0.3 }}
+//                   className="inline-flex"
+//                 >
+//                   <ChevronDown className="h-4 w-4" />
+//                 </motion.span>
+//               </button>
+
+//               {/* ✅ Aakhri 3 paragraphs — sirf "Read More" click karne par khulenge */}
+//               <AnimatePresence initial={false}>
+//                 {isExpanded && (
+//                   <motion.div
+//                     key="extra-text"
+//                     initial={{ opacity: 0, height: 0 }}
+//                     animate={{ opacity: 1, height: 'auto' }}
+//                     exit={{ opacity: 0, height: 0 }}
+//                     transition={{ duration: 0.4, ease: "easeInOut" }}
+//                     className="space-y-4 overflow-hidden"
+//                   >
+//                     <p>
+//                       His contributions have been recognised through awards including Young Entrepreneur of the Year (2022) and Best Business Consultant of the Year (2023), alongside multiple industry recognitions.
+//                     </p>
+//                     <p>
+//                       With a LinkedIn community of 1.14L+ followers and recognition as a LinkedIn Top Voice and Global Indian Influencer, Ashwin is also known for making complex technology and business trends easier to understand and act upon.
+//                     </p>
+//                     <p className="font-semibold text-[#00c6fb]/90 italic">
+//                       "At the heart of his approach is a simple belief: technology should create meaningful business value. Whether building a company, advising a founder, or shaping a client strategy, he focuses on the same principles — think in systems, execute with discipline, and build for lasting impact."
+//                     </p>
+//                   </motion.div>
+//                 )}
+//               </AnimatePresence>
+//             </div>
+//           </motion.div>
+
+//           {/* ===== RIGHT SIDE: IMAGE CARD + CTA BUTTON ===== */}
+//           <motion.div
+//             initial={{ opacity: 0, x: 30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.6 }}
+//             className="flex flex-col items-center justify-center gap-4 w-full"
+//           >
+//             {teamMembers.map((member, index) => (
+//               <div key={index} className="w-full max-w-[400px] sm:max-w-[460px]">
+                
+//                 {/* Image Card */}
+//                 <div className="group relative w-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 hover:border-[#008df1]/50 shadow-xl hover:shadow-2xl hover:shadow-[#008df1]/20 transition-all duration-500">
+                  
+//                   {/* Glow effect */}
+//                   <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-[#008df1]/0 via-[#008df1]/0 to-[#006fa6]/0 group-hover:from-[#008df1]/20 group-hover:via-[#008df1]/20 group-hover:to-[#006fa6]/20 blur-xl transition-all duration-500 -z-10"></div>
+
+//                   {/* Image Container */}
+//                   <div className="relative aspect-[4/5] overflow-hidden">
+//                     <img
+//                       src={member.image}
+//                       alt={member.name}
+//                       className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+//                       onError={(e) => {
+//                         console.error('Image failed to load:', member.image);
+//                       }}
+//                     />
+
+//                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+//                     {/* Default Name at bottom */}
+//                     <div className="absolute bottom-0 left-0 right-0 p-6 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+//                       <h5 className="text-2xl font-bold text-white">
+//                         {member.name}
+//                       </h5>
+//                     </div>
+
+//                     {/* Hover Backdrop */}
+//                     <div className="absolute inset-0 bg-gradient-to-t from-[#008df1]/80 via-[#005b8f]/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-end p-8">
+//                       <div className="text-center transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+//                         <h5 className="text-3xl font-bold text-white mb-2">
+//                           {member.name}
+//                         </h5>
+
+//                         <p className="text-base font-medium mb-6" style={{ color: '#00c6fb' }}>
+//                           {member.role}
+//                         </p>
+
+//                         {/* Social Icons */}
+//                         <div className="flex items-center justify-center gap-4">
+//                           <motion.a
+//                             href={member.socials.instagram}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             whileHover={{ scale: 1.15, y: -3 }}
+//                             className="w-12 h-12 rounded-full bg-white/15 hover:bg-[#00c6fb] flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+//                           >
+//                             <FaInstagram className="h-5 w-5" />
+//                           </motion.a>
+
+//                           <motion.a
+//                             href={member.socials.linkedin}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             whileHover={{ scale: 1.15, y: -3 }}
+//                             className="w-12 h-12 rounded-full bg-white/15 hover:bg-[#008df1] flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+//                           >
+//                             <FaLinkedinIn className="h-5 w-5" />
+//                           </motion.a>
+
+//                           <motion.a
+//                             href={member.socials.facebook}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             whileHover={{ scale: 1.15, y: -3 }}
+//                             className="w-12 h-12 rounded-full bg-white/15 hover:bg-[#006fa6] flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+//                           >
+//                             <FaFacebookF className="h-5 w-5" />
+//                           </motion.a>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+
+//                 {/* ===== CTA BUTTON (Know More) — Arrow Move karega =====
+//                 <motion.div
+//                   initial={{ opacity: 0, y: 15 }}
+//                   whileInView={{ opacity: 1, y: 0 }}
+//                   transition={{ duration: 0.4, delay: 0.3 }}
+//                   viewport={{ once: true }}
+//                   className="mt-4 text-center"
+//                 >
+//                   <Link
+//                     to="/AboutUs"
+//                     className="inline-flex items-center gap-2 bg-[#008df1] hover:bg-[#006fa6] text-white text-base font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-[#008df1]/30 transition-all duration-300 group"
+//                   >
+//                     Know More
+//                     <motion.span
+//                       animate={{ x: [0, 6, 0] }}
+//                       transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+//                     >
+//                       <ArrowRight className="h-4 w-4" />
+//                     </motion.span>
+//                   </Link>
+//                 </motion.div> */}
+//               </div>
+//             ))}
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default TeamSection;
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { motion, AnimatePresence } from 'framer-motion';
+// import { Users, ArrowRight, ChevronDown } from 'lucide-react';
+// import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
+// import AnimatedSection from './AnimatedSection';
+
+// const TeamSection = () => {
+//   const [isExpanded, setIsExpanded] = useState(false);
+
+//   const teamMembers = [
+//     {
+//       name: 'Ashwin Singh',
+//       role: 'Founder/CEO',
+//       location: 'India',
+//       image: '/founder.jpeg',
+//       email: 'ashwin@coderbox.com',
+//       experience: '10+ Years',
+//       socials: {
+//         instagram: 'https://www.instagram.com/thecoderbox?stkn=MjZ1NnVkbGt1ZW8y',
+//         linkedin: 'https://www.linkedin.com/company/thecoderbox/home/',
+//         facebook: 'https://www.facebook.com/thecoderbox/'
+//       }
+//     }
+//   ];
+
+//   return (
+//     <section className="relative pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-4 sm:pb-6 md:pb-8 lg:pb-10 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a2a] to-[#0a0a1a] overflow-hidden">
+      
+//       {/* Animated Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div
+//           className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#008df1]/10 blur-3xl"
+//           animate={{ x: [0, -60, 60, 0], y: [0, 60, -60, 0], scale: [1, 1.3, 0.7, 1] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div
+//           className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#005b8f]/15 blur-3xl"
+//           animate={{ x: [0, 60, -60, 0], y: [0, -60, 60, 0], scale: [1, 0.7, 1.3, 1] }}
+//           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+        
+//         {/* ===== HEADER ===== */}
+//         <AnimatedSection className="text-center mb-6 sm:mb-8 lg:mb-10">
+//           <span 
+//             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008df1]/10 border border-[#00c6fb]/30 backdrop-blur-sm"
+//             style={{ color: '#00c6fb' }}
+//           >
+//             <Users className="h-3.5 w-3.5" />
+//             <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">Our Team</span>
+//           </span>
+
+//           <h2 className="sec-h2 text-white mt-2 leading-tight">
+//             Meet Our Expert Team
+//           </h2>
+
+//           <p className="sec-p sec-text-light-soft mt-1.5 max-w-2xl mx-auto">
+//             Our experienced team is dedicated to delivering excellence and driving your success
+//           </p>
+//         </AnimatedSection>
+
+//         {/* ===== MAIN GRID LAYOUT: TEXT LEFT, IMAGE RIGHT ===== */}
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          
+//           {/* ===== LEFT SIDE: DETAILED TEXT ===== */}
+//           <motion.div
+//             initial={{ opacity: 0, x: -30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.6 }}
+//             className="space-y-5 text-left order-1"
+//           >
+//             {/* Heading */}
+//             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+//               Ashwin R. Singh <br />
+//               <span className="text-[#00c6fb] text-xl sm:text-2xl lg:text-3xl">(Aashu Singh)</span>
+//             </h3>
+
+//             {/* Paragraphs */}
+//             <div className="space-y-4 text-sm sm:text-base text-gray-300 leading-relaxed max-w-xl">
+              
+//               {/* ✅ Pehle 3 paragraphs — hamesha visible */}
+//               <p>
+//                 Ashwin R. Singh (Aashu Singh) is a tech entrepreneur, investor, and LinkedIn Top Voice with 13+ years of experience building technology-led businesses and turning emerging technologies into practical business solutions.
+//               </p>
+//               <p>
+//                 With a background in Computer Science and AI, Ashwin has worked across FinTech, HealthTech, EdTech, SaaS, automation, and enterprise technology, leading products and ventures from idea to execution. As Founder, CEO, and CTO across CoderBox Digital, Quantus Infosystems, and Envi Pack Pvt. Ltd., he has built technology teams, shaped product strategies, and helped businesses navigate digital transformation.
+//               </p>
+//               <p>
+//                 His work extends beyond his own ventures. Ashwin has mentored and advised 100+ startups, helping founders strengthen their technology, product-market fit, fundraising readiness, and go-to-market strategies. He has also supported 106+ startups in raising capital through technology and business advisory.
+//               </p>
+
+//               {/* ✅ Read More / Read Less Button */}
+//               <button
+//                 onClick={() => setIsExpanded(!isExpanded)}
+//                 className="inline-flex items-center gap-1.5 mt-2 text-[#00c6fb] text-sm font-bold hover:text-white transition-all duration-300 group"
+//               >
+//                 {isExpanded ? 'Read Less' : 'Read More'}
+//                 <motion.span
+//                   animate={{ rotate: isExpanded ? 180 : 0 }}
+//                   transition={{ duration: 0.3 }}
+//                   className="inline-flex"
+//                 >
+//                   <ChevronDown className="h-4 w-4" />
+//                 </motion.span>
+//               </button>
+
+//               {/* ✅ Aakhri 3 paragraphs — sirf "Read More" click karne par khulenge */}
+//               <AnimatePresence initial={false}>
+//                 {isExpanded && (
+//                   <motion.div
+//                     key="extra-text"
+//                     initial={{ opacity: 0, height: 0 }}
+//                     animate={{ opacity: 1, height: 'auto' }}
+//                     exit={{ opacity: 0, height: 0 }}
+//                     transition={{ duration: 0.4, ease: "easeInOut" }}
+//                     className="space-y-4 overflow-hidden"
+//                   >
+//                     <p>
+//                       His contributions have been recognised through awards including Young Entrepreneur of the Year (2022) and Best Business Consultant of the Year (2023), alongside multiple industry recognitions.
+//                     </p>
+//                     <p>
+//                       With a LinkedIn community of 1.14L+ followers and recognition as a LinkedIn Top Voice and Global Indian Influencer, Ashwin is also known for making complex technology and business trends easier to understand and act upon.
+//                     </p>
+//                     <p className="font-semibold text-[#00c6fb]/90 italic">
+//                       "At the heart of his approach is a simple belief: technology should create meaningful business value. Whether building a company, advising a founder, or shaping a client strategy, he focuses on the same principles — think in systems, execute with discipline, and build for lasting impact."
+//                     </p>
+//                   </motion.div>
+//                 )}
+//               </AnimatePresence>
+//             </div>
+//           </motion.div>
+
+//           {/* ===== RIGHT SIDE: IMAGE CARD ===== */}
+//           <motion.div
+//             initial={{ opacity: 0, x: 30 }}
+//             whileInView={{ opacity: 1, x: 0 }}
+//             viewport={{ once: true }}
+//             transition={{ duration: 0.6 }}
+//             className="flex flex-col items-center justify-center gap-4 w-full order-2"
+//           >
+//             {teamMembers.map((member, index) => (
+//               <div key={index} className="w-full max-w-[400px] sm:max-w-[460px]">
+                
+//                 {/* Image Card */}
+//                 <div className="group relative w-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 hover:border-[#008df1]/50 shadow-xl hover:shadow-2xl hover:shadow-[#008df1]/20 transition-all duration-500">
+                  
+//                   {/* Glow effect */}
+//                   <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-[#008df1]/0 via-[#008df1]/0 to-[#006fa6]/0 group-hover:from-[#008df1]/20 group-hover:via-[#008df1]/20 group-hover:to-[#006fa6]/20 blur-xl transition-all duration-500 -z-10"></div>
+
+//                   {/* Image Container */}
+//                   <div className="relative aspect-[4/5] overflow-hidden">
+//                     <img
+//                       src={member.image}
+//                       alt={member.name}
+//                       className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+//                       onError={(e) => {
+//                         console.error('Image failed to load:', member.image);
+//                       }}
+//                     />
+
+//                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+//                     {/* Default Name at bottom */}
+//                     <div className="absolute bottom-0 left-0 right-0 p-6 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4">
+//                       <h5 className="text-2xl font-bold text-white">
+//                         {member.name}
+//                       </h5>
+//                     </div>
+
+//                     {/* Hover Backdrop */}
+//                     <div className="absolute inset-0 bg-gradient-to-t from-[#008df1]/80 via-[#005b8f]/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-end p-8">
+//                       <div className="text-center transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+//                         <h5 className="text-3xl font-bold text-white mb-2">
+//                           {member.name}
+//                         </h5>
+
+//                         <p className="text-base font-medium mb-6" style={{ color: '#00c6fb' }}>
+//                           {member.role}
+//                         </p>
+
+//                         {/* Social Icons */}
+//                         <div className="flex items-center justify-center gap-4">
+//                           <motion.a
+//                             href={member.socials.instagram}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             whileHover={{ scale: 1.15, y: -3 }}
+//                             className="w-12 h-12 rounded-full bg-white/15 hover:bg-[#00c6fb] flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+//                           >
+//                             <FaInstagram className="h-5 w-5" />
+//                           </motion.a>
+
+//                           <motion.a
+//                             href={member.socials.linkedin}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             whileHover={{ scale: 1.15, y: -3 }}
+//                             className="w-12 h-12 rounded-full bg-white/15 hover:bg-[#008df1] flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+//                           >
+//                             <FaLinkedinIn className="h-5 w-5" />
+//                           </motion.a>
+
+//                           <motion.a
+//                             href={member.socials.facebook}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             whileHover={{ scale: 1.15, y: -3 }}
+//                             className="w-12 h-12 rounded-full bg-white/15 hover:bg-[#006fa6] flex items-center justify-center text-white/80 hover:text-white border border-white/20 hover:border-transparent transition-all duration-300"
+//                           >
+//                             <FaFacebookF className="h-5 w-5" />
+//                           </motion.a>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+
+//               </div>
+//             ))}
+//           </motion.div>
+
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default TeamSection;
+
+
+
+
+
+
+
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Users, ArrowRight } from 'lucide-react';
 import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import AnimatedSection from './AnimatedSection';
 
 const TeamSection = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   const teamMembers = [
     {
       name: 'Ashwin Singh',
@@ -3454,7 +3957,6 @@ const TeamSection = () => {
   ];
 
   return (
-    // 👇 TOP aur BOTTOM dono padding kam ki hai
     <section className="relative pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-4 sm:pb-6 md:pb-8 lg:pb-10 bg-gradient-to-b from-[#0a0a1a] via-[#0f0a2a] to-[#0a0a1a] overflow-hidden">
       
       {/* Animated Background Elements */}
@@ -3474,7 +3976,6 @@ const TeamSection = () => {
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
         
         {/* ===== HEADER ===== */}
-        {/* 👇 Header ka bottom margin bhi thoda kam kiya */}
         <AnimatedSection className="text-center mb-6 sm:mb-8 lg:mb-10">
           <span 
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008df1]/10 border border-[#00c6fb]/30 backdrop-blur-sm"
@@ -3493,85 +3994,16 @@ const TeamSection = () => {
           </p>
         </AnimatedSection>
 
-        {/* ===== MAIN GRID LAYOUT ===== */}
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        {/* ===== MAIN GRID LAYOUT: IMAGE LEFT, TEXT RIGHT ===== */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           
-          {/* ===== LEFT SIDE: DETAILED TEXT ===== */}
+          {/* ===== LEFT SIDE: IMAGE CARD ===== */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-5 text-left"
-          >
-            {/* Heading */}
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-              Ashwin R. Singh <br />
-              <span className="text-[#00c6fb] text-xl sm:text-2xl lg:text-3xl">(Aashu Singh)</span>
-            </h3>
-
-            {/* Paragraphs */}
-            <div className="space-y-4 text-sm sm:text-base text-gray-300 leading-relaxed max-w-xl">
-              
-              {/* ✅ Pehle 3 paragraphs — hamesha visible */}
-              <p>
-                Ashwin R. Singh (Aashu Singh) is a tech entrepreneur, investor, and LinkedIn Top Voice with 13+ years of experience building technology-led businesses and turning emerging technologies into practical business solutions.
-              </p>
-              <p>
-                With a background in Computer Science and AI, Ashwin has worked across FinTech, HealthTech, EdTech, SaaS, automation, and enterprise technology, leading products and ventures from idea to execution. As Founder, CEO, and CTO across CoderBox Digital, Quantus Infosystems, and Envi Pack Pvt. Ltd., he has built technology teams, shaped product strategies, and helped businesses navigate digital transformation.
-              </p>
-              <p>
-                His work extends beyond his own ventures. Ashwin has mentored and advised 100+ startups, helping founders strengthen their technology, product-market fit, fundraising readiness, and go-to-market strategies. He has also supported 106+ startups in raising capital through technology and business advisory.
-              </p>
-
-              {/* ✅ Read More / Read Less Button — paragraph 3 ke baad */}
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="inline-flex items-center gap-1.5 mt-2 text-[#00c6fb] text-sm font-bold hover:text-white transition-all duration-300 group"
-              >
-                {isExpanded ? 'Read Less' : 'Read More'}
-                <motion.span
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="inline-flex"
-                >
-                  <ChevronDown className="h-4 w-4" />
-                </motion.span>
-              </button>
-
-              {/* ✅ Aakhri 3 paragraphs — sirf "Read More" click karne par khulenge */}
-              <AnimatePresence initial={false}>
-                {isExpanded && (
-                  <motion.div
-                    key="extra-text"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="space-y-4 overflow-hidden"
-                  >
-                    <p>
-                      His contributions have been recognised through awards including Young Entrepreneur of the Year (2022) and Best Business Consultant of the Year (2023), alongside multiple industry recognitions.
-                    </p>
-                    <p>
-                      With a LinkedIn community of 1.14L+ followers and recognition as a LinkedIn Top Voice and Global Indian Influencer, Ashwin is also known for making complex technology and business trends easier to understand and act upon.
-                    </p>
-                    <p className="font-semibold text-[#00c6fb]/90 italic">
-                      "At the heart of his approach is a simple belief: technology should create meaningful business value. Whether building a company, advising a founder, or shaping a client strategy, he focuses on the same principles — think in systems, execute with discipline, and build for lasting impact."
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.div>
-
-          {/* ===== RIGHT SIDE: IMAGE CARD + CTA BUTTON ===== */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center justify-center gap-4 w-full"
+            className="flex flex-col items-center justify-center gap-4 w-full order-1"
           >
             {teamMembers.map((member, index) => (
               <div key={index} className="w-full max-w-[400px] sm:max-w-[460px]">
@@ -3650,30 +4082,42 @@ const TeamSection = () => {
                   </div>
                 </div>
 
-                {/* ===== CTA BUTTON (Know More) — Arrow Move karega =====
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="mt-4 text-center"
-                >
-                  <Link
-                    to="/AboutUs"
-                    className="inline-flex items-center gap-2 bg-[#008df1] hover:bg-[#006fa6] text-white text-base font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-[#008df1]/30 transition-all duration-300 group"
-                  >
-                    Know More
-                    <motion.span
-                      animate={{ x: [0, 6, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </motion.span>
-                  </Link>
-                </motion.div> */}
               </div>
             ))}
           </motion.div>
+
+          {/* ===== RIGHT SIDE: DETAILED TEXT ===== */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-5 text-left order-2"
+          >
+            {/* Heading */}
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              Ashwin R. Singh <br />
+              <span className="text-[#00c6fb] text-xl sm:text-2xl lg:text-3xl">(Aashu Singh)</span>
+            </h3>
+
+            {/* Paragraphs — Sirf 2, aur quote PERMANENTLY visible */}
+            <div className="space-y-4 text-sm sm:text-base text-gray-300 leading-relaxed max-w-xl">
+              
+              <p>
+                Ashwin R. Singh (Aashu Singh) is a tech entrepreneur, investor, and LinkedIn Top Voice with 13+ years of experience building technology-led businesses and turning emerging technologies into practical business solutions.
+              </p>
+              <p>
+                With a background in Computer Science and AI, Ashwin has worked across FinTech, HealthTech, EdTech, SaaS, automation, and enterprise technology, leading products and ventures from idea to execution. As Founder, CEO, and CTO across CoderBox Digital, Quantus Infosystems, and Envi Pack Pvt. Ltd., he has built technology teams, shaped product strategies, and helped businesses navigate digital transformation.
+              </p>
+
+              {/* ✅ Quote — PERMANENTLY visible, same color (cyan italic) */}
+              <p className="font-semibold text-[#00c6fb]/90 italic">
+                "At the heart of his approach is a simple belief: technology should create meaningful business value. Whether building a company, advising a founder, or shaping a client strategy, he focuses on the same principles — think in systems, execute with discipline, and build for lasting impact."
+              </p>
+
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

@@ -4168,6 +4168,432 @@
 
 
 
+
+
+
+
+
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { Mail, Phone, MapPin, Send, Zap } from 'lucide-react';
+// import { motion } from 'framer-motion';
+
+// const Footer = () => {
+//   const currentYear = new Date().getFullYear();
+
+//   // ============= DATA =============
+//   const servicesLinks = [
+//     { name: 'Cognitive Services', path: '/services/cognitive' },
+//     { name: 'Digital Services', path: '/services/digital' },
+//     { name: 'Information Technology Services', path: '/services/it' },
+//     { name: 'Blog', path: '/blog' }
+//   ];
+
+//   const solutionsLinks = [
+//     { name: 'Home', path: '/' },
+//     { name: 'About Us', path: '/about' },
+//     { name: 'Contact Us', path: '/contact' }
+//   ];
+
+//   const registeredOffice = {
+//     address: 'Vinir Tower, 6, Outer Ring Rd, Old Madiwala, Jay Bheema Nagar, 1st Stage, BTM Layout, Bengaluru, Karnataka 560068',
+//     phone: '+918928809025 / +917208769025',
+//     email: 'support@thecoderbox.com'
+//   };
+
+//   // ============= SOCIAL LINKS =============
+//   const socialLinks = {
+//     facebook: 'https://www.facebook.com/thecoderbox/',
+//     linkedin: 'https://www.linkedin.com/company/thecoderbox/home/',
+//     youtube: 'https://www.youtube.com/@thecoderbox',
+//     instagram: 'https://www.instagram.com/thecoderbox?stkn=MjZ1NnVkbGt1ZW8y'
+//   };
+
+//   // ============= SOCIAL ICONS =============
+//   const FacebookIcon = () => (
+//     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+//       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+//     </svg>
+//   );
+
+//   const LinkedinIcon = () => (
+//     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+//       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+//     </svg>
+//   );
+
+//   const YoutubeIcon = () => (
+//     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+//       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+//     </svg>
+//   );
+
+//   const InstagramIcon = () => (
+//     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+//       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+//     </svg>
+//   );
+
+//   return (
+//     <footer 
+//       className="relative overflow-hidden"
+//       style={{ 
+//         backgroundColor: '#f8f8f8', 
+//         color: '#6e6d71' 
+//       }}
+//     >
+      
+//       {/* ===== BACKGROUND EFFECTS ===== */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div 
+//           className="absolute -top-40 -right-40 w-[400px] h-[400px] rounded-full bg-blue-300/10 blur-3xl"
+//           animate={{ x: [0, 80, -50, 0], y: [0, -60, 40, 0], scale: [1, 1.2, 0.8, 1] }}
+//           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div 
+//           className="absolute -bottom-40 -left-40 w-[400px] h-[400px] rounded-full bg-purple-300/10 blur-3xl"
+//           animate={{ x: [0, -80, 50, 0], y: [0, 60, -40, 0], scale: [1, 0.8, 1.2, 1] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+
+//       {/* ===== TOP GLOWING LINE ===== */}
+//       <div className="relative z-10 h-0.5 bg-[#01adf0] shadow-lg shadow-[#01adf0]/50"></div>
+
+//       <div className="relative container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-6 z-10">
+        
+//         {/* ====== MAIN FOOTER GRID ====== */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 py-4">
+          
+//           {/* Column 1 - CODERBOX WITH LOGO */}
+//           <motion.div 
+//             initial={{ opacity: 0, y: 30 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6 }}
+//             viewport={{ once: true }}
+//             className="lg:col-span-1"
+//           >
+//             <img 
+//               src="coderBoxlogo3.png"
+//               alt="CoderBox Logo"
+//               className="h-10 sm:h-10 w-auto object-contain mb-3"
+//               style={{ 
+//                 pointerEvents: 'none',
+//                 userSelect: 'none',
+//                 transform: 'none'
+//               }}
+//               onError={(e) => {
+//                 e.target.onerror = null;
+//                 e.target.src = 'https://via.placeholder.com/96/2563eb/ffffff?text=CB';
+//               }}
+//             />
+            
+//             <p 
+//               className="sec-p leading-relaxed mb-3"
+//               style={{ color: '#6e6d71' }}
+//             >
+//               CoderBox, your go-to team for all things digital! We specialize in crafting digital marketing solutions 
+//             </p>
+//           </motion.div>
+
+//           {/* Column 2 - OUR SERVICES */}
+//           <motion.div 
+//             initial={{ opacity: 0, y: 30 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.1 }}
+//             viewport={{ once: true }}
+//           >
+//             <h3 
+//               className="sec-h3 mb-4"
+//               style={{ color: '#1a1a1a' }}
+//             >
+//               OUR SERVICES
+//             </h3>
+//             <ul className="space-y-2.5">
+//               {servicesLinks.map((link, index) => (
+//                 <motion.li 
+//                   key={index} 
+//                   whileHover={{ x: 6 }}
+//                   transition={{ duration: 0.2 }}
+//                 >
+//                   <Link 
+//                     to={link.path} 
+//                     className="sec-p inline-flex items-center gap-2 transition-colors duration-200 group"
+//                     style={{ color: '#6e6d71' }}
+//                     onMouseEnter={(e) => {
+//                       e.currentTarget.style.color = '#01adf0';
+//                     }}
+//                     onMouseLeave={(e) => {
+//                       e.currentTarget.style.color = '#6e6d71';
+//                     }}
+//                   >
+//                     <span 
+//                       className="w-1.5 h-1.5 rounded-full bg-[#01adf0] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0"
+//                     ></span>
+//                     {link.name}
+//                   </Link>
+//                 </motion.li>
+//               ))}
+//             </ul>
+//           </motion.div>
+
+//           {/* Column 3 - QUICK LINKS */}
+//           <motion.div 
+//             initial={{ opacity: 0, y: 30 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.2 }}
+//             viewport={{ once: true }}
+//           >
+//             <h3 
+//               className="sec-h3 mb-4"
+//               style={{ color: '#1a1a1a' }}
+//             >
+//               QUICK LINKS
+//             </h3>
+//             <ul className="space-y-2.5">
+//               {solutionsLinks.map((link, index) => (
+//                 <motion.li 
+//                   key={index} 
+//                   whileHover={{ x: 6 }}
+//                   transition={{ duration: 0.2 }}
+//                 >
+//                   <Link 
+//                     to={link.path} 
+//                     className="sec-p inline-flex items-center gap-2 transition-colors duration-200 group"
+//                     style={{ color: '#6e6d71' }}
+//                     onMouseEnter={(e) => {
+//                       e.currentTarget.style.color = '#01adf0';
+//                     }}
+//                     onMouseLeave={(e) => {
+//                       e.currentTarget.style.color = '#6e6d71';
+//                     }}
+//                   >
+//                     <span 
+//                       className="w-1.5 h-1.5 rounded-full bg-[#01adf0] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex-shrink-0"
+//                     ></span>
+//                     {link.name}
+//                   </Link>
+//                 </motion.li>
+//               ))}
+//             </ul>
+//           </motion.div>
+
+//           {/* Column 4 - CONTACT US */}
+//           <motion.div 
+//             initial={{ opacity: 0, y: 30 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.3 }}
+//             viewport={{ once: true }}
+//           >
+//             <h3 
+//               className="sec-h3 mb-4"
+//               style={{ color: '#1a1a1a' }}
+//             >
+//               CONTACT US
+//             </h3>
+            
+//             <div 
+//               className="rounded-lg p-4 border"
+//               style={{ 
+//                 backgroundColor: '#ffffff', 
+//                 borderColor: '#e5e5e5' 
+//               }}
+//             >
+//               <span 
+//                 className="font-bold text-xs block mb-2 flex items-center gap-1.5"
+//                 style={{ color: '#01adf0' }}
+//               >
+//                 <MapPin size={14} className="text-[#01adf0]" />
+//                 REGISTERED OFFICE
+//               </span>
+//               <p 
+//                 className="sec-p leading-relaxed mb-2"
+//                 style={{ color: '#1a1a1a' }}
+//               >
+//                 {registeredOffice.address}
+//               </p>
+//               <div className="space-y-1.5 pt-2 border-t" style={{ borderColor: '#e5e5e5' }}>
+//                 <motion.div 
+//                   whileHover={{ x: 5 }} 
+//                   className="sec-p flex items-center gap-1.5"
+//                   style={{ color: '#6e6d71' }}
+//                 >
+//                   <Phone size={12} className="text-[#01adf0] flex-shrink-0" />
+//                   <span>{registeredOffice.phone}</span>
+//                 </motion.div>
+//                 <motion.div 
+//                   whileHover={{ x: 5 }} 
+//                   className="sec-p flex items-center gap-1.5"
+//                   style={{ color: '#6e6d71' }}
+//                 >
+//                   <Mail size={12} className="text-[#01adf0] flex-shrink-0" />
+//                   <span>{registeredOffice.email}</span>
+//                 </motion.div>
+//               </div>
+//             </div>
+//           </motion.div>
+//         </div>
+
+//         {/* ====== NEWSLETTER + SOCIAL ====== */}
+//         <div 
+//           className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 border-t"
+//           style={{ borderColor: '#e5e5e5' }}
+//         >
+//           {/* Newsletter */}
+//           <motion.div
+//             initial={{ opacity: 0, y: 20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.4 }}
+//             viewport={{ once: true }}
+//           >
+//             <h3 
+//               className="sec-h3 mb-3 flex items-center gap-2"
+//               style={{ color: '#1a1a1a' }}
+//             >
+//               <Zap className="h-4 w-4 text-yellow-500" />
+//               Subscribe to get latest insights
+//             </h3>
+//             <div 
+//               className="flex items-center rounded-full border overflow-hidden max-w-md hover:border-[#01adf0] transition-all duration-300"
+//               style={{ 
+//                 backgroundColor: '#ffffff', 
+//                 borderColor: '#e5e5e5' 
+//               }}
+//             >
+//               <input 
+//                 type="email" 
+//                 placeholder="Email Address*" 
+//                 className="flex-1 bg-transparent px-4 py-2 text-sm outline-none"
+//                 style={{ color: '#1a1a1a' }}
+//               />
+//               <motion.button 
+//                 whileHover={{ scale: 1.05 }}
+//                 whileTap={{ scale: 0.95 }}
+//                 className="bg-[#01adf0] hover:bg-[#0196d1] text-white p-2.5 rounded-full mx-1 transition-all duration-200 shadow-lg shadow-[#01adf0]/40"
+//               >
+//                 <Send size={16} />
+//               </motion.button>
+//             </div>
+//           </motion.div>
+
+//           {/* Social Icons */}
+//           <motion.div 
+//             initial={{ opacity: 0, y: 20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.6, delay: 0.5 }}
+//             viewport={{ once: true }}
+//             className="flex items-center justify-start md:justify-end gap-2"
+//           >
+//             {/* Facebook */}
+//             <motion.a
+//               href={socialLinks.facebook}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               whileHover={{ scale: 1.2, y: -3 }}
+//               className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
+//               style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
+//               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1877f2'; e.currentTarget.style.borderColor = '#1877f2'; e.currentTarget.style.color = '#ffffff'; }}
+//               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+//             >
+//               <FacebookIcon />
+//             </motion.a>
+            
+//             {/* LinkedIn */}
+//             <motion.a
+//               href={socialLinks.linkedin}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               whileHover={{ scale: 1.2, y: -3 }}
+//               className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
+//               style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
+//               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#0a66c2'; e.currentTarget.style.borderColor = '#0a66c2'; e.currentTarget.style.color = '#ffffff'; }}
+//               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+//             >
+//               <LinkedinIcon />
+//             </motion.a>
+            
+//             {/* YouTube */}
+//             <motion.a
+//               href={socialLinks.youtube}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               whileHover={{ scale: 1.2, y: -3 }}
+//               className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
+//               style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
+//               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ff0000'; e.currentTarget.style.borderColor = '#ff0000'; e.currentTarget.style.color = '#ffffff'; }}
+//               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+//             >
+//               <YoutubeIcon />
+//             </motion.a>
+            
+//             {/* Instagram */}
+//             <motion.a
+//               href={socialLinks.instagram}
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               whileHover={{ scale: 1.2, y: -3 }}
+//               className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
+//               style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
+//               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#e4405f'; e.currentTarget.style.borderColor = '#e4405f'; e.currentTarget.style.color = '#ffffff'; }}
+//               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+//             >
+//               <InstagramIcon />
+//             </motion.a>
+//           </motion.div>
+//         </div>
+
+//         {/* ====== BOTTOM BAR ====== */}
+//         <div 
+//           className="py-3 mt-2 border-t"
+//           style={{ borderColor: '#e5e5e5' }}
+//         >
+//           <div className="flex flex-wrap items-center justify-center md:justify-between gap-2">
+//             <p className="sec-p" style={{ color: '#6e6d71' }}>
+//               © {currentYear} CoderBox. All rights reserved.
+//             </p>
+            
+//             <div className="sec-p flex items-center gap-2" style={{ color: '#6e6d71' }}>
+//               <Link 
+//                 to="/privacy" 
+//                 className="transition-colors duration-200"
+//                 onMouseEnter={(e) => { e.currentTarget.style.color = '#01adf0'; }}
+//                 onMouseLeave={(e) => { e.currentTarget.style.color = '#6e6d71'; }}
+//               >
+//                 Privacy Policy
+//               </Link>
+//               <span style={{ color: '#c0c0c0' }}>|</span>
+//               <Link 
+//                 to="/terms" 
+//                 className="transition-colors duration-200"
+//                 onMouseEnter={(e) => { e.currentTarget.style.color = '#01adf0'; }}
+//                 onMouseLeave={(e) => { e.currentTarget.style.color = '#6e6d71'; }}
+//               >
+//                 Terms of Service
+//               </Link>
+//               <span style={{ color: '#c0c0c0' }}>|</span>
+//               <Link 
+//                 to="/cookies" 
+//                 className="transition-colors duration-200"
+//                 onMouseEnter={(e) => { e.currentTarget.style.color = '#01adf0'; }}
+//                 onMouseLeave={(e) => { e.currentTarget.style.color = '#6e6d71'; }}
+//               >
+//                 Cookie Policy
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// };
+
+// export default Footer;
+
+
+
+
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Send, Zap } from 'lucide-react';
@@ -4471,7 +4897,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Social Icons */}
+          {/* 👇 Social Icons — Default: #01ADF0, Hover: Original Brand Colors */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -4479,58 +4905,58 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex items-center justify-start md:justify-end gap-2"
           >
-            {/* Facebook */}
+            {/* Facebook — Default #01ADF0, Hover original blue */}
             <motion.a
               href={socialLinks.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, y: -3 }}
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
-              style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1877f2'; e.currentTarget.style.borderColor = '#1877f2'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+              whileHover={{ scale: 1.15, y: -3 }}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-xl"
+              style={{ backgroundColor: '#01adf0', color: '#ffffff' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1877f2'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#01adf0'; }}
             >
               <FacebookIcon />
             </motion.a>
             
-            {/* LinkedIn */}
+            {/* LinkedIn — Default #01ADF0, Hover original blue */}
             <motion.a
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, y: -3 }}
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
-              style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#0a66c2'; e.currentTarget.style.borderColor = '#0a66c2'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+              whileHover={{ scale: 1.15, y: -3 }}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-xl"
+              style={{ backgroundColor: '#01adf0', color: '#ffffff' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#0a66c2'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#01adf0'; }}
             >
               <LinkedinIcon />
             </motion.a>
             
-            {/* YouTube */}
+            {/* YouTube — Default #01ADF0, Hover original red */}
             <motion.a
               href={socialLinks.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, y: -3 }}
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
-              style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ff0000'; e.currentTarget.style.borderColor = '#ff0000'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+              whileHover={{ scale: 1.15, y: -3 }}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-xl"
+              style={{ backgroundColor: '#01adf0', color: '#ffffff' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ff0000'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#01adf0'; }}
             >
               <YoutubeIcon />
             </motion.a>
             
-            {/* Instagram */}
+            {/* Instagram — Default #01ADF0, Hover original pink */}
             <motion.a
               href={socialLinks.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, y: -3 }}
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border shadow-sm hover:shadow-lg"
-              style={{ backgroundColor: '#ffffff', borderColor: '#e5e5e5', color: '#6e6d71' }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#e4405f'; e.currentTarget.style.borderColor = '#e4405f'; e.currentTarget.style.color = '#ffffff'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.color = '#6e6d71'; }}
+              whileHover={{ scale: 1.15, y: -3 }}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-xl"
+              style={{ backgroundColor: '#01adf0', color: '#ffffff' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#e4405f'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#01adf0'; }}
             >
               <InstagramIcon />
             </motion.a>
