@@ -1397,6 +1397,312 @@
 
 
 
+// import React, { useState, useEffect } from 'react';
+// import { motion } from 'framer-motion';
+// import { Users, Globe, Shield, ArrowRight, Sparkles } from 'lucide-react';
+
+// const WhyChooseUsSection = () => {
+//   // ===== CAROUSEL IMAGES =====
+//   const carouselImages = [
+//     { id: 1, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&auto=format', title: 'Expert Team', description: '24+ skilled professionals' },
+//     { id: 2, src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&auto=format', title: 'Global Reach', description: '10 countries worldwide' },
+//     { id: 3, src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop&auto=format', title: 'Success Stories', description: '500+ projects delivered' },
+//     { id: 4, src: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600&h=400&fit=crop&auto=format', title: 'Innovation Hub', description: 'Cutting-edge solutions' },
+//     { id: 5, src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop&auto=format', title: 'Trusted Partner', description: '98% client satisfaction' },
+//     { id: 6, src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&auto=format', title: 'Financial Growth', description: '10x revenue increase' }
+//   ];
+
+//   // ===== FEATURES DATA =====
+//   const features = [
+//     { icon: Users, title: '24+ Expert Team Members', description: 'A large team with having 24 members, each bringing unique expertise to deliver exceptional results.' },
+//     { icon: Globe, title: '10 Countries Presence', description: 'We have branches in 10 countries, serving clients globally with localized solutions.' },
+//     { icon: Shield, title: 'Investment & Insurance', description: 'Deal in various fields investment, insurance etc. with comprehensive coverage.' }
+//   ];
+
+//   // ===== STATE =====
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [windowSize, setWindowSize] = useState({
+//     width: typeof window !== 'undefined' ? window.innerWidth : 1024,
+//   });
+
+//   // ===== AUTO-ROTATE =====
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+//     }, 3000);
+//     return () => clearInterval(interval);
+//   }, [carouselImages.length]);
+
+//   // ===== WINDOW RESIZE =====
+//   useEffect(() => {
+//     const handleResize = () => setWindowSize({ width: window.innerWidth });
+//     window.addEventListener('resize', handleResize);
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   const getImageSize = () => {
+//     const width = windowSize.width;
+//     if (width < 480) return { w: 80, h: 55 };
+//     if (width < 640) return { w: 100, h: 70 };
+//     if (width < 768) return { w: 130, h: 90 };
+//     if (width < 1024) return { w: 160, h: 110 };
+//     if (width < 1280) return { w: 180, h: 125 };
+//     return { w: 200, h: 140 };
+//   };
+
+//   const getResponsiveRadius = () => {
+//     const width = windowSize.width;
+//     if (width < 480) return 60;
+//     if (width < 640) return 75;
+//     if (width < 768) return 95;
+//     if (width < 1024) return 115;
+//     if (width < 1280) return 135;
+//     return 155;
+//   };
+
+//   const getContainerHeight = () => {
+//     const width = windowSize.width;
+//     if (width < 480) return 200;
+//     if (width < 640) return 240;
+//     if (width < 768) return 280;
+//     if (width < 1024) return 330;
+//     if (width < 1280) return 380;
+//     return 420;
+//   };
+
+//   const getPosition = (index) => {
+//     const total = carouselImages.length;
+//     const angle = (index / total) * 360;
+//     const radius = getResponsiveRadius();
+//     const x = radius * Math.sin((angle * Math.PI) / 180);
+//     const y = -radius * Math.cos((angle * Math.PI) / 180);
+//     return { x, y, angle };
+//   };
+
+//   const imageSize = getImageSize();
+//   const containerHeight = getContainerHeight();
+
+//   return (
+//     <section className="relative pt-4 sm:pt-6 md:pt-8 lg:pt-10 xl:pt-12 pb-4 sm:pb-6 md:pb-8 lg:pb-10 xl:pb-12 overflow-hidden bg-gradient-to-br from-[#0a0a1a] via-[#0f0a2a] to-[#0a1a2a]">
+      
+//       {/* ===== BACKGROUND — #008df1 + #005b8f ===== */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div 
+//           className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#008df1]/20 blur-3xl"
+//           animate={{ x: [0, 80, -50, 0], y: [0, -60, 40, 0] }}
+//           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//         <motion.div 
+//           className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#005b8f]/20 blur-3xl"
+//           animate={{ x: [0, -80, 50, 0], y: [0, 60, -40, 0] }}
+//           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+//         />
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 relative z-10">
+        
+//         <div className="grid lg:grid-cols-2 gap-6 md:gap-10 lg:gap-14 xl:gap-16 items-center">
+          
+//           {/* ===== LEFT COLUMN - CONTENT (Ab left side me) ===== */}
+//           {/* Desktop par left me rahega, mobile par pehle aayega */}
+//           <motion.div
+//             initial={{ opacity: 0 }}
+//             whileInView={{ opacity: 1 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//             // 👇 Desktop par order-1 (left), mobile par bhi pehle
+//             className="space-y-3 sm:space-y-4 md:space-y-5 order-1"
+//           >
+//             {/* Badge */}
+//             <motion.span 
+//               className="sec-badge inline-block"
+//               whileHover={{ scale: 1.05 }}
+//               animate={{ y: [0, -2, 0] }}
+//               transition={{ duration: 2, repeat: Infinity }}
+//             >
+//               Why Choose Us
+//             </motion.span>
+            
+//             {/* Heading — #00c6fb highlighted (solid) */}
+//             <motion.h2 className="sec-h2 sec-text-light leading-[1.15]">
+//               Why Choose{' '}
+//               <span style={{ color: '#00c6fb' }}>
+//                 Us
+//               </span>
+//             </motion.h2>
+            
+//             {/* Paragraph */}
+//             <motion.p className="sec-p sec-text-light-soft leading-relaxed bg-white/5 backdrop-blur-sm p-2 sm:p-3 rounded-xl border border-white/5">
+//               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.
+//             </motion.p>
+            
+//             {/* Features */}
+//             <div className="space-y-1.5 sm:space-y-2">
+//               {features.map((feature, index) => (
+//                 <motion.div
+//                   key={index}
+//                   initial={{ opacity: 0, x: -15 }}
+//                   whileInView={{ opacity: 1, x: 0 }}
+//                   transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
+//                   viewport={{ once: true }}
+//                   whileHover={{ x: 3, scale: 1.01 }}
+//                   className="flex gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#008df1]/40 transition-all duration-300"
+//                 >
+//                   <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#008df1]/20 p-1 flex items-center justify-center">
+//                     <feature.icon className="h-3 w-3 sm:h-4 sm:w-4 text-[#00c6fb]" />
+//                   </div>
+//                   <div>
+//                     <h3 className="sec-h3 text-white mb-0">
+//                       {feature.title}
+//                     </h3>
+//                     <p className="sec-p text-[#00c6fb]/70 mt-0.5 leading-relaxed">
+//                       {feature.description}
+//                     </p>
+//                   </div>
+//                 </motion.div>
+//               ))}
+//             </div>
+            
+//             {/* CTA Button — #008df1 */}
+//             <motion.div 
+//               className="flex justify-start mt-2 sm:mt-3"
+//               initial={{ opacity: 0, y: 15 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.5, delay: 0.3 }}
+//               viewport={{ once: true }}
+//             >
+//               <motion.a
+//                 href="/contact"
+//                 whileHover={{ scale: 1.03 }}
+//                 whileTap={{ scale: 0.95 }}
+//                 className="inline-flex items-center gap-2 bg-[#008df1] hover:bg-[#006fa6] text-white text-sm font-semibold px-6 py-3 rounded-full shadow-lg shadow-[#008df1]/30 transition-all duration-300"
+//               >
+//                 Get Started
+//                 <motion.span
+//                   animate={{ x: [0, 6, 0] }}
+//                   transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+//                 >
+//                   <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+//                 </motion.span>
+//               </motion.a>
+//             </motion.div>
+//           </motion.div>
+
+//           {/* ===== RIGHT COLUMN - 3D CIRCLE CAROUSEL (Ab right side me) ===== */}
+//           {/* Desktop par right me jayega, mobile par niche aayega */}
+//           <div 
+//             // 👇 Desktop par order-2 (right), mobile par bhi baad me (niche)
+//             className="relative flex items-center justify-center w-full order-2"
+//             style={{ height: `${containerHeight}px` }}
+//           >
+//             <div className="relative w-full h-full">
+//               {carouselImages.map((image, index) => {
+//                 const { x, y } = getPosition(index);
+//                 const isActive = index === currentIndex;
+//                 const radius = getResponsiveRadius();
+//                 const distance = Math.sqrt(x * x + y * y) / radius;
+                
+//                 let scale;
+//                 if (isActive) scale = 1.15;
+//                 else scale = 0.55 + (1 - Math.min(distance, 1)) * 0.35;
+                
+//                 const opacity = isActive ? 1 : 0.35 + (1 - Math.min(distance, 1)) * 0.4;
+//                 const zIndex = isActive ? 20 : Math.round(10 - Math.min(distance, 1) * 8);
+
+//                 return (
+//                   <motion.div
+//                     key={image.id}
+//                     className="absolute top-1/2 left-1/2"
+//                     style={{ x, y, translateX: '-50%', translateY: '-50%', zIndex }}
+//                     animate={{ scale, opacity, zIndex, x, y }}
+//                     transition={{ duration: 0.9, ease: [0.215, 0.61, 0.355, 1] }}
+//                   >
+//                     <div 
+//                       className={`relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 ${
+//                         isActive 
+//                           ? 'shadow-[#008df1]/60 border-2 border-[#00c6fb]/50' 
+//                           : 'shadow-[#008df1]/10 border border-white/10'
+//                       }`}
+//                       style={{
+//                         width: isActive ? imageSize.w * 1.12 : imageSize.w,
+//                         height: isActive ? imageSize.h * 1.12 : imageSize.h,
+//                       }}
+//                     >
+//                       <img src={image.src} alt={image.title} className="w-full h-full object-cover" loading="lazy" />
+//                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                      
+//                       {isActive && (
+//                         <motion.div 
+//                           className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 md:p-3"
+//                           initial={{ opacity: 0, y: 20 }}
+//                           animate={{ opacity: 1, y: 0 }}
+//                           transition={{ delay: 0.3 }}
+//                         >
+//                           <h3 className="sec-h3 text-white">{image.title}</h3>
+//                           <p className="sec-p text-[#00c6fb]/80">{image.description}</p>
+//                         </motion.div>
+//                       )}
+                      
+//                       {isActive && (
+//                         <motion.div 
+//                           className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-white/10 backdrop-blur-md px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded-full border border-white/20"
+//                           initial={{ opacity: 0, scale: 0.8 }}
+//                           animate={{ opacity: 1, scale: 1 }}
+//                           transition={{ delay: 0.4 }}
+//                         >
+//                           <span className="text-white text-[5px] sm:text-[7px] md:text-[8px] font-medium flex items-center gap-0.5">
+//                             <Sparkles className="h-1.5 w-1.5 text-yellow-400" />
+//                             Active
+//                           </span>
+//                         </motion.div>
+//                       )}
+//                     </div>
+//                   </motion.div>
+//                 );
+//               })}
+//             </div>
+
+//             {/* ===== CENTER GLOW — #008df1 ===== */}
+//             <motion.div 
+//               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#008df1]/20 blur-2xl"
+//               style={{
+//                 width: Math.min(containerHeight * 0.3, 150),
+//                 height: Math.min(containerHeight * 0.3, 150),
+//               }}
+//               animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+//               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+//             />
+
+//             {/* ===== DOTS — #008df1 active ===== */}
+//             <div className="absolute -bottom-4 sm:-bottom-6 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-1.5">
+//               {carouselImages.map((_, index) => (
+//                 <button
+//                   key={index}
+//                   onClick={() => setCurrentIndex(index)}
+//                   className={`transition-all duration-300 rounded-full ${
+//                     index === currentIndex 
+//                       ? 'w-3 sm:w-4 md:w-5 h-1 bg-[#008df1]' 
+//                       : 'w-1 h-1 bg-gray-500 hover:bg-[#00c6fb]/60'
+//                   }`}
+//                   aria-label={`Go to slide ${index + 1}`}
+//                 />
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default WhyChooseUsSection;
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Globe, Shield, ArrowRight, Sparkles } from 'lucide-react';
@@ -1503,14 +1809,12 @@ const WhyChooseUsSection = () => {
         
         <div className="grid lg:grid-cols-2 gap-6 md:gap-10 lg:gap-14 xl:gap-16 items-center">
           
-          {/* ===== LEFT COLUMN - CONTENT (Ab left side me) ===== */}
-          {/* Desktop par left me rahega, mobile par pehle aayega */}
+          {/* ===== LEFT COLUMN - CONTENT ===== */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            // 👇 Desktop par order-1 (left), mobile par bhi pehle
             className="space-y-3 sm:space-y-4 md:space-y-5 order-1"
           >
             {/* Badge */}
@@ -1523,7 +1827,7 @@ const WhyChooseUsSection = () => {
               Why Choose Us
             </motion.span>
             
-            {/* Heading — #00c6fb highlighted (solid) */}
+            {/* Heading */}
             <motion.h2 className="sec-h2 sec-text-light leading-[1.15]">
               Why Choose{' '}
               <span style={{ color: '#00c6fb' }}>
@@ -1555,7 +1859,8 @@ const WhyChooseUsSection = () => {
                     <h3 className="sec-h3 text-white mb-0">
                       {feature.title}
                     </h3>
-                    <p className="sec-p text-[#00c6fb]/70 mt-0.5 leading-relaxed">
+                    {/* 👇 Description — ab WHITE */}
+                    <p className="sec-p text-white/80 mt-0.5 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
@@ -1563,7 +1868,7 @@ const WhyChooseUsSection = () => {
               ))}
             </div>
             
-            {/* CTA Button — #008df1 */}
+            {/* CTA Button */}
             <motion.div 
               className="flex justify-start mt-2 sm:mt-3"
               initial={{ opacity: 0, y: 15 }}
@@ -1588,10 +1893,8 @@ const WhyChooseUsSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* ===== RIGHT COLUMN - 3D CIRCLE CAROUSEL (Ab right side me) ===== */}
-          {/* Desktop par right me jayega, mobile par niche aayega */}
+          {/* ===== RIGHT COLUMN - 3D CIRCLE CAROUSEL ===== */}
           <div 
-            // 👇 Desktop par order-2 (right), mobile par bhi baad me (niche)
             className="relative flex items-center justify-center w-full order-2"
             style={{ height: `${containerHeight}px` }}
           >

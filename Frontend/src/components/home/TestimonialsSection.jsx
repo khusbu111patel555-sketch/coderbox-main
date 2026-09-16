@@ -3597,14 +3597,14 @@ const TestimonialsSection = () => {
           <Quote className="w-24 h-24 sm:w-32 sm:h-32 text-[#008df1] fill-current" />
         </div>
 
-        <div className="absolute top-10 right-4 sm:right-10 text-right hidden md:block">
+        {/* <div className="absolute top-10 right-4 sm:right-10 text-right hidden md:block">
           <p className="text-[10px] tracking-[0.2em] text-gray-400 font-semibold leading-tight">
             REAL PEOPLE
           </p>
           <p className="text-[10px] tracking-[0.2em] text-gray-400 font-semibold leading-tight">
             REAL GROWTH
           </p>
-        </div>
+        </div> */}
 
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#008df1]/5 blur-3xl"></div>
         <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#005b8f]/5 blur-3xl"></div>

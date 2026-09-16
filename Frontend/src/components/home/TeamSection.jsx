@@ -3650,7 +3650,7 @@ const TeamSection = () => {
                   </div>
                 </div>
 
-                {/* ===== CTA BUTTON (Know More) — Arrow Move karega ===== */}
+                {/* ===== CTA BUTTON (Know More) — Arrow Move karega =====
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -3670,7 +3670,7 @@ const TeamSection = () => {
                       <ArrowRight className="h-4 w-4" />
                     </motion.span>
                   </Link>
-                </motion.div>
+                </motion.div> */}
               </div>
             ))}
           </motion.div>
