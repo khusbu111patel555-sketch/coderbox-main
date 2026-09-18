@@ -3986,7 +3986,7 @@ const TeamSection = () => {
           </span>
 
           <h2 className="sec-h2 text-white mt-2 leading-tight">
-            Meet Our Expert Team
+            Meet Our Founder 
           </h2>
 
           <p className="sec-p sec-text-light-soft mt-1.5 max-w-2xl mx-auto">
