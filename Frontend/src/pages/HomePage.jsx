@@ -17,6 +17,7 @@ import HeroSection from '../components/home/HeroSection';
 import AboutSection from '../components/home/AboutSection';
 import HowWeWorkSection from '../components/home/HowWeWorkSection';
 import ServicesSection from '../components/home/ServicesSection';
+import ProjectSection from '../components/home/ProjectSection';
 import TeamSection from '../components/home/TeamSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
 import WhyChooseUsSection from '../components/home/WhyChooseUsSection';
@@ -32,6 +33,7 @@ const HomePage = () => {
         <AboutSection />
       <HowWeWorkSection />
       <ServicesSection />
+      <ProjectSection />
       <TeamSection />
       <TestimonialsSection />
       <WhyChooseUsSection />
