@@ -2281,6 +2281,203 @@
 
 
 
+// import React from 'react';
+// import { motion } from 'framer-motion';
+// import { ArrowRight } from 'lucide-react';
+
+// const BlogGridSection = () => {
+//   // ===== BLOG DATA (TheCoderBox ke liye) =====
+//   const blogs = [
+//     {
+//       id: 1,
+//       type: 'teal-text',
+//       category: 'Insights',
+//       title: 'Digital Marketing Trends That Will Dominate 2026',
+//       description: 'Discover the top digital marketing strategies that are reshaping how brands connect with their audiences in 2026 and beyond.',
+//       image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&h=800&fit=crop',
+//       link: '/blog/digital-marketing-trends-2026',
+//       order: 'image-first',
+//     },
+//     {
+//       id: 2,
+//       type: 'black-text',
+//       category: 'Insights',
+//       title: 'How AI is Transforming Digital Marketing for Small Businesses',
+//       description: 'Learn how AI-powered tools are leveling the playing field for small businesses and helping them compete with industry giants.',
+//       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=800&fit=crop',
+//       link: '/blog/ai-digital-marketing-small-business',
+//       order: 'text-first',
+//     },
+//     {
+//       id: 3,
+//       type: 'teal-text',
+//       category: 'Case Study',
+//       title: 'How TheCoderBox Helped a Restaurant Chain Triple Their Online Orders',
+//       description: 'Read how we built a complete digital presence for a restaurant chain and increased their online orders by 300% in just 6 months.',
+//       image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1200&h=800&fit=crop',
+//       link: '/blog/restaurant-chain-case-study',
+//       order: 'text-first',
+//     },
+//     {
+//       id: 4,
+//       type: 'white-text',
+//       category: 'Case Study',
+//       title: 'E-Commerce Growth: From Zero to 100K Monthly Visitors',
+//       description: 'Discover how TheCoderBox helped an e-commerce brand scale from zero to 100K monthly visitors using SEO and content marketing.',
+//       image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=800&fit=crop',
+//       link: '/blog/ecommerce-growth-case-study',
+//       order: 'image-first',
+//     },
+//     {
+//       id: 5,
+//       type: 'white-text',
+//       category: 'Guide',
+//       title: 'Complete Guide to SEO for Startups in 2026',
+//       description: 'A comprehensive guide to help startups build a strong SEO foundation from scratch and rank higher on Google search results.',
+//       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop',
+//       link: '/blog/seo-guide-startups',
+//       order: 'image-first',
+//     },
+//     {
+//       id: 6,
+//       type: 'teal-text',
+//       category: 'Case Study',
+//       title: 'Building a Scalable Mobile App for a Fashion Brand',
+//       description: 'Learn how TheCoderBox developed a cross-platform mobile app for a fashion brand and helped them boost customer engagement by 250%.',
+//       image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&h=800&fit=crop',
+//       link: '/blog/fashion-brand-mobile-app',
+//       order: 'text-first',
+//     },
+//   ];
+
+//   // ===== ✅ COLOR STYLES BASED ON TYPE =====
+//   const getTextStyles = (type) => {
+//     switch (type) {
+//       case 'teal-text':
+//         return {
+//           // ✅ #008df1 — primary blue
+//           bg: 'bg-[#008df1]',
+//           category: 'text-white/80',
+//           title: 'text-white',
+//           desc: 'text-white/85',
+//           arrowColor: 'text-white',     // 👈 white
+//           readMore: 'text-white',       // 👈 white
+//         };
+//       case 'black-text':
+//         return {
+//           // ✅ #005b8f — darker blue
+//           bg: 'bg-[#005b8f]',
+//           category: 'text-white/80',
+//           title: 'text-white',
+//           desc: 'text-white/85',
+//           arrowColor: 'text-white',     // 👈 white
+//           readMore: 'text-white',       // 👈 white
+//         };
+//       case 'white-text':
+//       default:
+//         return {
+//           bg: 'bg-white',
+//           category: 'text-gray-500',
+//           title: 'text-gray-900',
+//           desc: 'text-gray-600',
+//           arrowColor: 'text-[#008df1]',
+//           readMore: 'text-[#008df1]',
+//         };
+//     }
+//   };
+
+//   return (
+//     <section className="py-10 sm:py-14 bg-[#f5f5f5]">
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 max-w-7xl">
+
+//         {/* ===== SECTION HEADER ===== */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 20 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           viewport={{ once: true }}
+//           transition={{ duration: 0.6 }}
+//           className="text-center mb-10 sm:mb-14"
+//         >
+//           <span className="sec-badge inline-block mb-3">Our Blog</span>
+//           <h2 className="sec-h2 sec-text-dark">
+//             Latest <span style={{ color: '#00c6fb' }}>Insights & Case Studies</span>
+//           </h2>
+//           <p className="sec-p sec-text-dark-soft max-w-2xl mx-auto mt-2">
+//             Stay updated with the latest trends, strategies and success stories from TheCoderBox
+//           </p>
+//         </motion.div>
+
+//         {/* ===== BLOG GRID ===== */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-xl">
+//           {blogs.map((blog, idx) => {
+//             const styles = getTextStyles(blog.type);
+//             const isImageFirst = blog.order === 'image-first';
+
+//             return (
+//               <motion.a
+//                 key={blog.id}
+//                 href={blog.link}
+//                 initial={{ opacity: 0, y: 30 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 viewport={{ once: true }}
+//                 transition={{ duration: 0.5, delay: idx * 0.1 }}
+//                 className={`group relative flex flex-col sm:flex-row h-full min-h-[300px] sm:min-h-[340px] overflow-hidden cursor-pointer ${
+//                   isImageFirst ? 'sm:flex-row' : 'sm:flex-row-reverse'
+//                 }`}
+//               >
+//                 {/* ===== IMAGE SIDE ===== */}
+//                 <div className="relative w-full sm:w-1/2 h-48 sm:h-auto overflow-hidden">
+//                   <img
+//                     src={blog.image}
+//                     alt={blog.title}
+//                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+//                     loading="lazy"
+//                   />
+//                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
+//                 </div>
+
+//                 {/* ===== TEXT SIDE ===== */}
+//                 <div className={`relative w-full sm:w-1/2 p-6 sm:p-7 flex flex-col justify-center ${styles.bg} transition-all duration-500`}>
+//                   {/* Category */}
+//                   <p className={`text-xs font-medium uppercase tracking-wider mb-3 ${styles.category}`}>
+//                     {blog.category}
+//                   </p>
+
+//                   {/* Title */}
+//                   <h3 className={`text-lg sm:text-xl md:text-2xl font-bold leading-tight mb-3 ${styles.title} group-hover:opacity-90 transition-opacity duration-300`}>
+//                     {blog.title}
+//                   </h3>
+
+//                   {/* Description */}
+//                   <p className={`text-sm leading-relaxed mb-4 ${styles.desc} line-clamp-4`}>
+//                     {blog.description}
+//                   </p>
+
+//                   {/* Read More — WHITE */}
+//                   <div className="mt-auto flex items-center gap-2">
+//                     <span className={`text-xs font-semibold uppercase tracking-wider ${styles.readMore}`}>
+//                       Read More
+//                     </span>
+//                     <ArrowRight className={`h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 ${styles.arrowColor}`} />
+//                   </div>
+//                 </div>
+
+//               </motion.a>
+//             );
+//           })}
+//         </div>
+
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default BlogGridSection;
+
+
+
+
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -2355,23 +2552,21 @@ const BlogGridSection = () => {
     switch (type) {
       case 'teal-text':
         return {
-          // ✅ #008df1 — primary blue
           bg: 'bg-[#008df1]',
           category: 'text-white/80',
           title: 'text-white',
           desc: 'text-white/85',
-          arrowColor: 'text-white',     // 👈 white
-          readMore: 'text-white',       // 👈 white
+          arrowColor: 'text-white',
+          readMore: 'text-white',
         };
       case 'black-text':
         return {
-          // ✅ #005b8f — darker blue
           bg: 'bg-[#005b8f]',
           category: 'text-white/80',
           title: 'text-white',
           desc: 'text-white/85',
-          arrowColor: 'text-white',     // 👈 white
-          readMore: 'text-white',       // 👈 white
+          arrowColor: 'text-white',
+          readMore: 'text-white',
         };
       case 'white-text':
       default:
@@ -2387,24 +2582,50 @@ const BlogGridSection = () => {
   };
 
   return (
-    <section className="py-10 sm:py-14 bg-[#f5f5f5]">
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 max-w-7xl">
+    // Section padding ko Services jaisa kar diya gaya hai
+    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#f5f5f5] overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
 
-        {/* ===== SECTION HEADER ===== */}
+        {/* ===== SECTION HEADER (Bilkul ServicesSection jaisa) ===== */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-14"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-4 sm:mb-5 md:mb-6"
         >
-          <span className="sec-badge inline-block mb-3">Our Blog</span>
-          <h2 className="sec-h2 sec-text-dark">
-            Latest <span style={{ color: '#00c6fb' }}>Insights & Case Studies</span>
-          </h2>
-          <p className="sec-p sec-text-dark-soft max-w-2xl mx-auto mt-2">
+          {/* Badge */}
+          <motion.span
+            className="sec-badge inline-block"
+            whileHover={{ scale: 1.05 }}
+            animate={{ y: [0, -3, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            Our Blog
+          </motion.span>
+
+          {/* Heading - Gradient text */}
+          <motion.h2
+            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            Latest{' '}
+            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
+              Insights & Case Studies
+            </span>
+          </motion.h2>
+
+          {/* Subtitle */}
+          <motion.p
+            className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             Stay updated with the latest trends, strategies and success stories from TheCoderBox
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* ===== BLOG GRID ===== */}
@@ -2443,17 +2664,17 @@ const BlogGridSection = () => {
                     {blog.category}
                   </p>
 
-                  {/* Title */}
-                  <h3 className={`text-lg sm:text-xl md:text-2xl font-bold leading-tight mb-3 ${styles.title} group-hover:opacity-90 transition-opacity duration-300`}>
+                  {/* Title - sec-h3 class use ki gayi hai */}
+                  <h3 className={`sec-h3 leading-tight mb-3 ${styles.title} group-hover:opacity-90 transition-opacity duration-300`}>
                     {blog.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className={`text-sm leading-relaxed mb-4 ${styles.desc} line-clamp-4`}>
+                  {/* Description - sec-p class use ki gayi hai */}
+                  <p className={`sec-p leading-relaxed mb-4 ${styles.desc} line-clamp-4`}>
                     {blog.description}
                   </p>
 
-                  {/* Read More — WHITE */}
+                  {/* Read More */}
                   <div className="mt-auto flex items-center gap-2">
                     <span className={`text-xs font-semibold uppercase tracking-wider ${styles.readMore}`}>
                       Read More

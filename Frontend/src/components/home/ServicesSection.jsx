@@ -4788,7 +4788,7 @@ const ServicesSection = () => {
           viewport={{ once: true }}
         >
           <motion.a
-            href="/contact"
+            href="/services"
             whileTap={{ scale: 0.95 }}
             className="sec-btn"
           >

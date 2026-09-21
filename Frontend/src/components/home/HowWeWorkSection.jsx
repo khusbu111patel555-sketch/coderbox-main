@@ -3104,7 +3104,7 @@ const HowWeWorkSection = () => {
             {/* CTA Button */}
             <div>
               <motion.a
-                href="https://getwebindia.com/about"
+                href="\AboutUs"
                 whileHover={{ 
                   scale: 1.05, 
                   boxShadow: "0 15px 30px rgba(0,141,241,0.4)",
