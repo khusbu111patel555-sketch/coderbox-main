@@ -3933,7 +3933,7 @@ const ContactUs = () => {
                   <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                     <div>
                       <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-gray-700">
-                        Your Name
+                       Name
                       </label>
                       <input
                         id="name"
@@ -3941,7 +3941,7 @@ const ContactUs = () => {
                         type="text"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your Name"
+                        placeholder="Name"
                         className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${
                           errors.name
                             ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400"
