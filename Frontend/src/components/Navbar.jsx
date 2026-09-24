@@ -3934,6 +3934,574 @@
 
 
 
+// import React, { useState, useEffect, useRef } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import {
+//   Menu,
+//   X,
+//   ChevronDown,
+//   Zap,
+//   ChevronRight,
+//   ArrowRight, // ✅ NAYA IMPORT — Moving arrow ke liye
+//   Brain,
+//   Monitor,
+//   Server,
+//   Shield,
+//   Code,
+//   Globe2,
+//   ShoppingCart,
+//   Megaphone,
+//   Layers,
+//   Database,
+//   Smartphone,
+//   TrendingUp,
+//   PenTool,
+//   UserCog,
+//   Radio,
+//   Lock,
+//   RefreshCw,
+//   Cloud,
+//   Terminal,
+//   CloudCog,
+//   GitBranch,
+// } from "lucide-react";
+
+// const Navbar = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [scrolled, setScrolled] = useState(false);
+//   const [activeDropdown, setActiveDropdown] = useState(null);
+//   const [activeServiceTab, setActiveServiceTab] = useState("Cognitive Services");
+//   const [mobileOpenDropdown, setMobileOpenDropdown] = useState(null);
+//   const [mobileOpenSubDropdown, setMobileOpenSubDropdown] = useState(null);
+
+//   const dropdownTimeoutRef = useRef(null);
+//   const navContainerRef = useRef(null);
+
+//   // Navigation structure
+//   const navItems = [
+//     { name: "Home", href: "/" },
+//     { name: "About Us", href: "/AboutUs" },
+//     {
+//       name: "Our Services",
+//       href: "/services",
+//       hasDropdown: true,
+//       icon: Layers,
+//       dropdownItems: [
+//         {
+//           name: "Cognitive Services",
+//           href: "/services/cognitive",
+//           icon: Brain,
+//           description: "AI & ML powered solutions",
+//           subItems: [
+//             { name: "Data Analytics", href: "/services/cognitive/data-analytics", icon: TrendingUp, group: "Analytics" },
+//             { name: "Data Science", href: "/services/cognitive/data-science", icon: Database, group: "AI & ML" },
+//           ],
+//         },
+//         {
+//           name: "Digital Services",
+//           href: "/services/digital",
+//           icon: Monitor,
+//           description: "Transform your digital presence",
+//           subItems: [
+//             { name: "Web Development", href: "/services/digital/web-development", icon: Code, group: "Web" },
+//             { name: "Metaverse", href: "/services/digital/metaverse", icon: Globe2, group: "Immersive" },
+//             { name: "E-Commerce", href: "/services/digital/e-commerce", icon: ShoppingCart, group: "Web" },
+//             { name: "Digital Marketing", href: "/services/digital/digital-marketing", icon: Megaphone, group: "Marketing" },
+//           ],
+//         },
+//         {
+//           name: "Information Technology",
+//           href: "/services/it",
+//           icon: Server,
+//           description: "Enterprise IT solutions",
+//           subItems: [
+//             { name: "Design (UI/UX)", href: "/services/it/design", icon: PenTool, group: "Design" },
+//             { name: "App Development", href: "/services/it/application-development", icon: RefreshCw, group: "Development" },
+//             { name: "IT Consulting", href: "/services/it/consulting", icon: UserCog, group: "Consulting" },
+//           ],
+//         },
+//         {
+//           name: "Cybersecurity",
+//           href: "/services/cybersecurity",
+//           icon: Shield,
+//           description: "Secure your IT infrastructure",
+//           subItems: [
+//             { name: "NOC Services", href: "/services/cybersecurity/noc", icon: Radio, group: "Network" },
+//             { name: "Security Services", href: "/services/cybersecurity/security", icon: Lock, group: "Security" },
+//           ],
+//         },
+//       ],
+//     },
+//     { name: "Our Portfolio", href: "/portfolio" },
+//     { name: "Blog", href: "/blog" },
+//     { name: "Contact Us", href: "/contact" },
+//   ];
+
+//   // Handle scroll effect
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setScrolled(window.scrollY > 50);
+//     };
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   // Close dropdowns on outside click
+//   useEffect(() => {
+//     const handleClickOutside = (e) => {
+//       if (
+//         navContainerRef.current &&
+//         !navContainerRef.current.contains(e.target)
+//       ) {
+//         setActiveDropdown(null);
+//         setMobileOpenDropdown(null);
+//         setMobileOpenSubDropdown(null);
+//       }
+//     };
+//     document.addEventListener("click", handleClickOutside);
+//     return () => document.removeEventListener("click", handleClickOutside);
+//   }, []);
+
+//   // Cleanup timeout
+//   useEffect(() => {
+//     return () => {
+//       if (dropdownTimeoutRef.current) {
+//         clearTimeout(dropdownTimeoutRef.current);
+//       }
+//     };
+//   }, []);
+
+//   // Handle dropdown hover
+//   const handleDropdownEnter = (name) => {
+//     if (dropdownTimeoutRef.current) {
+//       clearTimeout(dropdownTimeoutRef.current);
+//     }
+//     setActiveDropdown(name);
+//     if (name === "Our Services") {
+//       const firstItem = navItems.find((item) => item.name === "Our Services").dropdownItems[0].name;
+//       setActiveServiceTab(firstItem);
+//     }
+//   };
+
+//   const handleDropdownLeave = () => {
+//     dropdownTimeoutRef.current = setTimeout(() => {
+//       setActiveDropdown(null);
+//     }, 200);
+//   };
+
+//   // Animation variants
+//   const dropdownVariants = {
+//     hidden: { opacity: 0, y: 10, scale: 0.98 },
+//     visible: {
+//       opacity: 1,
+//       y: 0,
+//       scale: 1,
+//       transition: { duration: 0.2, ease: "easeOut" },
+//     },
+//     exit: {
+//       opacity: 0,
+//       y: 10,
+//       scale: 0.98,
+//       transition: { duration: 0.15 },
+//     },
+//   };
+
+//   const mobileMenuVariants = {
+//     hidden: { x: "100%" },
+//     visible: {
+//       x: 0,
+//       transition: { type: "tween", duration: 0.3, ease: "easeOut" },
+//     },
+//     exit: {
+//       x: "100%",
+//       transition: { type: "tween", duration: 0.3, ease: "easeIn" },
+//     },
+//   };
+
+//   const mobileSubMenuVariants = {
+//     hidden: { height: 0, opacity: 0 },
+//     visible: {
+//       height: "auto",
+//       opacity: 1,
+//       transition: { duration: 0.3, ease: "easeInOut" },
+//     },
+//     exit: {
+//       height: 0,
+//       opacity: 0,
+//       transition: { duration: 0.2 },
+//     },
+//   };
+
+//   return (
+//     <header
+//       ref={navContainerRef}
+//       className={`fixed top-0 left-0 w-full z-50 transition-all duration-100 ${
+//         scrolled
+//           ? "bg-white/95 backdrop-blur-md shadow-lg py-1.5 sm:py-2"
+//           : "bg-white py-2.5 sm:py-4"
+//       }`}
+//     >
+//       <nav className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+//         <div className="flex items-center justify-between">
+//           {/* Logo */}
+//           <motion.a
+//             href="/"
+//             initial={{ opacity: 0, x: -20 }}
+//             animate={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.5 }}
+//             className="flex items-center flex-shrink-0"
+//           >
+//             <img
+//               src="/coderBoxlogo3.png"
+//               alt="CoderBox Logo"
+//               className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+//             />
+//           </motion.a>
+
+//           {/* Desktop Menu */}
+//           <ul className="hidden lg:flex items-center space-x-0.5">
+//             {navItems.map((item, index) => (
+//               <motion.li
+//                 key={item.name}
+//                 initial={{ opacity: 0, y: -20 }}
+//                 animate={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.3, delay: index * 0.05 }}
+//                 className="relative"
+//                 onMouseEnter={() => item.hasDropdown && handleDropdownEnter(item.name)}
+//                 onMouseLeave={() => item.hasDropdown && handleDropdownLeave()}
+//               >
+//                 <a
+//                   href={item.href}
+//                   className={`flex items-center px-2.5 xl:px-3.5 py-1.5 rounded-lg text-sm xl:text-base font-medium transition-all duration-200 whitespace-nowrap ${
+//                     activeDropdown === item.name
+//                       ? "bg-blue-50 text-[#01ADF0]"
+//                       : "text-gray-700 hover:bg-gray-50 hover:text-[#01ADF0]"
+//                   }`}
+//                   onClick={(e) => {
+//                     if (item.hasDropdown) {
+//                       e.preventDefault();
+//                       setActiveDropdown(activeDropdown === item.name ? null : item.name);
+//                     }
+//                   }}
+//                 >
+//                   {item.icon && <item.icon className="h-3.5 w-3.5 mr-1.5 xl:mr-2" />}
+//                   {item.name}
+//                   {item.hasDropdown && (
+//                     <ChevronDown
+//                       className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${
+//                         activeDropdown === item.name ? "rotate-180" : ""
+//                       }`}
+//                     />
+//                   )}
+//                 </a>
+
+//                 {/* ===== MEGA DROPDOWN ===== */}
+//                 {item.hasDropdown && (
+//                   <AnimatePresence>
+//                     {activeDropdown === item.name && (
+//                       <motion.div
+//                         variants={dropdownVariants}
+//                         initial="hidden"
+//                         animate="visible"
+//                         exit="exit"
+//                         className="absolute left-1/2 -translate-x-1/2 mt-2 w-[850px] xl:w-[900px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex"
+//                         onMouseEnter={() => handleDropdownEnter(item.name)}
+//                         onMouseLeave={() => handleDropdownLeave()}
+//                       >
+//                         {/* LEFT SIDE: Categories */}
+//                         <div className="w-1/3 bg-gray-50/50 p-6 border-r border-gray-100">
+//                           <h3 className="text-xs font-bold text-[#003F7D] mb-4 uppercase tracking-wider flex items-center gap-2">
+//                             <Layers className="w-4 h-4 text-[#01ADF0]" />
+//                             Service Categories
+//                           </h3>
+//                           <ul className="space-y-1">
+//                             {item.dropdownItems.map((dropdownItem) => {
+//                               const Icon = dropdownItem.icon;
+//                               const isActive = activeServiceTab === dropdownItem.name;
+//                               return (
+//                                 <li key={dropdownItem.name}>
+//                                   <button
+//                                     onMouseEnter={() => setActiveServiceTab(dropdownItem.name)}
+//                                     onClick={() => setActiveServiceTab(dropdownItem.name)}
+//                                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 ${
+//                                       isActive
+//                                         ? "bg-[#01ADF0]/10 text-[#01ADF0] font-semibold shadow-sm"
+//                                         : "text-gray-600 hover:bg-gray-100 hover:text-[#003F7D]"
+//                                     }`}
+//                                   >
+//                                     <Icon className={`w-4 h-4 ${isActive ? "text-[#01ADF0]" : "text-gray-400"}`} />
+//                                     <span className="text-sm">{dropdownItem.name}</span>
+//                                   </button>
+//                                 </li>
+//                               );
+//                             })}
+//                           </ul>
+//                         </div>
+
+//                         {/* RIGHT SIDE: Technologies */}
+//                         <div className="w-2/3 p-6 bg-white">
+//                           <h3 className="text-xs font-bold text-[#003F7D] mb-4 uppercase tracking-wider flex items-center gap-2">
+//                             <Terminal className="w-4 h-4 text-[#01ADF0]" />
+//                             Technologies
+//                           </h3>
+                          
+//                           <AnimatePresence mode="wait">
+//                             <motion.div
+//                               key={activeServiceTab}
+//                               initial={{ opacity: 0, y: 10 }}
+//                               animate={{ opacity: 1, y: 0 }}
+//                               exit={{ opacity: 0, y: -10 }}
+//                               transition={{ duration: 0.2 }}
+//                               className="grid grid-cols-2 gap-4"
+//                             >
+//                               {item.dropdownItems
+//                                 .find((d) => d.name === activeServiceTab)
+//                                 ?.subItems.map((subItem, idx) => {
+//                                   const SubIcon = subItem.icon;
+//                                   return (
+//                                     <motion.a
+//                                       key={idx}
+//                                       href={subItem.href}
+//                                       initial={{ opacity: 0, scale: 0.95 }}
+//                                       animate={{ opacity: 1, scale: 1 }}
+//                                       transition={{ duration: 0.2, delay: idx * 0.05 }}
+//                                       className="group flex flex-col items-center text-center p-4 rounded-xl border border-gray-100 bg-gray-50/30 hover:bg-white hover:shadow-md hover:border-[#01ADF0]/30 transition-all duration-300"
+//                                     >
+//                                       <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+//                                         <SubIcon className="w-5 h-5 text-[#01ADF0]" />
+//                                       </div>
+//                                       <h4 className="text-sm font-semibold text-[#003F7D] group-hover:text-[#01ADF0] transition-colors">
+//                                         {subItem.name}
+//                                       </h4>
+//                                       <p className="text-[10px] text-gray-500 mt-1 line-clamp-2">
+//                                         Explore our {subItem.name.toLowerCase()} services
+//                                       </p>
+//                                     </motion.a>
+//                                   );
+//                                 })}
+//                             </motion.div>
+//                           </AnimatePresence>
+//                         </div>
+//                       </motion.div>
+//                     )}
+//                   </AnimatePresence>
+//                 )}
+//               </motion.li>
+//             ))}
+//           </ul>
+
+//           {/* Right Side CTA */}
+//           <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 flex-shrink-0">
+//             {/* ✅ DESKTOP "START A PROJECT" — Arrow ab animate hoga */}
+//             <motion.a
+//               href="/contact"
+//               initial={{ opacity: 0, scale: 0.8 }}
+//               animate={{ opacity: 1, scale: 1 }}
+//               whileHover={{ scale: 1.03 }}
+//               whileTap={{ scale: 0.97 }}
+//               transition={{ duration: 0.3, delay: 0.3 }}
+//               className="bg-[#01ADF0] hover:bg-[#0198d4] text-white px-4 xl:px-5 py-1.5 rounded-full font-medium transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-1.5 xl:gap-2 text-sm xl:text-base"
+//             >
+//               <Zap className="h-3.5 w-3.5" />
+//               Start a Project
+//               <motion.span
+//                 animate={{ x: [0, 6, 0] }}
+//                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+//               >
+//                 <ArrowRight className="h-3.5 w-3.5 xl:h-4 xl:w-4" />
+//               </motion.span>
+//             </motion.a>
+//           </div>
+
+//           {/* Mobile Menu Toggle */}
+//           <button
+//             onClick={() => setIsOpen(!isOpen)}
+//             className="lg:hidden text-gray-700 hover:text-[#01ADF0] transition-colors p-2 ml-2"
+//           >
+//             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+//           </button>
+//         </div>
+//       </nav>
+
+//       {/* ===== MOBILE MENU ===== */}
+//       <AnimatePresence>
+//         {isOpen && (
+//           <>
+//             <motion.div
+//               variants={mobileMenuVariants}
+//               initial="hidden"
+//               animate="visible"
+//               exit="exit"
+//               className="lg:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl z-50 overflow-y-auto"
+//             >
+//               <div className="p-5 sm:p-6">
+//                 {/* Mobile Header */}
+//                 <div className="flex items-center justify-between mb-6">
+//                   <a href="/" className="flex items-center">
+//                     <img
+//                       src="/coderBoxlogo2.png"
+//                       alt="CoderBox Logo"
+//                       className="h-10 sm:h-12 w-auto object-contain"
+//                     />
+//                   </a>
+//                   <button
+//                     onClick={() => setIsOpen(false)}
+//                     className="text-gray-700 hover:text-[#01ADF0] p-2"
+//                   >
+//                     <X className="h-6 w-6" />
+//                   </button>
+//                 </div>
+
+//                 {/* Mobile Navigation */}
+//                 <div className="space-y-1">
+//                   {navItems.map((item) => (
+//                     <div key={item.name}>
+//                       {item.hasDropdown ? (
+//                         <>
+//                           <button
+//                             onClick={() => {
+//                               setMobileOpenDropdown(
+//                                 mobileOpenDropdown === item.name ? null : item.name
+//                               );
+//                               setMobileOpenSubDropdown(null);
+//                             }}
+//                             className="flex items-center justify-between w-full px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium text-left text-sm sm:text-base"
+//                           >
+//                             <span>{item.name}</span>
+//                             <ChevronDown
+//                               className={`h-4 w-4 transition-transform duration-200 flex-shrink-0 ${
+//                                 mobileOpenDropdown === item.name ? "rotate-180" : ""
+//                               }`}
+//                             />
+//                           </button>
+//                           <AnimatePresence>
+//                             {mobileOpenDropdown === item.name && (
+//                               <motion.div
+//                                 variants={mobileSubMenuVariants}
+//                                 initial="hidden"
+//                                 animate="visible"
+//                                 exit="exit"
+//                                 className="ml-4 space-y-1 border-l-2 border-[#01ADF0]/20 pl-4"
+//                               >
+//                                 {item.dropdownItems.map((dropdownItem) => (
+//                                   <div key={dropdownItem.name}>
+//                                     {dropdownItem.subItems && dropdownItem.subItems.length > 0 ? (
+//                                       <>
+//                                         <button
+//                                           onClick={() => {
+//                                             setMobileOpenSubDropdown(
+//                                               mobileOpenSubDropdown === dropdownItem.name ? null : dropdownItem.name
+//                                             );
+//                                           }}
+//                                           className="flex items-center justify-between w-full px-3 py-2.5 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left"
+//                                         >
+//                                           <div className="flex items-center space-x-2">
+//                                             <dropdownItem.icon className="h-4 w-4 text-[#01ADF0] flex-shrink-0" />
+//                                             <span>{dropdownItem.name}</span>
+//                                           </div>
+//                                           <ChevronRight
+//                                             className={`h-3 w-3 transition-transform duration-200 flex-shrink-0 ${
+//                                               mobileOpenSubDropdown === dropdownItem.name ? "rotate-90" : ""
+//                                             }`}
+//                                           />
+//                                         </button>
+//                                         <AnimatePresence>
+//                                           {mobileOpenSubDropdown === dropdownItem.name && (
+//                                             <motion.div
+//                                               variants={mobileSubMenuVariants}
+//                                               initial="hidden"
+//                                               animate="visible"
+//                                               exit="exit"
+//                                               className="ml-6 space-y-1 border-l-2 border-gray-200 pl-3"
+//                                             >
+//                                               {dropdownItem.subItems.map((subItem) => (
+//                                                 <a
+//                                                   key={subItem.name}
+//                                                   href={subItem.href}
+//                                                   className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-[#01ADF0] transition-colors"
+//                                                   onClick={() => setIsOpen(false)}
+//                                                 >
+//                                                   <subItem.icon className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
+//                                                   <span>{subItem.name}</span>
+//                                                 </a>
+//                                               ))}
+//                                             </motion.div>
+//                                           )}
+//                                         </AnimatePresence>
+//                                       </>
+//                                     ) : (
+//                                       <a
+//                                         href={dropdownItem.href}
+//                                         className="flex items-center space-x-2 px-3 py-2.5 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+//                                         onClick={() => setIsOpen(false)}
+//                                       >
+//                                         <dropdownItem.icon className="h-4 w-4 text-[#01ADF0] flex-shrink-0" />
+//                                         <span>{dropdownItem.name}</span>
+//                                       </a>
+//                                     )}
+//                                   </div>
+//                                 ))}
+//                               </motion.div>
+//                             )}
+//                           </AnimatePresence>
+//                         </>
+//                       ) : (
+//                         <a
+//                           href={item.href}
+//                           className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium text-sm sm:text-base"
+//                           onClick={() => setIsOpen(false)}
+//                         >
+//                           {item.name}
+//                         </a>
+//                       )}
+//                     </div>
+//                   ))}
+//                 </div>
+
+//                 {/* Mobile CTA */}
+//                 <div className="mt-8 pt-6 border-t border-gray-200 space-y-4">
+//                   {/* ✅ MOBILE "START A PROJECT" — Arrow ab animate hoga */}
+//                   <a
+//                     href="/contact"
+//                     className="flex items-center justify-center gap-2 bg-[#01ADF0] hover:bg-[#0198d4] text-white px-6 py-3 rounded-full font-medium transition-all duration-200 text-sm sm:text-base"
+//                     onClick={() => setIsOpen(false)}
+//                   >
+//                     <Zap className="h-4 w-4" />
+//                     Start a Project
+//                     <motion.span
+//                       animate={{ x: [0, 6, 0] }}
+//                       transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+//                     >
+//                       <ArrowRight className="h-4 w-4" />
+//                     </motion.span>
+//                   </a>
+//                 </div>
+//               </div>
+//             </motion.div>
+
+//             {/* Overlay */}
+//             <motion.div
+//               initial={{ opacity: 0 }}
+//               animate={{ opacity: 1 }}
+//               exit={{ opacity: 0 }}
+//               transition={{ duration: 0.2 }}
+//               className="lg:hidden fixed inset-0 bg-black/50 z-40"
+//               onClick={() => setIsOpen(false)}
+//             />
+//           </>
+//         )}
+//       </AnimatePresence>
+//     </header>
+//   );
+// };
+
+// export default Navbar;
+
+
+
+
+
+
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -3942,7 +4510,7 @@ import {
   ChevronDown,
   Zap,
   ChevronRight,
-  ArrowRight, // ✅ NAYA IMPORT — Moving arrow ke liye
+  ArrowRight,
   Brain,
   Monitor,
   Server,
@@ -3962,22 +4530,39 @@ import {
   RefreshCw,
   Cloud,
   Terminal,
-  CloudCog,
   GitBranch,
+  Search,
+  MapPin,
+  Target,
+  Share2,
+  FileText,
+  Mail,
+  Users,
+  MessageSquare,
+  Building2,
+  Award,
+  Layout,
+  Sparkles,
+  Workflow,
+  BarChart3,
+  Cpu,
+  Rocket,
 } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [activeServiceTab, setActiveServiceTab] = useState("Cognitive Services");
+  const [activeServiceTab, setActiveServiceTab] = useState("AI Intelligence");
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState(null);
   const [mobileOpenSubDropdown, setMobileOpenSubDropdown] = useState(null);
 
   const dropdownTimeoutRef = useRef(null);
   const navContainerRef = useRef(null);
 
-  // Navigation structure
+  // ============================================
+  // NAVIGATION STRUCTURE
+  // ============================================
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/AboutUs" },
@@ -3988,36 +4573,76 @@ const Navbar = () => {
       icon: Layers,
       dropdownItems: [
         {
-          name: "Cognitive Services",
-          href: "/services/cognitive",
+          name: "AI Intelligence",
+          href: "/services/ai-intelligence",
           icon: Brain,
-          description: "AI & ML powered solutions",
+          description: "AI/ML powered solutions",
           subItems: [
-            { name: "Data Analytics", href: "/services/cognitive/data-analytics", icon: TrendingUp, group: "Analytics" },
+            { name: "AI/ML", href: "/services/ai-intelligence/ai-ml", icon: Brain, group: "AI" },
+            { name: "Data Analytics", href: "/services/cognitive/data-analytics", icon: BarChart3, group: "Analytics" },
             { name: "Data Science", href: "/services/cognitive/data-science", icon: Database, group: "AI & ML" },
+            { name: "Automation", href: "/services/ai-intelligence/automation", icon: Zap, group: "Automation" },
+            { name: "BPA (Business Process Automation)", href: "/services/ai-intelligence/bpa", icon: Workflow, group: "Automation" },
+            { name: "AI Chatbots & Virtual Assistants", href: "/services/ai-marketing/chatbots", icon: MessageSquare, group: "AI" },
           ],
         },
         {
-          name: "Digital Services",
-          href: "/services/digital",
+          name: "Digital Growth",
+          href: "/services/digital-growth",
+          icon: Megaphone,
+          description: "Growth-focused digital marketing",
+          subItems: [
+            { name: "Digital Marketing & Branding", href: "/services/digital-marketing", icon: Megaphone, group: "Marketing" },
+            { name: "SEO", href: "/services/digital/seo", icon: Search, group: "Search" },
+            { name: "Local SEO", href: "/services/digital/local-seo", icon: MapPin, group: "Search" },
+            { name: "PPC Advertising", href: "/services/digital/ppc", icon: Target, group: "Ads" },
+            { name: "Social Media Marketing", href: "/services/digital/social-media", icon: Share2, group: "Social" },
+            { name: "Content Marketing", href: "/services/digital/content-marketing", icon: FileText, group: "Content" },
+            { name: "Email Marketing", href: "/services/digital/email-marketing", icon: Mail, group: "Email" },
+            { name: "Performance Marketing", href: "/services/digital/performance-marketing", icon: TrendingUp, group: "Performance" },
+            { name: "Lead Generation", href: "/services/digital/lead-generation", icon: Users, group: "Growth" },
+          ],
+        },
+        {
+          name: "Search Intelligence",
+          href: "/services/search-intelligence",
+          icon: Search,
+          description: "AI-powered search visibility",
+          subItems: [
+            { name: "SEO", href: "/services/search-intelligence/seo", icon: Search, group: "SEO" },
+            { name: "AEO (Answer Engine Optimization)", href: "/services/search-intelligence/aeo", icon: MessageSquare, group: "AEO" },
+            { name: "AI Search Optimization", href: "/services/search-intelligence/ai-search", icon: Sparkles, group: "AI" },
+            { name: "GMB (Google My Business)", href: "/services/search-intelligence/gmb", icon: Building2, group: "Local" },
+            { name: "Reputation Management", href: "/services/search-intelligence/reputation", icon: Award, group: "Brand" },
+          ],
+        },
+        {
+          name: "Web & E-Commerce",
+          href: "/services/web",
           icon: Monitor,
-          description: "Transform your digital presence",
+          description: "Modern web solutions",
           subItems: [
             { name: "Web Development", href: "/services/digital/web-development", icon: Code, group: "Web" },
+            { name: "Responsive Website Design", href: "/services/web/responsive-design", icon: Monitor, group: "Design" },
+            { name: "Landing Pages", href: "/services/web/landing-pages", icon: Layout, group: "Web" },
+            { name: "E-Commerce Website Development", href: "/services/digital/e-commerce", icon: ShoppingCart, group: "E-Commerce" },
+            { name: "Custom Web Applications", href: "/services/web/custom-apps", icon: Code, group: "Web" },
+            { name: "UI/UX Design", href: "/services/it/design", icon: PenTool, group: "Design" },
             { name: "Metaverse", href: "/services/digital/metaverse", icon: Globe2, group: "Immersive" },
-            { name: "E-Commerce", href: "/services/digital/e-commerce", icon: ShoppingCart, group: "Web" },
-            { name: "Digital Marketing", href: "/services/digital/digital-marketing", icon: Megaphone, group: "Marketing" },
           ],
         },
         {
-          name: "Information Technology",
+          name: "IT Services",
           href: "/services/it",
           icon: Server,
           description: "Enterprise IT solutions",
           subItems: [
-            { name: "Design (UI/UX)", href: "/services/it/design", icon: PenTool, group: "Design" },
-            { name: "App Development", href: "/services/it/application-development", icon: RefreshCw, group: "Development" },
             { name: "IT Consulting", href: "/services/it/consulting", icon: UserCog, group: "Consulting" },
+            { name: "Application Development & Maintenance", href: "/services/it/application-development", icon: RefreshCw, group: "Development" },
+            { name: "Enterprise Application Integration", href: "/services/it/eai", icon: GitBranch, group: "Integration" },
+            { name: "IT Staff Augmentation", href: "/services/it/staff-augmentation", icon: Users, group: "Staffing" },
+            { name: "Cloud Migration", href: "/services/it/cloud-migration", icon: Cloud, group: "Cloud" },
+            { name: "System Integration", href: "/services/it/system-integration", icon: GitBranch, group: "Integration" },
           ],
         },
         {
@@ -4026,8 +4651,10 @@ const Navbar = () => {
           icon: Shield,
           description: "Secure your IT infrastructure",
           subItems: [
+            { name: "Infrastructure Management Services", href: "/services/cybersecurity/infrastructure", icon: Server, group: "Infrastructure" },
+            { name: "Cybersecurity", href: "/services/cybersecurity/security", icon: Lock, group: "Security" },
             { name: "NOC Services", href: "/services/cybersecurity/noc", icon: Radio, group: "Network" },
-            { name: "Security Services", href: "/services/cybersecurity/security", icon: Lock, group: "Security" },
+            { name: "Business Continuity & Security", href: "/services/cybersecurity/business-continuity", icon: Shield, group: "Security" },
           ],
         },
       ],
@@ -4204,7 +4831,7 @@ const Navbar = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="absolute left-1/2 -translate-x-1/2 mt-2 w-[850px] xl:w-[900px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex"
+                        className="absolute left-1/2 -translate-x-1/2 mt-2 w-[900px] xl:w-[1000px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex"
                         onMouseEnter={() => handleDropdownEnter(item.name)}
                         onMouseLeave={() => handleDropdownLeave()}
                       >
@@ -4229,7 +4856,7 @@ const Navbar = () => {
                                         : "text-gray-600 hover:bg-gray-100 hover:text-[#003F7D]"
                                     }`}
                                   >
-                                    <Icon className={`w-4 h-4 ${isActive ? "text-[#01ADF0]" : "text-gray-400"}`} />
+                                    <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? "text-[#01ADF0]" : "text-gray-400"}`} />
                                     <span className="text-sm">{dropdownItem.name}</span>
                                   </button>
                                 </li>
@@ -4238,13 +4865,13 @@ const Navbar = () => {
                           </ul>
                         </div>
 
-                        {/* RIGHT SIDE: Technologies */}
+                        {/* RIGHT SIDE: Sub-services */}
                         <div className="w-2/3 p-6 bg-white">
                           <h3 className="text-xs font-bold text-[#003F7D] mb-4 uppercase tracking-wider flex items-center gap-2">
                             <Terminal className="w-4 h-4 text-[#01ADF0]" />
-                            Technologies
+                            {item.dropdownItems.find((d) => d.name === activeServiceTab)?.name} Services
                           </h3>
-                          
+
                           <AnimatePresence mode="wait">
                             <motion.div
                               key={activeServiceTab}
@@ -4252,30 +4879,34 @@ const Navbar = () => {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: -10 }}
                               transition={{ duration: 0.2 }}
-                              className="grid grid-cols-2 gap-4"
+                              className={`grid gap-3 ${
+                                (item.dropdownItems.find((d) => d.name === activeServiceTab)?.subItems.length || 0) > 6
+                                  ? "grid-cols-3"
+                                  : "grid-cols-2"
+                              }`}
                             >
                               {item.dropdownItems
                                 .find((d) => d.name === activeServiceTab)
                                 ?.subItems.map((subItem, idx) => {
                                   const SubIcon = subItem.icon;
+                                  const isCompact = (item.dropdownItems.find((d) => d.name === activeServiceTab)?.subItems.length || 0) > 6;
                                   return (
                                     <motion.a
                                       key={idx}
                                       href={subItem.href}
                                       initial={{ opacity: 0, scale: 0.95 }}
                                       animate={{ opacity: 1, scale: 1 }}
-                                      transition={{ duration: 0.2, delay: idx * 0.05 }}
-                                      className="group flex flex-col items-center text-center p-4 rounded-xl border border-gray-100 bg-gray-50/30 hover:bg-white hover:shadow-md hover:border-[#01ADF0]/30 transition-all duration-300"
+                                      transition={{ duration: 0.2, delay: idx * 0.03 }}
+                                      className={`group flex ${
+                                        isCompact ? "flex-col items-center text-center p-3" : "flex-col items-center text-center p-4"
+                                      } rounded-xl border border-gray-100 bg-gray-50/30 hover:bg-white hover:shadow-md hover:border-[#01ADF0]/30 transition-all duration-300`}
                                     >
-                                      <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                                        <SubIcon className="w-5 h-5 text-[#01ADF0]" />
+                                      <div className={`${isCompact ? "w-9 h-9" : "w-10 h-10"} rounded-full bg-white shadow-sm flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300`}>
+                                        <SubIcon className={`${isCompact ? "w-4 h-4" : "w-5 h-5"} text-[#01ADF0]`} />
                                       </div>
-                                      <h4 className="text-sm font-semibold text-[#003F7D] group-hover:text-[#01ADF0] transition-colors">
+                                      <h4 className={`${isCompact ? "text-xs" : "text-sm"} font-semibold text-[#003F7D] group-hover:text-[#01ADF0] transition-colors leading-tight`}>
                                         {subItem.name}
                                       </h4>
-                                      <p className="text-[10px] text-gray-500 mt-1 line-clamp-2">
-                                        Explore our {subItem.name.toLowerCase()} services
-                                      </p>
                                     </motion.a>
                                   );
                                 })}
@@ -4292,7 +4923,6 @@ const Navbar = () => {
 
           {/* Right Side CTA */}
           <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 flex-shrink-0">
-            {/* ✅ DESKTOP "START A PROJECT" — Arrow ab animate hoga */}
             <motion.a
               href="/contact"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -4460,7 +5090,6 @@ const Navbar = () => {
 
                 {/* Mobile CTA */}
                 <div className="mt-8 pt-6 border-t border-gray-200 space-y-4">
-                  {/* ✅ MOBILE "START A PROJECT" — Arrow ab animate hoga */}
                   <a
                     href="/contact"
                     className="flex items-center justify-center gap-2 bg-[#01ADF0] hover:bg-[#0198d4] text-white px-6 py-3 rounded-full font-medium transition-all duration-200 text-sm sm:text-base"
