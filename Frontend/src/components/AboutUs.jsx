@@ -7377,20 +7377,15 @@
 
 
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { 
-  MapPin, Mail, Star, Award, Users, Briefcase, 
-  ChevronRight, ChevronLeft, Quote, Phone, Send, CheckCircle, Play, X, ArrowRight,
-  MessageSquare, Clock, AlertCircle, CircleCheck, Globe, Lightbulb, Target
+
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  MapPin, Mail, Briefcase,
+  Quote, Phone, CheckCircle, Play, X, ArrowRight,
+  MessageSquare, Clock, AlertCircle, CircleCheck, Globe
 } from 'lucide-react';
-import { FaLinkedinIn, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import { supabase } from "../lib/supabaseClient";
 
 // ============================================
@@ -7398,22 +7393,28 @@ import { supabase } from "../lib/supabaseClient";
 // ============================================
 const AboutHero = () => {
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14 pb-14" 
-      style={{ background: 'linear-gradient(135deg, #003F7D 0%, #005B8F 50%, #003F7D 100%)' }}
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14 pb-14"
+      style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
     >
       {/* ===== BACKGROUND SHAPES ===== */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div 
+        <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.1) 0%, transparent 65%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.12) 0%, transparent 55%)' }}
+        />
+
+        <div
+          className="absolute inset-0"
+          style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }}
         />
 
         <motion.div
           className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
           style={{
-            background: 'radial-gradient(circle at 30% 30%, rgba(1, 173, 240, 0.9) 0%, rgba(0, 143, 209, 0.7) 40%, rgba(0, 111, 166, 0.3) 70%, transparent 100%)',
-            boxShadow: '0 0 80px rgba(1, 173, 240, 0.4)',
+            background: 'radial-gradient(circle at 30% 30%, rgba(1, 173, 240, 0.65) 0%, rgba(0, 111, 166, 0.25) 55%, transparent 75%)',
+            boxShadow: '0 0 60px rgba(1, 173, 240, 0.25)',
+            filter: 'blur(2px)',
           }}
           animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0], scale: [1, 1.05, 1, 0.98, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
@@ -7422,8 +7423,9 @@ const AboutHero = () => {
         <motion.div
           className="absolute bottom-[10%] left-[10%] w-[180px] h-[180px] rounded-full"
           style={{
-            background: 'radial-gradient(circle at 40% 40%, rgba(3, 180, 246, 0.85) 0%, rgba(1, 173, 240, 0.6) 45%, rgba(0, 143, 209, 0.25) 75%, transparent 100%)',
-            boxShadow: '0 0 100px rgba(3, 180, 246, 0.35)',
+            background: 'radial-gradient(circle at 40% 40%, rgba(3, 180, 246, 0.55) 0%, rgba(0, 143, 209, 0.2) 60%, transparent 80%)',
+            boxShadow: '0 0 70px rgba(3, 180, 246, 0.2)',
+            filter: 'blur(2px)',
           }}
           animate={{ y: [0, 35, 0, -25, 0], x: [0, -25, 0, 30, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
@@ -7432,59 +7434,64 @@ const AboutHero = () => {
         <motion.div
           className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
           style={{
-            background: 'radial-gradient(circle at 60% 40%, rgba(77, 211, 255, 0.85) 0%, rgba(3, 180, 246, 0.55) 45%, rgba(1, 173, 240, 0.2) 75%, transparent 100%)',
-            boxShadow: '0 0 90px rgba(77, 211, 255, 0.35)',
+            background: 'radial-gradient(circle at 60% 40%, rgba(77, 211, 255, 0.5) 0%, rgba(1, 173, 240, 0.18) 60%, transparent 80%)',
+            boxShadow: '0 0 70px rgba(77, 211, 255, 0.2)',
+            filter: 'blur(2px)',
           }}
           animate={{ y: [0, -25, 0, 30, 0], x: [0, 25, 0, -20, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
 
         <motion.svg
-          className="absolute top-[8%] right-[18%] w-[450px] h-[450px]"
+          className="absolute top-[8%] right-[18%] w-[450px] h-[450px] opacity-70"
           viewBox="0 0 500 500" fill="none"
-          style={{ filter: 'drop-shadow(0 0 12px rgba(1, 173, 240, 0.4))' }}
+          style={{ filter: 'drop-shadow(0 0 10px rgba(1, 173, 240, 0.25))' }}
           animate={{ y: [0, 20, 0, -15, 0], rotate: [0, 5, 0, -5, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         >
           <defs>
             <linearGradient id="wireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00C6FB" stopOpacity="0.7" />
-              <stop offset="50%" stopColor="#01ADF0" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#00C6FB" stopOpacity="0.7" />
+              <stop offset="0%" stopColor="#00C6FB" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="#01ADF0" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#00C6FB" stopOpacity="0.5" />
             </linearGradient>
           </defs>
           <motion.polygon points="250,40 460,250 250,460 40,250" stroke="url(#wireGrad)" strokeWidth="1.2" fill="none" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
-          <motion.polygon points="250,80 420,250 250,420 80,250" stroke="url(#wireGrad)" strokeWidth="0.8" fill="none" opacity="0.7" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
-          <line x1="250" y1="40" x2="250" y2="460" stroke="url(#wireGrad)" strokeWidth="0.6" opacity="0.6" />
-          <line x1="40" y1="250" x2="460" y2="250" stroke="url(#wireGrad)" strokeWidth="0.6" opacity="0.6" />
+          <motion.polygon points="250,80 420,250 250,420 80,250" stroke="url(#wireGrad)" strokeWidth="0.8" fill="none" opacity="0.6" animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
+          <line x1="250" y1="40" x2="250" y2="460" stroke="url(#wireGrad)" strokeWidth="0.6" opacity="0.5" />
+          <line x1="40" y1="250" x2="460" y2="250" stroke="url(#wireGrad)" strokeWidth="0.6" opacity="0.5" />
         </motion.svg>
 
         <motion.div
           className="absolute top-[22%] right-[10%] w-[110px] h-[110px] rounded-2xl"
-          style={{ background: 'linear-gradient(135deg, rgba(77, 211, 255, 0.3) 0%, rgba(1, 173, 240, 0.05) 100%)', boxShadow: '0 0 50px rgba(77, 211, 255, 0.15)', border: '1px solid rgba(77, 211, 255, 0.2)', transform: 'rotate(45deg)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(77, 211, 255, 0.18) 0%, rgba(1, 173, 240, 0.03) 100%)', boxShadow: '0 0 40px rgba(77, 211, 255, 0.1)', border: '1px solid rgba(77, 211, 255, 0.15)', transform: 'rotate(45deg)' }}
           animate={{ rotate: [45, 55, 45], y: [0, 25, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         />
 
         <motion.div
           className="absolute bottom-[25%] right-[20%] w-[130px] h-[130px] rounded-2xl"
-          style={{ background: 'linear-gradient(135deg, rgba(0, 198, 251, 0.3) 0%, rgba(0, 143, 209, 0.05) 100%)', boxShadow: '0 0 60px rgba(0, 198, 251, 0.15)', border: '1px solid rgba(0, 198, 251, 0.2)', transform: 'rotate(-20deg)' }}
+          style={{ background: 'linear-gradient(135deg, rgba(0, 198, 251, 0.18) 0%, rgba(0, 143, 209, 0.03) 100%)', boxShadow: '0 0 40px rgba(0, 198, 251, 0.1)', border: '1px solid rgba(0, 198, 251, 0.15)', transform: 'rotate(-20deg)' }}
           animate={{ rotate: [-20, -10, -20], y: [0, -30, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         />
 
-        {[...Array(50)].map((_, i) => {
-          const size = Math.random() * 7 + 5;
+        {[...Array(18)].map((_, i) => {
+          const size = Math.random() * 3 + 2;
           return (
             <motion.div
               key={i}
-              className="absolute rounded-full bg-white"
+              className="absolute rounded-full"
               style={{
-                top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, width: `${size}px`, height: `${size}px`,
-                boxShadow: `0 0 ${size * 3}px rgba(255, 255, 255, 0.9), 0 0 ${size * 6}px rgba(1, 173, 240, 0.6)`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${size}px`,
+                height: `${size}px`,
+                background: 'rgba(180, 230, 255, 0.9)',
+                boxShadow: `0 0 ${size * 2}px rgba(120, 210, 255, 0.6)`,
               }}
-              animate={{ opacity: [0.15, 0.95, 0.15], scale: [1, 1.6, 1] }}
-              transition={{ duration: 1.5 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
+              animate={{ opacity: [0.1, 0.6, 0.1], scale: [1, 1.3, 1] }}
+              transition={{ duration: 2 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
             />
           );
         })}
@@ -7495,11 +7502,25 @@ const AboutHero = () => {
           <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
             About Us
           </motion.span>
-          <motion.h2 className="sec-h2 text-white mt-1.5 sm:mt-2 leading-tight" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}>
+
+          <motion.h2
+            className="sec-h2 text-white mt-1.5 sm:mt-2 leading-tight"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
             Your Journey of Digital Transformation Begins Here! <br />
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">TheCoderBox</span>
+            <span className="bg-gradient-to-r from-[#33D6FF] to-[#01ADF0] bg-clip-text text-transparent">TheCoderBox</span>
           </motion.h2>
-          <motion.p className="sec-p text-white/70 mt-1 max-w-2xl mx-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+
+          <motion.p
+            className="sec-p text-white/80 mt-1 max-w-2xl mx-auto"
+            style={{ textShadow: '0 1px 10px rgba(0,0,0,0.35)' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             A group of creative thinkers gathered under one roof collaboratively striving forward with a motto to take business developments to its pinnacle.
           </motion.p>
         </motion.div>
@@ -7535,13 +7556,13 @@ const AboutContent = () => {
   const principles = ["THINK IN SYSTEMS", "EXECUTE WITH DISCIPLINE", "BUILD FOR LASTING IMPACT"];
 
   return (
-    <section className="py-10 sm:py-12 md:py-14 bg-[#E6F8FF] relative overflow-hidden">
+    <section className="py-8 sm:py-10 md:py-12 bg-[#E6F8FF] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-12 items-center">
-          
+
           {/* ===== LEFT SIDE: Video & Image Block ===== */}
           <motion.div
             initial={{ opacity: 0, x: -150, rotate: -5 }}
@@ -7555,8 +7576,8 @@ const AboutContent = () => {
 
               <div className="absolute inset-4 rounded-[30px] overflow-hidden border-2 border-white/10">
                 <div className="relative w-full h-full">
-                  <img 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZzSpL3Jdz_jPNDd9aN5_0YiS4IuR1O1A5e0Fx5kX1o2DjzWcuN74buxc&s=10" 
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZzSpL3Jdz_jPNDd9aN5_0YiS4IuR1O1A5e0Fx5kX1o2DjzWcuN74buxc&s=10"
                     alt="CoderBox Team"
                     className="w-full h-full object-cover"
                   />
@@ -7564,7 +7585,7 @@ const AboutContent = () => {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => setIsVideoOpen(true)}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group z-20"
               >
@@ -7593,70 +7614,212 @@ const AboutContent = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, type: "spring", stiffness: 50, damping: 15, delay: 0.2 }}
+            className="relative"
           >
-            <span className="sec-badge inline-block">Leadership</span>
+            <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#01ADF0]/10 rounded-full blur-[100px] pointer-events-none" />
+            <div
+              className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              style={{
+                backgroundImage:
+                  'linear-gradient(#003F7D 1px, transparent 1px), linear-gradient(90deg, #003F7D 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+                maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
+              }}
+            />
 
-            <h2 className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight">
-              MEET OUR  
-              <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent"> FOUNDER</span>
-            </h2>
-            
-            <div className="space-y-4 sec-p sec-text-dark-soft mt-6">
-              <p>{founderData.bio1}</p>
-              <p>{founderData.bio2}</p>
-              <p>{founderData.bio3}</p>
-            </div>
+            <div className="relative">
+              {/* Badge */}
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#003F7D] to-[#01ADF0] text-white text-xs font-bold tracking-widest uppercase shadow-lg shadow-[#01ADF0]/30"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                Leadership
+              </motion.span>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-8">
-              {stats.map((stat, idx) => (
-                <div key={idx} className="bg-white rounded-2xl p-4 text-center shadow-sm border border-[#01ADF0]/20 hover:shadow-md transition-all duration-300">
-                  <p className="text-3xl font-extrabold text-[#003F7D] mb-1">{stat.number}</p>
-                  <p className="text-[10px] sm:text-xs font-semibold text-gray-600 tracking-wider">{stat.label}</p>
+              {/* Heading */}
+              <motion.h2
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#003F7D] leading-[1.15] tracking-tight"
+              >
+                MEET OUR{" "}
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-[#00C6FB] via-[#01ADF0] to-[#006FA6] bg-clip-text text-transparent">
+                    FOUNDER
+                  </span>
+                  <motion.span
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.9, duration: 0.6 }}
+                    className="absolute -bottom-1 left-0 h-1 rounded-full bg-gradient-to-r from-[#00C6FB] to-[#01ADF0]"
+                  />
+                </span>
+              </motion.h2>
+
+              {/* Name / title line */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1"
+              >
+                <span className="text-lg font-bold text-[#003F7D]">{founderData.name}</span>
+                <span className="text-xs text-gray-500 font-medium">{founderData.alias}</span>
+                <span className="hidden sm:inline-block w-px h-4 bg-gray-300" />
+                <span className="text-[11px] font-bold tracking-[0.15em] text-[#01ADF0] uppercase">
+                  {founderData.title}
+                </span>
+              </motion.div>
+
+              {/* Bio */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className="space-y-3.5 text-[15px] sm:text-base text-gray-700 leading-relaxed mt-6"
+              >
+                <p className="relative pl-4 border-l-2 border-[#01ADF0]/40">{founderData.bio1}</p>
+                <p>{founderData.bio2}</p>
+                <p>{founderData.bio3}</p>
+              </motion.div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-8">
+                {stats.map((stat, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 + idx * 0.1, type: "spring", stiffness: 120 }}
+                    whileHover={{ y: -6 }}
+                    className="group relative bg-white rounded-2xl p-4 text-center shadow-sm border border-[#01ADF0]/15 hover:border-[#01ADF0]/40 hover:shadow-xl hover:shadow-[#01ADF0]/10 transition-all duration-300 overflow-hidden"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#01ADF0] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-br from-[#003F7D] to-[#01ADF0] bg-clip-text text-transparent mb-1">
+                      {stat.number}
+                    </p>
+                    <p className="text-[9px] sm:text-[10px] font-bold text-gray-500 tracking-[0.15em] uppercase">
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Ventures Led */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.0 }}
+                className="mt-8"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Briefcase size={16} className="text-[#01ADF0]" />
+                  <h4 className="text-xs font-bold tracking-[0.15em] text-[#003F7D] uppercase">Ventures Led</h4>
+                  <div className="flex-1 h-px bg-gradient-to-r from-[#01ADF0]/30 to-transparent" />
                 </div>
-              ))}
-            </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {ventures.map((v, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="group relative bg-white rounded-xl p-3.5 border border-gray-100 hover:border-[#01ADF0]/40 shadow-sm hover:shadow-lg hover:shadow-[#01ADF0]/10 transition-all duration-300"
+                    >
+                      <span className="absolute top-2 right-3 text-[10px] font-bold text-[#01ADF0]/40 group-hover:text-[#01ADF0] transition-colors">
+                        0{i + 1}
+                      </span>
+                      <p className="text-xs sm:text-[13px] font-bold text-[#003F7D] pr-6 leading-snug">{v}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
 
-            {/* Ventures Led */}
-            <div className="mt-8">
-              <h4 className="text-lg font-bold text-[#003F7D] mb-3">Ventures Led</h4>
-              <div className="flex flex-wrap gap-2">
-                {ventures.map((v, i) => (
-                  <span key={i} className="px-3 py-1.5 bg-white text-[#003F7D] text-xs font-semibold rounded-full border border-gray-200 shadow-sm">
-                    {v}
-                  </span>
-                ))}
-              </div>
-            </div>
+              {/* Worked Across */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.1 }}
+                className="mt-7"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Globe size={16} className="text-[#01ADF0]" />
+                  <h4 className="text-xs font-bold tracking-[0.15em] text-[#003F7D] uppercase">Worked Across</h4>
+                  <div className="flex-1 h-px bg-gradient-to-r from-[#01ADF0]/30 to-transparent" />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {industries.map((ind, i) => (
+                    <motion.span
+                      key={i}
+                      whileHover={{ scale: 1.06, y: -2 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                      className="px-3.5 py-1.5 bg-white text-[#003F7D] text-[11px] font-bold tracking-wide rounded-full border border-[#01ADF0]/25 hover:border-[#01ADF0] hover:bg-[#01ADF0] hover:text-white hover:shadow-lg hover:shadow-[#01ADF0]/30 transition-colors duration-300 cursor-default"
+                    >
+                      {ind}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
 
-            {/* Worked Across */}
-            <div className="mt-6">
-              <h4 className="text-lg font-bold text-[#003F7D] mb-3">Worked Across</h4>
-              <div className="flex flex-wrap gap-2">
-                {industries.map((ind, i) => (
-                  <span key={i} className="px-3 py-1.5 bg-[#E6F8FF] text-[#003F7D] text-xs font-semibold rounded-full border border-[#01ADF0]/30 shadow-sm">
-                    {ind}
-                  </span>
-                ))}
-              </div>
-            </div>
+              {/* Founder's Note */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.2 }}
+                className="relative mt-9 p-6 rounded-2xl text-white shadow-2xl shadow-[#003F7D]/30 overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 55%, #005B8F 100%)' }}
+              >
+                <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#01ADF0]/25 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-16 -left-10 w-40 h-40 bg-[#00C6FB]/15 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Founder's Note / Principles */}
-            <div className="mt-8 p-5 bg-gradient-to-r from-[#003F7D] to-[#005B8F] rounded-2xl text-white shadow-lg relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-[#01ADF0]/20 rounded-full blur-3xl"></div>
-               <h4 className="text-lg font-bold text-white mb-3 relative z-10">FOUNDER'S NOTE.</h4>
-               <p className="italic text-sm text-white/90 mb-2 relative z-10">"Technology should create meaningful business value."</p>
-               <p className="text-xs text-white/80 mb-4 relative z-10">Whether building a company, advising a founder, or shaping a client strategy, he works from the same principles.</p>
-               <div className="flex flex-wrap gap-4 relative z-10">
-                 {principles.map((p, i) => (
-                   <div key={i} className="flex items-center gap-2">
-                     <CircleCheck size={16} className="text-[#01ADF0]" />
-                     <span className="text-xs font-semibold tracking-wide">{p}</span>
-                   </div>
-                 ))}
-               </div>
-            </div>
+                <Quote className="absolute top-5 right-5 h-10 w-10 text-white/10" />
 
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-6 h-px bg-[#01ADF0]" />
+                    <h4 className="text-[11px] font-bold tracking-[0.2em] text-[#01ADF0] uppercase">
+                      Founder's Note
+                    </h4>
+                  </div>
+
+                  <p className="italic text-[15px] sm:text-base text-white leading-relaxed mb-3">
+                    "Technology should create meaningful business value."
+                  </p>
+                  <p className="text-xs text-white/70 leading-relaxed mb-5">
+                    Whether building a company, advising a founder, or shaping a client strategy, he works from the same principles.
+                  </p>
+
+                  <div className="flex flex-wrap gap-x-5 gap-y-2 pt-4 border-t border-white/10">
+                    {principles.map((p, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -8 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 1.4 + i * 0.12 }}
+                        className="flex items-center gap-2"
+                      >
+                        <CircleCheck size={15} className="text-[#00C6FB] shrink-0" />
+                        <span className="text-[11px] font-bold tracking-wider text-white/90">{p}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -7677,7 +7840,7 @@ const AboutContent = () => {
 };
 
 // ============================================
-// 3. VISION & MISSION SECTION (Extra bottom space removed)
+// 3. VISION & MISSION SECTION
 // ============================================
 const VisionMission = () => {
   const items = [
@@ -7686,25 +7849,44 @@ const VisionMission = () => {
   ];
 
   return (
-    <section className="bg-white">
-      {/* 👇 pb-0 kar diya taaki neeche ka extra white space khatam ho jaye */}
-      <div className="relative pt-10 sm:pt-12 pb-0 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+    
+      <div className="relative pt-4 sm:pt-6 md:pt-8 pb-4 sm:pb-6 md:pb-8 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#01adf0]/5 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-8 max-w-5xl mx-auto">
             {items.map((item, idx) => (
-              <motion.div key={idx} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: idx * 0.2 }} className="text-center group">
-                <motion.div className="relative w-36 h-36 mx-auto mb-8 flex items-center justify-center" whileHover={{ scale: 1.08, rotate: 5 }} transition={{ type: "spring", stiffness: 300 }}>
-                  <motion.div className="absolute inset-0 rounded-full" style={{ background: 'conic-gradient(from 0deg, #01adf0, #a855f7, #ec4899, #01adf0)', padding: '3px' }} animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: idx * 0.2 }}
+                className="text-center group"
+              >
+                <motion.div
+                  className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-5 flex items-center justify-center"
+                  whileHover={{ scale: 1.08, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 rounded-full"
+                    style={{ background: 'conic-gradient(from 0deg, #01adf0, #a855f7, #ec4899, #01adf0)', padding: '3px' }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  >
                     <div className="w-full h-full rounded-full bg-white"></div>
                   </motion.div>
-                  <div className="absolute inset-3 rounded-full border-2 border-dashed border-[#01adf0]/40"></div>
-                  <motion.div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#01adf0]/10 to-purple-500/10" animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2, repeat: Infinity }}></motion.div>
-                  
+                  <div className="absolute inset-2 rounded-full border-2 border-dashed border-[#01adf0]/40"></div>
+                  <motion.div
+                    className="absolute inset-4 rounded-full bg-gradient-to-br from-[#01adf0]/10 to-purple-500/10"
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  ></motion.div>
+
                   <div className="relative z-10">
-                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <linearGradient id={`grad-${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" stopColor="#01adf0" />
@@ -7730,20 +7912,30 @@ const VisionMission = () => {
                     </svg>
                   </div>
                 </motion.div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 group-hover:text-[#01adf0] transition-colors duration-300">{item.title}</h3>
-                <motion.div className="w-16 h-1 bg-gradient-to-r from-[#01adf0] to-purple-500 rounded-full mx-auto mb-4" whileHover={{ width: 80 }}></motion.div>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">{item.content}</p>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#01adf0] transition-colors duration-300">
+                  {item.title}
+                </h3>
+
+                <motion.div
+                  className="w-14 h-1 bg-gradient-to-r from-[#01adf0] to-purple-500 rounded-full mx-auto mb-3"
+                  whileHover={{ width: 80 }}
+                ></motion.div>
+
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
+                  {item.content}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+
   );
 };
 
 // ============================================
-// 4. OUR JOURNEY SECTION (Top space adjusted)
+// 4. OUR JOURNEY SECTION
 // ============================================
 const HowWeWork = () => {
   const journeyData = [
@@ -7782,7 +7974,6 @@ const HowWeWork = () => {
     ]
   ];
 
-  // 👇 Top padding ko kaafi kam kar diya (pt-4) taaki upar ka gap khatam ho
   return (
     <section className="pt-4 pb-6 sm:pt-6 sm:pb-8 md:pt-8 md:pb-10 lg:pt-10 lg:pb-12 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
