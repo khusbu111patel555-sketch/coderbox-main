@@ -6804,7 +6804,7 @@ const ContactSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            Contact <span style={{ color: '#008df1' }}>Us!</span>
+            Contact <span style={{ color: '#008df1' }}>Us</span>
           </motion.h2>
           
           <motion.p 

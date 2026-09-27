@@ -4760,7 +4760,7 @@ const WhyChooseUsSection = () => {
             <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
               TheCoderBox
             </span>
-            ?
+           
           </motion.h2>
 
           <motion.p 
