@@ -2789,12 +2789,12 @@ import {
 import { supabase } from "../lib/supabaseClient";
 
 // ============================================
-// 1. HERO SECTION
+// 1. HERO SECTION (Reduced Height)
 // ============================================
 const AboutHero = () => {
   return (
     <section
-      className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 pb-10 sm:pt-24 sm:pb-12 border-0 outline-none"
+      className="relative min-h-[55vh] sm:min-h-[65vh] flex items-center justify-center overflow-hidden pt-24 pb-8 sm:pt-28 sm:pb-10 border-0 outline-none"
       style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
     >
       {/* ===== BACKGROUND SHAPES ===== */}
