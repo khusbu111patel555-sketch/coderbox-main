@@ -3514,214 +3514,214 @@ const OurValuesAndMission = () => {
   );
 };
 
-// ============================================
-// 6. CONTACT US SECTION
-// ============================================
-const ContactUsSection = () => {
-  const locations = [
-    { id: 1, city: "Bengaluru", country: "India", address: "Vinir Tower, 6, Outer Ring Rd, Old Madiwala, Jay Bheema Nagar, 1st Stage, BTM Layout, Bengaluru, Karnataka 560068" },
-  ];
+// // ============================================
+// // 6. CONTACT US SECTION
+// // ============================================
+// const ContactUsSection = () => {
+//   const locations = [
+//     { id: 1, city: "Bengaluru", country: "India", address: "Vinir Tower, 6, Outer Ring Rd, Old Madiwala, Jay Bheema Nagar, 1st Stage, BTM Layout, Bengaluru, Karnataka 560068" },
+//   ];
 
-  const [selectedLocation] = useState(locations[0]);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" });
-  const [errors, setErrors] = useState({ name: "", email: "", phone: "", service: "", message: "" });
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+//   const [selectedLocation] = useState(locations[0]);
+//   const [formData, setFormData] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+//   const [errors, setErrors] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+//   const [isSuccess, setIsSuccess] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "phone") {
-      const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
-      setFormData((prev) => ({ ...prev, [name]: digitsOnly }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
-    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     if (name === "phone") {
+//       const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
+//       setFormData((prev) => ({ ...prev, [name]: digitsOnly }));
+//     } else {
+//       setFormData((prev) => ({ ...prev, [name]: value }));
+//     }
+//     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
+//   };
 
-  const validateForm = () => {
-    const newErrors = { name: "", email: "", phone: "", service: "", message: "" };
-    let isValid = true;
-    if (!formData.name.trim()) { newErrors.name = "Please enter your name."; isValid = false; }
-    if (!formData.email.trim()) { newErrors.email = "Please enter your email address."; isValid = false; }
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { newErrors.email = "Please enter a valid email address."; isValid = false; }
-    if (!formData.phone.trim()) { newErrors.phone = "Please enter your phone number."; isValid = false; }
-    else if (!/^[6-9]\d{9}$/.test(formData.phone)) { newErrors.phone = "Please enter a valid 10-digit mobile number."; isValid = false; }
-    if (!formData.service) { newErrors.service = "Please select a service."; isValid = false; }
-    if (!formData.message.trim()) { newErrors.message = "Please write your message."; isValid = false; }
-    setErrors(newErrors);
-    return isValid;
-  };
+//   const validateForm = () => {
+//     const newErrors = { name: "", email: "", phone: "", service: "", message: "" };
+//     let isValid = true;
+//     if (!formData.name.trim()) { newErrors.name = "Please enter your name."; isValid = false; }
+//     if (!formData.email.trim()) { newErrors.email = "Please enter your email address."; isValid = false; }
+//     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { newErrors.email = "Please enter a valid email address."; isValid = false; }
+//     if (!formData.phone.trim()) { newErrors.phone = "Please enter your phone number."; isValid = false; }
+//     else if (!/^[6-9]\d{9}$/.test(formData.phone)) { newErrors.phone = "Please enter a valid 10-digit mobile number."; isValid = false; }
+//     if (!formData.service) { newErrors.service = "Please select a service."; isValid = false; }
+//     if (!formData.message.trim()) { newErrors.message = "Please write your message."; isValid = false; }
+//     setErrors(newErrors);
+//     return isValid;
+//   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    setIsLoading(true);
-    try {
-      const { data, error } = await supabase.from("contacts").insert([{ name: formData.name, email: formData.email, phone: formData.phone, service: formData.service, message: formData.message }]);
-      if (error) throw error;
-      setIsSuccess(true);
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
-      setErrors({ name: "", email: "", phone: "", service: "", message: "" });
-      setTimeout(() => setIsSuccess(false), 5000);
-    } catch (error) {
-      console.error("Supabase Error:", error);
-      setErrors((prev) => ({ ...prev, message: "Failed to send message to database. Please try again later." }));
-    } finally {
-      setIsLoading(false);
-    }
-  };
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!validateForm()) return;
+//     setIsLoading(true);
+//     try {
+//       const { data, error } = await supabase.from("contacts").insert([{ name: formData.name, email: formData.email, phone: formData.phone, service: formData.service, message: formData.message }]);
+//       if (error) throw error;
+//       setIsSuccess(true);
+//       setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+//       setErrors({ name: "", email: "", phone: "", service: "", message: "" });
+//       setTimeout(() => setIsSuccess(false), 5000);
+//     } catch (error) {
+//       console.error("Supabase Error:", error);
+//       setErrors((prev) => ({ ...prev, message: "Failed to send message to database. Please try again later." }));
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
 
-  return (
-    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#E6F8FF] to-white overflow-hidden border-0">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-32 -top-32 h-[250px] w-[250px] rounded-full bg-[#00C6FB] opacity-20 blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 z-0 h-[300px] w-[300px] rounded-full bg-[#01ADF0] opacity-20 blur-3xl" />
-      </div>
+//   return (
+//     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#E6F8FF] to-white overflow-hidden border-0">
+//       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+//         <div className="absolute -left-32 -top-32 h-[250px] w-[250px] rounded-full bg-[#00C6FB] opacity-20 blur-3xl" />
+//         <div className="absolute -bottom-40 -right-40 z-0 h-[300px] w-[300px] rounded-full bg-[#01ADF0] opacity-20 blur-3xl" />
+//       </div>
 
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block">Contact Us</motion.span>
-          <motion.h2 className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight">
-            Get in{' '}<span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">Touch</span>
-          </motion.h2>
-          <motion.p className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto">
-            Have a project in mind? Reach out to us for a free consultation.
-          </motion.p>
-        </motion.div>
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+//         <motion.div
+//           initial={{ opacity: 0, y: 10 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           viewport={{ once: true }}
+//           transition={{ duration: 0.4 }}
+//           className="text-center mb-4 sm:mb-5 md:mb-6"
+//         >
+//           <motion.span className="sec-badge inline-block">Contact Us</motion.span>
+//           <motion.h2 className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight">
+//             Get in{' '}<span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">Touch</span>
+//           </motion.h2>
+//           <motion.p className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto">
+//             Have a project in mind? Reach out to us for a free consultation.
+//           </motion.p>
+//         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-lg flex-1">
-              <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[80px] bg-gradient-to-bl from-[#01ADF0]/10 to-transparent" />
-              <div className="relative">
-                <h3 className="sec-h3 sec-text-dark mb-5">Send Us a Message</h3>
-                <AnimatePresence>
-                  {isSuccess && (
-                    <motion.div initial={{ opacity: 0, height: 0, marginBottom: 0 }} animate={{ opacity: 1, height: "auto", marginBottom: 16 }} exit={{ opacity: 0, height: 0, marginBottom: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
-                      <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3">
-                        <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-                        <div>
-                          <p className="text-sm font-semibold text-emerald-900">Message Sent Successfully!</p>
-                          <p className="mt-0.5 text-xs text-emerald-700">Thank you! We'll get back to you soon.</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+//         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+//           <div className="lg:col-span-7 flex flex-col">
+//             <div className="relative overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-lg flex-1">
+//               <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[80px] bg-gradient-to-bl from-[#01ADF0]/10 to-transparent" />
+//               <div className="relative">
+//                 <h3 className="sec-h3 sec-text-dark mb-5">Send Us a Message</h3>
+//                 <AnimatePresence>
+//                   {isSuccess && (
+//                     <motion.div initial={{ opacity: 0, height: 0, marginBottom: 0 }} animate={{ opacity: 1, height: "auto", marginBottom: 16 }} exit={{ opacity: 0, height: 0, marginBottom: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+//                       <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3">
+//                         <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+//                         <div>
+//                           <p className="text-sm font-semibold text-emerald-900">Message Sent Successfully!</p>
+//                           <p className="mt-0.5 text-xs text-emerald-700">Thank you! We'll get back to you soon.</p>
+//                         </div>
+//                       </div>
+//                     </motion.div>
+//                   )}
+//                 </AnimatePresence>
 
-                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                  <div>
-                    <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-gray-700">Name</label>
-                    <input id="name" name="name" type="text" value={formData.name} onChange={handleChange} placeholder="Name" className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.name ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
-                    <AnimatePresence>{errors.name && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.name}</motion.p>}</AnimatePresence>
-                  </div>
+//                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+//                   <div>
+//                     <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-gray-700">Name</label>
+//                     <input id="name" name="name" type="text" value={formData.name} onChange={handleChange} placeholder="Name" className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.name ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
+//                     <AnimatePresence>{errors.name && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.name}</motion.p>}</AnimatePresence>
+//                   </div>
 
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <div>
-                      <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-gray-700">Email Address</label>
-                      <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="your@email.com" className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.email ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
-                      <AnimatePresence>{errors.email && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.email}</motion.p>}</AnimatePresence>
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-gray-700">Phone Number</label>
-                      <input id="phone" name="phone" type="tel" maxLength={10} value={formData.phone} onChange={handleChange} placeholder="+91 12345 67890" className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.phone ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
-                      <AnimatePresence>{errors.phone && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.phone}</motion.p>}</AnimatePresence>
-                    </div>
-                  </div>
+//                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+//                     <div>
+//                       <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-gray-700">Email Address</label>
+//                       <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="your@email.com" className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.email ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
+//                       <AnimatePresence>{errors.email && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.email}</motion.p>}</AnimatePresence>
+//                     </div>
+//                     <div>
+//                       <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-gray-700">Phone Number</label>
+//                       <input id="phone" name="phone" type="tel" maxLength={10} value={formData.phone} onChange={handleChange} placeholder="+91 12345 67890" className={`w-full rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.phone ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
+//                       <AnimatePresence>{errors.phone && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.phone}</motion.p>}</AnimatePresence>
+//                     </div>
+//                   </div>
 
-                  <div>
-                    <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-gray-700">Service</label>
-                    <select id="service" name="service" value={formData.service} onChange={handleChange} className={`w-full rounded-lg border bg-white px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.service ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`}>
-                      <option value="">Select a service</option>
-                      <option value="Mobile App Development">Mobile App Development</option>
-                      <option value="Website Development">Website Development</option>
-                      <option value="Custom Software">Custom Software</option>
-                      <option value="UI/UX Design">UI/UX Design</option>
-                      <option value="Cloud & Hosting">Cloud & Hosting</option>
-                      <option value="Maintenance & Support">Maintenance & Support</option>
-                      <option value="Other">Other</option>
-                    </select>
-                    <AnimatePresence>{errors.service && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.service}</motion.p>}</AnimatePresence>
-                  </div>
+//                   <div>
+//                     <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-gray-700">Service</label>
+//                     <select id="service" name="service" value={formData.service} onChange={handleChange} className={`w-full rounded-lg border bg-white px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.service ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`}>
+//                       <option value="">Select a service</option>
+//                       <option value="Mobile App Development">Mobile App Development</option>
+//                       <option value="Website Development">Website Development</option>
+//                       <option value="Custom Software">Custom Software</option>
+//                       <option value="UI/UX Design">UI/UX Design</option>
+//                       <option value="Cloud & Hosting">Cloud & Hosting</option>
+//                       <option value="Maintenance & Support">Maintenance & Support</option>
+//                       <option value="Other">Other</option>
+//                     </select>
+//                     <AnimatePresence>{errors.service && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.service}</motion.p>}</AnimatePresence>
+//                   </div>
 
-                  <div>
-                    <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-gray-700">Message</label>
-                    <textarea id="message" name="message" rows="3" value={formData.message} onChange={handleChange} placeholder="Tell us about your project or inquiry..." className={`w-full resize-none rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.message ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
-                    <AnimatePresence>{errors.message && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.message}</motion.p>}</AnimatePresence>
-                  </div>
+//                   <div>
+//                     <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-gray-700">Message</label>
+//                     <textarea id="message" name="message" rows="3" value={formData.message} onChange={handleChange} placeholder="Tell us about your project or inquiry..." className={`w-full resize-none rounded-lg border px-4 py-2.5 text-sm outline-none transition duration-300 ${errors.message ? "border-red-400 focus:border-transparent focus:ring-2 focus:ring-red-400" : "border-gray-300 focus:border-[#01ADF0] focus:ring-2 focus:ring-[#01ADF0]/50"}`} />
+//                     <AnimatePresence>{errors.message && <motion.p initial={{ opacity: 0, height: 0, marginTop: 0 }} animate={{ opacity: 1, height: "auto", marginTop: 6 }} exit={{ opacity: 0, height: 0, marginTop: 0 }} className="flex items-center gap-1 text-xs font-medium text-red-500"><AlertCircle className="h-3 w-3 shrink-0" />{errors.message}</motion.p>}</AnimatePresence>
+//                   </div>
 
-                  <div className="pt-2">
-                    <button type="submit" disabled={isLoading} className={`group relative inline-flex w-full items-center justify-center overflow-hidden rounded-md px-6 py-2.5 text-base font-medium text-white shadow-md transition-all duration-300 ${isLoading ? "cursor-not-allowed bg-gray-400 shadow-gray-400/20" : "bg-[#008FD1] shadow-[#01ADF0]/20 hover:shadow-lg"}`}>
-                      <span className="relative z-10">{isLoading ? "Sending..." : "Submit Inquiry"}</span>
-                      {!isLoading && <ArrowRight size={17} className="relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1" />}
-                      {!isLoading && <span className="absolute inset-0 bg-[#006FA6] opacity-0 transition-all duration-500 group-hover:opacity-100" />}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+//                   <div className="pt-2">
+//                     <button type="submit" disabled={isLoading} className={`group relative inline-flex w-full items-center justify-center overflow-hidden rounded-md px-6 py-2.5 text-base font-medium text-white shadow-md transition-all duration-300 ${isLoading ? "cursor-not-allowed bg-gray-400 shadow-gray-400/20" : "bg-[#008FD1] shadow-[#01ADF0]/20 hover:shadow-lg"}`}>
+//                       <span className="relative z-10">{isLoading ? "Sending..." : "Submit Inquiry"}</span>
+//                       {!isLoading && <ArrowRight size={17} className="relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1" />}
+//                       {!isLoading && <span className="absolute inset-0 bg-[#006FA6] opacity-0 transition-all duration-500 group-hover:opacity-100" />}
+//                     </button>
+//                   </div>
+//                 </form>
+//               </div>
+//             </div>
+//           </div>
 
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="relative mb-6 overflow-hidden rounded-xl bg-gradient-to-br from-[#005B8F] to-[#01ADF0] p-6 text-white shadow-lg">
-              <div className="absolute right-0 top-0 h-full w-full opacity-10">
-                <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-white blur-3xl" />
-                <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-white blur-3xl" />
-              </div>
-              <div className="relative">
-                <h3 className="sec-h3 text-white mb-4">Connect With Us</h3>
-                <p className="sec-p text-white/80 mb-6">We're available to answer your questions and help with your project.</p>
-                <div className="space-y-4">
-                  <ContactItem icon={<Phone size={18} />} title="Phone" value="+91 8928809025" href="tel:+918928809025" />
-                  <ContactItem icon={<MessageSquare size={18} />} title="WhatsApp" value="+91 8928809025" href="https://wa.me/918928809025" />
-                  <ContactItem icon={<Mail size={18} />} title="Email" value="support@thecoderbox.com" href="mailto:support@thecoderbox.com" />
-                </div>
-              </div>
-            </div>
+//           <div className="lg:col-span-5 flex flex-col">
+//             <div className="relative mb-6 overflow-hidden rounded-xl bg-gradient-to-br from-[#005B8F] to-[#01ADF0] p-6 text-white shadow-lg">
+//               <div className="absolute right-0 top-0 h-full w-full opacity-10">
+//                 <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-white blur-3xl" />
+//                 <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-white blur-3xl" />
+//               </div>
+//               <div className="relative">
+//                 <h3 className="sec-h3 text-white mb-4">Connect With Us</h3>
+//                 <p className="sec-p text-white/80 mb-6">We're available to answer your questions and help with your project.</p>
+//                 <div className="space-y-4">
+//                   <ContactItem icon={<Phone size={18} />} title="Phone" value="+91 8928809025" href="tel:+918928809025" />
+//                   <ContactItem icon={<MessageSquare size={18} />} title="WhatsApp" value="+91 8928809025" href="https://wa.me/918928809025" />
+//                   <ContactItem icon={<Mail size={18} />} title="Email" value="support@thecoderbox.com" href="mailto:support@thecoderbox.com" />
+//                 </div>
+//               </div>
+//             </div>
 
-            <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-lg flex-1">
-              <div className="space-y-5">
-                <div className="flex items-center">
-                  <div className="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#01ADF0]/10 text-[#01ADF0]"><Clock size={18} /></div>
-                  <div>
-                    <h4 className="sec-h3 sec-text-dark mb-1">Office Hours</h4>
-                    <p className="sec-p sec-text-dark-soft">Monday - Saturday: 9AM - 7PM</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="mr-4 mt-0.5 flex h-10 w-10 min-w-10 shrink-0 items-center justify-center rounded-full bg-[#01ADF0]/10 text-[#01ADF0]"><MapPin size={18} /></div>
-                  <div>
-                    <h4 className="sec-h3 sec-text-dark mb-1">Office Location</h4>
-                    <p className="sec-p sec-text-dark-soft leading-6">{selectedLocation?.address}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+//             <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-lg flex-1">
+//               <div className="space-y-5">
+//                 <div className="flex items-center">
+//                   <div className="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#01ADF0]/10 text-[#01ADF0]"><Clock size={18} /></div>
+//                   <div>
+//                     <h4 className="sec-h3 sec-text-dark mb-1">Office Hours</h4>
+//                     <p className="sec-p sec-text-dark-soft">Monday - Saturday: 9AM - 7PM</p>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-start">
+//                   <div className="mr-4 mt-0.5 flex h-10 w-10 min-w-10 shrink-0 items-center justify-center rounded-full bg-[#01ADF0]/10 text-[#01ADF0]"><MapPin size={18} /></div>
+//                   <div>
+//                     <h4 className="sec-h3 sec-text-dark mb-1">Office Location</h4>
+//                     <p className="sec-p sec-text-dark-soft leading-6">{selectedLocation?.address}</p>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
 
-const ContactItem = ({ icon, title, value, href }) => {
-  return (
-    <div className="flex items-center">
-      <div className="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">{icon}</div>
-      <div>
-        <h4 className="sec-h3 text-white mb-0.5">{title}</h4>
-        <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel={href?.startsWith("http") ? "noopener noreferrer" : undefined} className="sec-p text-white/80 transition-colors duration-300 hover:text-white">{value}</a>
-      </div>
-    </div>
-  );
-};
+// const ContactItem = ({ icon, title, value, href }) => {
+//   return (
+//     <div className="flex items-center">
+//       <div className="mr-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">{icon}</div>
+//       <div>
+//         <h4 className="sec-h3 text-white mb-0.5">{title}</h4>
+//         <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel={href?.startsWith("http") ? "noopener noreferrer" : undefined} className="sec-p text-white/80 transition-colors duration-300 hover:text-white">{value}</a>
+//       </div>
+//     </div>
+//   );
+// };
 
 // ============================================
 // MAIN ABOUT US COMPONENT
@@ -3734,7 +3734,7 @@ const AboutUs = () => {
       <VisionMission />
       <HowWeWork />
       <OurValuesAndMission />
-      <ContactUsSection />
+      {/* <ContactUsSection /> */}
     </div>
   );
 };

@@ -1,1104 +1,493 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import {
-  ArrowRight, BarChart3, Brain, Database, LineChart, PieChart, TrendingUp,
-  Target, Zap, Shield, Rocket, Cloud, Users, Award, CheckCircle, Search,
-  Layers, Settings, Sparkles, Building2, ShoppingCart, HeartPulse, Factory,
-  Server, Cpu, ChevronDown, ChevronUp, Quote, Play, Star, CheckCircle2,
-  DollarSign, Clock, Globe, Briefcase, Lightbulb, TrendingDown, Activity,
-  FileSpreadsheet, Code2, GitBranch, Workflow, Lock, Eye, Gauge
-} from 'lucide-react';
 
-// ============================================
-// 1. HERO SECTION
-// ============================================
-const DataHero = () => {
+/* ============================================================
+   GLOBAL STYLES (animations + effects)
+   ============================================================ */
+const GlobalStyles = () => (
+  <style>{`
+    @keyframes cbArrowRight {
+      0%, 100% { transform: translateX(0); }
+      50%      { transform: translateX(6px); }
+    }
+    @keyframes cbArrowDown {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+    @keyframes cbFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-18px) scale(1.05); }
+    }
+    @keyframes cbFloatSlow {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(30px, -20px) scale(1.08); }
+    }
+    @keyframes cbPulseGlow {
+      0%, 100% { opacity: .7; transform: scale(1); }
+      50%      { opacity: 1;  transform: scale(1.06); }
+    }
+    @keyframes cbMarquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes cbShine {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes cbFadeUp {
+      0%   { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .arrow-right { display: inline-block; animation: cbArrowRight 1.4s ease-in-out infinite; }
+    .arrow-down  { display: inline-block; animation: cbArrowDown 1.4s ease-in-out infinite; }
+    .cb-float    { animation: cbFloat 6s ease-in-out infinite; }
+    .cb-float-slow { animation: cbFloatSlow 12s ease-in-out infinite; }
+    .cb-pulse    { animation: cbPulseGlow 3s ease-in-out infinite; }
+    .cb-fade-up  { animation: cbFadeUp .8s ease-out both; }
+
+    .cb-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: cbMarquee 32s linear infinite;
+    }
+
+    .cb-shine {
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,.35) 50%,
+        transparent 100%);
+      background-size: 200% 100%;
+      animation: cbShine 3s ease-in-out infinite;
+    }
+
+    .cb-grad-border {
+      position: relative;
+      background: #fff;
+      border-radius: 22px;
+    }
+    .cb-grad-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(1,173,240,.5), rgba(0,198,251,.1), rgba(1,173,240,.5));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: 0;
+      transition: opacity .35s ease;
+      pointer-events: none;
+    }
+    .cb-grad-border:hover::before { opacity: 1; }
+
+    .cb-dots {
+      background-image: radial-gradient(#D8E0EC 1px, transparent 1px);
+      background-size: 24px 24px;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+              mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .cb-dots-soft {
+      background-image: radial-gradient(#D8E0EC 1px, transparent 1px);
+      background-size: 24px 24px;
+      -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, #000 30%, transparent 80%);
+              mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, #000 30%, transparent 80%);
+      pointer-events: none;
+    }
+  `}</style>
+);
+
+/* ============================================================
+   SHARED COMPONENTS
+   ============================================================ */
+const Eyebrow = ({ children }) => (
+  <span className="sec-badge inline-block">{children}</span>
+);
+
+const DarkEyebrow = ({ children }) => (
+  <div className="text-[12px] font-bold uppercase tracking-[.18em] text-[#52dcff]">
+    {children}
+  </div>
+);
+
+/* ============================================================
+   DATA
+   ============================================================ */
+const serviceData = [
+  { cat: 'Technology', icon: '⌘', title: 'Web Design & Development', desc: 'High-performance websites and digital platforms engineered around your brand, users and business goals.', tags: ['React', 'Vite', 'WordPress', 'PHP', 'E-commerce'] },
+  { cat: 'Technology', icon: '◈', title: 'Mobile App Development', desc: 'Reliable iOS and Android experiences that turn complex requirements into simple, useful products.', tags: ['iOS', 'Android', 'Cross-platform', 'APIs', 'UX'] },
+  { cat: 'Design', icon: '✦', title: 'UI/UX & Product Design', desc: 'Clear, conversion-aware interfaces with thoughtful user journeys, visual systems and scalable components.', tags: ['UX Research', 'UI Design', 'Design Systems', 'Prototyping'] },
+  { cat: 'Growth', icon: '⌁', title: 'Digital Marketing', desc: 'Full-funnel digital growth combining strategy, creative, paid media and measurable performance.', tags: ['Strategy', 'Paid Media', 'Social', 'Content', 'Analytics'] },
+  { cat: 'Growth', icon: '⌕', title: 'SEO & Search Visibility', desc: 'Technical, content and search-experience optimisation designed to improve discoverability across modern search.', tags: ['Technical SEO', 'AEO', 'GEO', 'Content', 'Analytics'] },
+  { cat: 'AI', icon: '✧', title: 'AI & Automation', desc: 'Practical AI solutions that reduce repetitive work, connect systems and create smarter customer experiences.', tags: ['AI Strategy', 'Automation', 'Chatbots', 'Integrations', 'Workflows'] },
+  { cat: 'Technology', icon: '▣', title: 'E-commerce Solutions', desc: 'Conversion-focused storefronts, product experiences and integrations built for sustainable online sales.', tags: ['Shopify', 'WooCommerce', 'Payments', 'CRO'] },
+  { cat: 'Technology', icon: '◫', title: 'IT & Technology Consulting', desc: 'Technical direction for digital transformation, infrastructure, security and scalable technology decisions.', tags: ['Architecture', 'Cloud', 'Security', 'Roadmaps'] },
+  { cat: 'Growth', icon: '◎', title: 'Data & Analytics', desc: 'Dashboards, attribution and actionable insights that turn fragmented digital data into better decisions.', tags: ['GA4', 'GTM', 'Dashboards', 'Attribution'] },
+];
+
+const CATEGORIES = ['All', 'Technology', 'Design', 'Growth', 'AI'];
+
+const CAPABILITIES = [
+  ['Frontend', 'React · Vite · TypeScript · Tailwind'],
+  ['Backend', 'Node.js · PHP · APIs · PostgreSQL'],
+  ['AI & Integrations', 'LLMs · Automation · CRM · Workflows'],
+  ['Cloud & DevOps', 'Deployment · CI/CD · Monitoring'],
+  ['Growth Stack', 'SEO · PPC · Social · Content'],
+  ['Measurement', 'GA4 · GTM · Dashboards · Attribution'],
+];
+
+const PROCESS_STEPS = [
+  ['01', 'Discover', 'Goals, audience, constraints and opportunities become a clear project brief.'],
+  ['02', 'Design', 'We shape the experience, architecture and roadmap before development begins.'],
+  ['03', 'Build', 'Focused sprints turn the plan into a tested, responsive digital product.'],
+  ['04', 'Launch & Grow', 'We measure, optimise and keep improving after the first release.'],
+];
+
+const MARQUEE_ITEMS = [
+  'React', 'Vite', 'TypeScript', 'Next.js', 'Node.js', 'Tailwind',
+  'Shopify', 'WordPress', 'OpenAI', 'Supabase', 'PostgreSQL', 'AWS',
+];
+
+/* ============================================================
+   HERO
+   ============================================================ */
+function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-24"
-      style={{ background: 'linear-gradient(135deg, #0a1128 0%, #0d1b3e 50%, #0a1128 100%)' }}
+      className="relative bg-[#f1f1f1] overflow-hidden pb-16 lg:pb-24"
+      style={{ paddingTop: '130px' }}
     >
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="cb-dots absolute inset-0" aria-hidden="true" />
+
+      <span className="cb-float-slow pointer-events-none absolute -right-[180px] -top-[180px] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.28),transparent_65%)] blur-3xl" />
+      <span className="cb-float pointer-events-none absolute -left-[160px] top-[220px] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(0,198,251,.22),transparent_65%)] blur-3xl" />
+      <span className="cb-pulse pointer-events-none absolute right-[20%] bottom-[-100px] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.18),transparent_70%)] blur-3xl" />
+
+      <div className="relative mx-auto w-[min(1180px,calc(100%-40px))]">
+        <div className="cb-fade-up">
+          <Eyebrow>✦ What we build</Eyebrow>
+        </div>
+
+        <h1 className="sec-h2 sec-text-dark cb-fade-up my-[24px] max-w-[900px] text-[clamp(48px,7vw,86px)] leading-[1.02] tracking-[-.055em]" style={{ animationDelay: '.1s' }}>
+          Digital products,
+          <br />
+          <span className="relative inline-block">
+            <span className="bg-gradient-to-r from-[#00C6FB] via-[#01ADF0] to-[#0087bd] bg-clip-text text-transparent">
+              engineered to move
+            </span>
+            <span className="cb-shine pointer-events-none absolute inset-0 bg-clip-text text-transparent">
+              engineered to move
+            </span>
+          </span>
+          <br />
+          your business forward.
+        </h1>
+
+        <p className="sec-p sec-text-dark-soft cb-fade-up m-0 max-w-[700px] text-[18px] leading-[1.75]" style={{ animationDelay: '.2s' }}>
+          From brand and experience to technology, AI and growth — CoderBox brings the right capabilities
+          together to solve real business problems and create digital experiences people remember.
+        </p>
+
+        <div className="mt-[38px] flex flex-wrap gap-3 cb-fade-up" style={{ animationDelay: '.3s' }}>
+          <a href="/contact" className="sec-btn group relative overflow-hidden">
+            <span className="relative z-10 inline-flex items-center gap-2">
+              Discuss your project <span className="arrow-right">→</span>
+            </span>
+            <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+          </a>
+          <a
+            href="#services"
+            className="inline-flex items-center gap-2 rounded-full border border-[#01ADF0]/30 bg-white px-[18px] py-[11px] font-semibold text-[#01ADF0] shadow-sm transition-all duration-[.25s] hover:border-[#01ADF0] hover:bg-[#01ADF0]/[.06] hover:shadow-md hover:shadow-[#01ADF0]/15"
+          >
+            Explore services <span className="arrow-down">↓</span>
+          </a>
+        </div>
+
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(74, 148, 214, 0.08) 0%, transparent 65%)' }}
-        />
-
-        {/* Floating Circles */}
-        <motion.div
-          className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.9) 0%, rgba(107, 33, 168, 0.7) 40%, rgba(76, 29, 149, 0.3) 70%, transparent 100%)',
-            boxShadow: '0 0 80px rgba(139, 92, 246, 0.4)',
-          }}
-          animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-[10%] left-[10%] w-[180px] h-[180px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle at 40% 40%, rgba(126, 34, 206, 0.85) 0%, rgba(88, 28, 135, 0.6) 45%, rgba(59, 7, 100, 0.25) 75%, transparent 100%)',
-            boxShadow: '0 0 100px rgba(126, 34, 206, 0.35)',
-          }}
-          animate={{ y: [0, 35, 0, -25, 0], x: [0, -25, 0, 30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle at 60% 40%, rgba(147, 51, 234, 0.85) 0%, rgba(107, 33, 168, 0.55) 45%, rgba(76, 29, 149, 0.2) 75%, transparent 100%)',
-            boxShadow: '0 0 90px rgba(147, 51, 234, 0.35)',
-          }}
-          animate={{ y: [0, -25, 0, 30, 0], x: [0, 25, 0, -20, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        {/* Data Chart Wireframe SVG */}
-        <motion.svg
-          className="absolute top-[10%] right-[12%] w-[420px] h-[420px] opacity-40"
-          viewBox="0 0 400 400"
-          fill="none"
-          style={{ filter: 'drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))' }}
-          animate={{ y: [0, 20, 0, -15, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="cb-fade-up mt-[72px] grid overflow-hidden rounded-[18px] border border-[#66adff]/[.16] bg-[#66adff]/[.16] shadow-[0_24px_60px_rgba(1,20,50,.18)] sm:grid-cols-3 sm:gap-px"
+          style={{ animationDelay: '.4s' }}
         >
-          <defs>
-            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.7" />
-              <stop offset="50%" stopColor="#A855F7" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.7" />
-            </linearGradient>
-          </defs>
-          {/* Grid lines */}
-          {[0, 1, 2, 3, 4].map((i) => (
-            <line key={`h-${i}`} x1="40" y1={60 + i * 70} x2="360" y2={60 + i * 70} stroke="#60A5FA" strokeWidth="0.3" opacity="0.3" />
-          ))}
-          {[0, 1, 2, 3, 4].map((i) => (
-            <line key={`v-${i}`} x1={40 + i * 80} y1="60" x2={40 + i * 80} y2="340" stroke="#60A5FA" strokeWidth="0.3" opacity="0.3" />
-          ))}
-          {/* Rising bars */}
           {[
-            { x: 60, h: 80 },
-            { x: 120, h: 140 },
-            { x: 180, h: 180 },
-            { x: 240, h: 220 },
-            { x: 300, h: 260 },
-          ].map((bar, i) => (
-            <motion.rect
-              key={i}
-              x={bar.x}
-              y={340 - bar.h}
-              width="40"
-              height={bar.h}
-              fill="url(#lineGrad)"
-              opacity="0.4"
-              rx="4"
-              animate={{ y: [340 - bar.h, 340 - bar.h - 10, 340 - bar.h] }}
-              transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
-            />
+            ['Design → Build', 'One connected delivery team'],
+            ['Web + AI', 'Modern technology stack'],
+            ['Growth-led', 'Built around measurable outcomes'],
+          ].map(([b, s]) => (
+            <div key={b} className="bg-[#061221]/90 p-[23px]">
+              <p className="m-0 font-['Space_Grotesk'] text-2xl font-semibold text-white">{b}</p>
+              <span className="mt-[5px] block text-[13px] text-[#9aaec5]">{s}</span>
+            </div>
           ))}
-          {/* Trend line */}
-          <motion.polyline
-            points="60,260 120,200 180,140 240,100 300,60"
-            stroke="url(#lineGrad)"
-            strokeWidth="2.5"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-          />
-        </motion.svg>
-
-        {/* Rotated Square */}
-        <motion.div
-          className="absolute top-[25%] right-[8%] w-[120px] h-[120px] rounded-2xl"
-          style={{
-            background: 'linear-gradient(135deg, rgba(96, 165, 250, 0.3) 0%, rgba(59, 130, 246, 0.05) 100%)',
-            boxShadow: '0 0 50px rgba(96, 165, 250, 0.15)',
-            border: '1px solid rgba(96, 165, 250, 0.2)',
-            transform: 'rotate(45deg)',
-          }}
-          animate={{ rotate: [45, 55, 45], y: [0, 25, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        {/* Particles */}
-        {[...Array(50)].map((_, i) => {
-          const size = Math.random() * 5 + 3;
-          return (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-white"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${size}px`,
-                height: `${size}px`,
-                boxShadow: `0 0 ${size * 3}px rgba(255, 255, 255, 0.9), 0 0 ${size * 6}px rgba(96, 165, 250, 0.6)`,
-              }}
-              animate={{ opacity: [0.15, 0.95, 0.15], scale: [1, 1.6, 1] }}
-              transition={{
-                duration: 1.5 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: 'easeInOut',
-              }}
-            />
-          );
-        })}
-
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px)`,
-            backgroundSize: '80px 80px',
-          }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <motion.span
-            className="sec-badge inline-block"
-            whileHover={{ scale: 1.05 }}
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            Data Analytics
-          </motion.span>
-
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-3 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-          >
-            Turn Raw Data Into{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#A855F7] bg-clip-text text-transparent">
-              Revenue-Driving Decisions
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-base sm:text-lg md:text-xl text-white/70 mt-6 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          >
-            We help enterprises transform complex data into actionable insights that drive smarter marketing, reduce risk, and unlock measurable business growth.
-          </motion.p>
-
-          <motion.div
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
-          >
-            <motion.a
-              href="/contact"
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] px-7 py-3.5 font-semibold text-white shadow-lg shadow-[#01ADF0]/30 hover:shadow-xl hover:shadow-[#01ADF0]/40 transition-all duration-300"
-            >
-              Get a Free Data Audit
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </motion.a>
-            <motion.a
-              href="#services"
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition-all duration-300"
-            >
-              Explore Solutions
-            </motion.a>
-          </motion.div>
-
-          {/* Trust Stats */}
-          <motion.div
-            className="mt-16 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            {[
-              { val: '10+', label: 'Years Expertise' },
-              { val: '300+', label: 'Projects Delivered' },
-              { val: '4.8/5', label: 'Client Rating' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{stat.val}</div>
-                <div className="text-xs sm:text-sm text-white/60 mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
-// ============================================
-// 2. DATA OPPORTUNITY SECTION
-// ============================================
-const DataOpportunity = () => {
-  const stats = [
-    { icon: Database, val: '181 ZB', label: 'Data generated globally by 2025', color: '#01ADF0' },
-    { icon: TrendingUp, val: '23x', label: 'More customer acquisition with analytics', color: '#00C6FB' },
-    { icon: Users, val: '6x', label: 'Higher customer retention rates', color: '#008FD1' },
-    { icon: DollarSign, val: '19x', label: 'More likely to be profitable', color: '#005B8F' },
-  ];
-
-  return (
-    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#E6F8FF] via-white to-[#E6F8FF] overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            The Data Opportunity
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Data is the New{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Lifeline of Your Enterprise
-            </span>
-          </motion.h2>
-          <motion.p
-            className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            By 2025, the world will generate 181 zettabytes of data annually — yet most organizations still struggle to extract meaningful value from it. The gap isn't data. It's insight.
-          </motion.p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
-          {stats.map((stat, idx) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-gray-100 hover:shadow-2xl hover:shadow-[#01ADF0]/20 hover:-translate-y-2 transition-all duration-500"
-              >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 shadow-lg"
-                  style={{ backgroundColor: stat.color, boxShadow: `0 8px 20px ${stat.color}40` }}
-                >
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-2xl sm:text-3xl font-bold text-[#003F7D] mb-1">{stat.val}</div>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">{stat.label}</p>
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>
   );
-};
+}
 
-// ============================================
-// 3. SERVICES SECTION
-// ============================================
-const DataServices = () => {
-  const services = [
-    {
-      icon: Database,
-      title: 'Data Engineering & ETL',
-      desc: 'Build robust ETL/ELT pipelines to ingest and prepare data from APIs, applications, IoT systems, and legacy databases.',
-      tech: ['Apache Spark', 'Kafka', 'Airflow', 'dbt', 'Snowflake'],
-      color: '#01ADF0',
-    },
-    {
-      icon: BarChart3,
-      title: 'Business Intelligence',
-      desc: 'Interactive dashboards and KPI reporting systems that translate large volumes of data into meaningful summaries.',
-      tech: ['Power BI', 'Tableau', 'Looker', 'Qlik'],
-      color: '#00C6FB',
-    },
-    {
-      icon: Brain,
-      title: 'Predictive Analytics',
-      desc: 'Forecast future trends, identify patterns, and prescribe actions using machine learning and statistical models.',
-      tech: ['Python', 'TensorFlow', 'Scikit-learn', 'MLflow'],
-      color: '#008FD1',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Marketing Analytics',
-      desc: 'Full-funnel marketing analytics to illuminate the customer journey, optimize conversions, and maximize ROI.',
-      tech: ['GA4', 'HubSpot', 'Attribution', 'A/B Testing'],
-      color: '#005B8F',
-    },
-    {
-      icon: DollarSign,
-      title: 'Financial & Risk Analytics',
-      desc: 'Financial data analysis that indicates viability, stability, and profitability. Risk modeling for mitigation.',
-      tech: ['SQL', 'Python', 'Risk Models', 'Forecasting'],
-      color: '#03B4F6',
-    },
-    {
-      icon: Sparkles,
-      title: 'Data Science & AI',
-      desc: 'Customized statistical algorithms and models tailored to your business needs and growth roadmap.',
-      tech: ['AutoML', 'Generative AI', 'Deep Learning', 'NLP'],
-      color: '#006FA6',
-    },
-  ];
-
+/* ============================================================
+   MARQUEE STRIP
+   ============================================================ */
+function Marquee() {
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
-    <section id="services" className="py-6 sm:py-8 md:py-10 lg:py-12 bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <section className="relative border-y border-gray-200 bg-white/60 py-6 overflow-hidden">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f1f1f1] to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#f1f1f1] to-transparent z-10" />
 
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            Our Services
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div className="cb-marquee-track">
+        {items.map((item, i) => (
+          <span
+            key={i}
+            className="mx-8 text-[15px] font-semibold tracking-wide text-[#8fa3b8] whitespace-nowrap"
           >
-            End-to-End{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Data Analytics Capabilities
-            </span>
-          </motion.h2>
-          <motion.p
-            className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            From data engineering to predictive modeling — we cover the entire analytics lifecycle.
-          </motion.p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, idx) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="group relative bg-white h-full rounded-2xl p-6 shadow-md border border-gray-100 overflow-hidden transition-all duration-500 transform-gpu hover:-translate-y-2 hover:shadow-2xl hover:border-[#01ADF0]/30"
-              >
-                {/* Top gradient bar */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-1 -translate-y-full group-hover:translate-y-0 transition-transform duration-500"
-                  style={{ background: `linear-gradient(to right, ${service.color}, #01ADF0)` }}
-                ></div>
-
-                <div className="relative z-10">
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-5 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
-                    style={{ backgroundColor: service.color, boxShadow: `0 8px 20px ${service.color}40` }}
-                  >
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-[#003F7D] mb-3 group-hover:text-[#008FD1] transition-colors duration-300">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{service.desc}</p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-gray-100">
-                    {service.tech.map((t, i) => (
-                      <span
-                        key={i}
-                        className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-[#01ADF0]/10 text-[#008FD1] border border-[#01ADF0]/20"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* CTA */}
-        <motion.div
-          className="text-center mt-10 sm:mt-12"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-          viewport={{ once: true }}
-        >
-          <motion.a
-            href="/contact"
-            whileTap={{ scale: 0.95 }}
-            className="sec-btn inline-flex items-center gap-2"
-          >
-            Talk to a Data Expert
-            <ArrowRight className="h-4 w-4" />
-          </motion.a>
-        </motion.div>
+            <span className="mr-3 text-[#01ADF0]">◆</span>
+            {item}
+          </span>
+        ))}
       </div>
     </section>
   );
-};
+}
 
-// ============================================
-// 4. PROCESS SECTION
-// ============================================
-const DataProcess = () => {
-  const steps = [
-    { num: '01', title: 'Discover & Assess', desc: 'We understand your business objectives, data landscape, and identify high-impact opportunities.' },
-    { num: '02', title: 'Prepare & Integrate', desc: 'We collect, clean, and integrate data from all sources into a unified analytics environment.' },
-    { num: '03', title: 'Model & Analyze', desc: 'We apply statistical models and machine learning to uncover patterns, trends, and predictions.' },
-    { num: '04', title: 'Visualize & Communicate', desc: 'We build interactive dashboards and reports that tell a clear, compelling data story.' },
-    { num: '05', title: 'Operationalize & Optimize', desc: 'We help you embed insights into daily workflows and continuously refine models for ongoing improvement.' },
-  ];
+/* ============================================================
+   SERVICES
+   ============================================================ */
+function ServicesSection() {
+  const [filter, setFilter] = useState('All');
+  const visible = filter === 'All' ? serviceData : serviceData.filter((s) => s.cat === filter);
 
   return (
-    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#E6F8FF] via-white to-[#E6F8FF] overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <section id="services" className="relative bg-[#f1f1f1] px-0 py-[110px] overflow-hidden">
+      <div className="cb-dots absolute inset-0" aria-hidden="true" />
 
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            Our Process
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            A Proven 5-Step Approach to{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Data-Driven Success
-            </span>
-          </motion.h2>
-          <motion.p
-            className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            We follow a repeatable, transparent cycle that ensures you see value at every stage.
-          </motion.p>
-        </motion.div>
+      <span className="pointer-events-none absolute right-[-200px] top-[10%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.08),transparent_70%)] blur-3xl" />
 
-        <div className="relative max-w-5xl mx-auto">
-          {/* Center line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#01ADF0]/30 to-transparent -translate-x-1/2"></div>
-
-          <div className="space-y-8 md:space-y-12">
-            {steps.map((step, idx) => {
-              const isLeft = idx % 2 === 0;
-              return (
-                <motion.div
-                  key={step.num}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="relative grid md:grid-cols-2 gap-8 md:gap-0 items-center"
-                >
-                  {/* Card */}
-                  <div className={`pl-14 md:pl-0 ${isLeft ? 'md:pr-16 md:text-right' : 'md:col-start-2 md:pl-16'}`}>
-                    <div className="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-[#00C6FB]/10 to-[#01ADF0]/10 border border-[#01ADF0]/20 text-[#008FD1] text-xs font-bold uppercase tracking-widest mb-3">
-                      Step {step.num}
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#003F7D] mb-3">{step.title}</h3>
-                    <p className={`text-sm sm:text-base text-gray-600 leading-relaxed max-w-md ${isLeft ? 'md:ml-auto' : ''}`}>
-                      {step.desc}
-                    </p>
-                  </div>
-
-                  {/* Center dot */}
-                  <div className="absolute left-4 md:left-1/2 top-2 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-10">
-                    <div className="relative">
-                      <div className="absolute inset-0 rounded-full bg-[#01ADF0]/30 blur-md animate-pulse" />
-                      <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#00C6FB] to-[#01ADF0] flex items-center justify-center shadow-xl shadow-[#01ADF0]/40 border-4 border-white">
-                        <span className="text-white font-bold text-sm md:text-base">{step.num}</span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+      <div className="relative mx-auto w-[min(1180px,calc(100%-40px))]">
+        <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+          <div>
+            <Eyebrow>Our services</Eyebrow>
+            <h2 className="sec-h2 sec-text-dark mt-4 text-[clamp(32px,4vw,52px)] leading-[1.05] tracking-[-.04em]">
+              Everything your digital
+              <br />
+              product needs.
+            </h2>
           </div>
+          <p className="sec-p sec-text-dark-soft m-0 max-w-[490px] leading-[1.7]">
+            Choose a focused capability or combine multiple services into one integrated engagement.
+            We design around the problem first, then bring the right specialists and technology to solve it.
+          </p>
         </div>
-      </div>
-    </section>
-  );
-};
 
-// ============================================
-// 5. INDUSTRIES SECTION
-// ============================================
-const DataIndustries = () => {
-  const industries = [
-    { icon: ShoppingCart, title: 'E-Commerce & Retail', desc: 'Customer behavior, inventory optimization, demand forecasting', color: '#01ADF0' },
-    { icon: DollarSign, title: 'BFSI', desc: 'Credit risk modeling, fraud detection, customer churn prediction', color: '#00C6FB' },
-    { icon: HeartPulse, title: 'Healthcare', desc: 'Patient analytics, operational efficiency, predictive diagnostics', color: '#008FD1' },
-    { icon: Factory, title: 'Manufacturing', desc: 'Supply chain analytics, predictive maintenance, quality control', color: '#005B8F' },
-    { icon: Server, title: 'SaaS & Technology', desc: 'Product analytics, user behavior, churn prevention', color: '#03B4F6' },
-    { icon: Target, title: 'Marketing & Media', desc: 'Campaign analytics, attribution modeling, audience segmentation', color: '#006FA6' },
-  ];
-
-  return (
-    <section className="py-6 sm:py-8 md:py-10 lg:py-12 bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            Industries
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Tailored Analytics for{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Every Industry
-            </span>
-          </motion.h2>
-          <motion.p
-            className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Our expertise spans diverse sectors with solutions designed to meet specific requirements.
-          </motion.p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {industries.map((ind, idx) => {
-            const Icon = ind.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="group relative bg-gradient-to-br from-white to-[#F8FCFF] rounded-xl p-5 border border-gray-100 hover:border-[#01ADF0]/30 shadow-sm hover:shadow-xl hover:shadow-[#01ADF0]/10 hover:-translate-y-1 transition-all duration-500"
-              >
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: `${ind.color}15`, border: `1px solid ${ind.color}30` }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: ind.color }} />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-[#003F7D] mb-1 group-hover:text-[#008FD1] transition-colors">
-                      {ind.title}
-                    </h3>
-                    <p className="text-xs text-gray-600 leading-relaxed">{ind.desc}</p>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ============================================
-// 6. WHY CHOOSE US SECTION
-// ============================================
-const DataWhyUs = () => {
-  const reasons = [
-    { icon: Target, title: 'Results-Driven Approach', desc: 'We focus on meaningful outcomes — not vanity metrics. Every analytics initiative is tied to clear business KPIs.', color: '#003F7D' },
-    { icon: Layers, title: 'End-to-End Capabilities', desc: 'From data engineering to predictive modeling, we cover the entire analytics stack under one roof.', color: '#166534' },
-    { icon: Zap, title: 'Fast Time-to-Value', desc: 'Our agile delivery model ensures you see actionable insights within weeks, not months.', color: '#9A3412' },
-    { icon: Shield, title: 'Enterprise-Grade Security', desc: 'Your data is protected with industry-leading security, compliance, and governance frameworks.', color: '#9D174D' },
-  ];
-
-  return (
-    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#E6F8FF] via-white to-[#E6F8FF] overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            Why Choose Us
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Your Data. Our Expertise.{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Measurable Results.
-            </span>
-          </motion.h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {reasons.map((r, idx) => {
-            const Icon = r.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="group bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-2xl hover:shadow-[#01ADF0]/20 hover:-translate-y-2 transition-all duration-500"
-              >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
-                  style={{ backgroundColor: r.color, boxShadow: `0 8px 20px ${r.color}40` }}
-                >
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-[#003F7D] mb-2 group-hover:text-[#008FD1] transition-colors">
-                  {r.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{r.desc}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ============================================
-// 7. TECH STACK SECTION
-// ============================================
-const DataTechStack = () => {
-  const categories = [
-    { title: 'Business Intelligence', icon: BarChart3, color: '#01ADF0', items: ['Power BI', 'Tableau', 'Looker', 'Qlik', 'Metabase'] },
-    { title: 'Data Engineering', icon: Database, color: '#00C6FB', items: ['Apache Spark', 'Kafka', 'Airflow', 'dbt', 'Snowflake'] },
-    { title: 'Data Science & ML', icon: Brain, color: '#008FD1', items: ['Python', 'R', 'TensorFlow', 'PyTorch', 'MLflow'] },
-    { title: 'Cloud Platforms', icon: Cloud, color: '#005B8F', items: ['AWS', 'Azure', 'Google Cloud', 'Databricks'] },
-    { title: 'Databases & Warehouses', icon: Server, color: '#03B4F6', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Snowflake', 'Redshift'] },
-  ];
-
-  return (
-    <section className="py-6 sm:py-8 md:py-10 lg:py-12 bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            Technologies
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Modern{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Analytics Stack
-            </span>
-          </motion.h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {categories.map((cat, idx) => {
-            const Icon = cat.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="group bg-gradient-to-br from-white to-[#F8FCFF] rounded-xl p-5 border border-gray-100 hover:border-[#01ADF0]/30 shadow-sm hover:shadow-xl hover:shadow-[#01ADF0]/10 transition-all duration-500"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: `${cat.color}15` }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: cat.color }} />
-                  </div>
-                  <h3 className="text-base font-bold text-[#003F7D]">{cat.title}</h3>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {cat.items.map((item, i) => (
-                    <span
-                      key={i}
-                      className="text-xs font-medium px-2.5 py-1 rounded-md bg-white border border-gray-200 text-gray-700 hover:border-[#01ADF0]/40 hover:text-[#008FD1] transition-colors cursor-default"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ============================================
-// 8. CASE STUDIES SECTION
-// ============================================
-const DataCaseStudies = () => {
-  const cases = [
-    {
-      industry: 'E-Commerce',
-      title: 'Customer Churn Reduction',
-      challenge: 'High customer churn and poor campaign ROI',
-      solution: 'Predictive churn model + marketing attribution dashboard',
-      results: [
-        { val: '40%', label: 'Reduction in churn' },
-        { val: '3.2x', label: 'ROI on ad spend' },
-      ],
-      color: '#01ADF0',
-    },
-    {
-      industry: 'Manufacturing',
-      title: 'Equipment Downtime Reduction',
-      challenge: 'Unplanned equipment downtime',
-      solution: 'Predictive maintenance model using IoT sensor data',
-      results: [
-        { val: '35%', label: 'Reduction in downtime' },
-        { val: '$2M', label: 'Annual savings' },
-      ],
-      color: '#00C6FB',
-    },
-  ];
-
-  return (
-    <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-gradient-to-b from-[#E6F8FF] via-white to-[#E6F8FF] overflow-hidden">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            Success Stories
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Real Results,{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Real Impact
-            </span>
-          </motion.h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {cases.map((c, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="relative overflow-hidden bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:shadow-[#01ADF0]/20 hover:-translate-y-2 transition-all duration-500"
+        <div className="mb-10 flex flex-wrap gap-2">
+          {CATEGORIES.map((c) => (
+            <button
+              key={c}
+              onClick={() => setFilter(c)}
+              className={`rounded-full border px-[18px] py-[10px] text-sm font-semibold transition-all duration-[.25s] ${
+                filter === c
+                  ? 'border-transparent bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] text-white shadow-lg shadow-[#01ADF0]/30 scale-[1.03]'
+                  : 'border-gray-200 bg-white text-[#4a5a6b] hover:border-[#01ADF0] hover:text-[#01ADF0] hover:shadow-sm'
+              }`}
             >
-              {/* Accent Bar */}
-              <div
-                className="absolute top-0 left-0 right-0 h-1.5"
-                style={{ background: `linear-gradient(to right, ${c.color}, #01ADF0)` }}
-              />
+              {c}
+            </button>
+          ))}
+        </div>
 
-              <div className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
-                style={{ backgroundColor: `${c.color}15`, color: c.color }}>
-                {c.industry}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((s, i) => (
+            <article
+              key={s.title}
+              className="cb-grad-border group relative min-h-[340px] overflow-hidden bg-white p-[28px] shadow-[0_6px_24px_rgba(15,40,80,.05)] transition-all duration-500 hover:-translate-y-[8px] hover:shadow-[0_28px_60px_rgba(1,173,240,.2)]"
+            >
+              <span className="pointer-events-none absolute -bottom-[80px] -right-[80px] h-[200px] w-[200px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="flex items-center justify-between">
+                <div className="font-['Space_Grotesk'] text-[13px] font-semibold tracking-[.06em] text-[#01ADF0]">
+                  {String(i + 1).padStart(2, '0')} · {s.cat}
+                </div>
+                <span className="text-[#01ADF0] opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">→</span>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-[#003F7D] mb-5">{c.title}</h3>
-
-              <div className="space-y-3 mb-6">
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-red-500 text-xs font-bold">!</span>
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    <strong className="text-gray-800">Challenge:</strong> {c.challenge}
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                    <Lightbulb className="w-3 h-3 text-blue-500" />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    <strong className="text-gray-800">Solution:</strong> {c.solution}
-                  </p>
-                </div>
+              <div className="my-5 grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-[#00C6FB] to-[#01ADF0] text-[22px] text-white shadow-lg shadow-[#01ADF0]/30 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                {s.icon}
               </div>
 
-              {/* Results Grid */}
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
-                {c.results.map((r, i) => (
-                  <div key={i}>
-                    <div className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: c.color }}>{r.val}</div>
-                    <div className="text-xs text-gray-500 font-medium">{r.label}</div>
-                  </div>
+              <h3 className="sec-h2 sec-text-dark mb-3 text-[22px] leading-[1.1]">
+                {s.title}
+              </h3>
+
+              <p className="sec-p sec-text-dark-soft mb-5 text-sm leading-[1.65]">{s.desc}</p>
+
+              <div className="flex flex-wrap gap-[7px]">
+                {s.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-[#01ADF0]/20 bg-[#01ADF0]/[.06] px-[10px] py-[6px] text-[11px] font-medium text-[#0087bd] transition-colors group-hover:bg-[#01ADF0]/[.12]"
+                  >
+                    {t}
+                  </span>
                 ))}
               </div>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
-};
+}
 
-// ============================================
-// 9. FAQ SECTION
-// ============================================
-const DataFAQ = () => {
-  const [openIdx, setOpenIdx] = useState(0);
-
-  const faqs = [
-    {
-      q: 'How long does a typical data analytics project take?',
-      a: 'Timelines vary by scope, but most initial analytics dashboards are delivered within 4–6 weeks. Predictive models typically take 8–12 weeks.',
-    },
-    {
-      q: 'Do you work with our existing data infrastructure?',
-      a: 'Yes. We integrate with your existing systems — whether on-premise, cloud-based, or hybrid. Our team adapts to your environment, not the other way around.',
-    },
-    {
-      q: 'What industries do you specialize in?',
-      a: 'We have deep experience in E-Commerce, BFSI, Healthcare, Manufacturing, SaaS, and Marketing & Media.',
-    },
-    {
-      q: 'How do you ensure data security?',
-      a: 'We follow enterprise-grade security protocols including encryption, access controls, and compliance with GDPR and industry-specific regulations.',
-    },
-    {
-      q: 'Do you provide ongoing support?',
-      a: 'Yes. We offer continuous optimization, monitoring, and support packages to ensure your analytics ecosystem evolves with your business.',
-    },
-  ];
-
+/* ============================================================
+   CAPABILITIES  ← dark
+   ============================================================ */
+function Capabilities() {
   return (
-    <section className="py-6 sm:py-8 md:py-10 lg:py-12 bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#01ADF0]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#00C6FB]/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <section className="relative border-y border-[#66adff]/[.16] bg-gradient-to-r from-[#0d2440] via-[#071a2e] to-[#040d19] px-0 py-[110px] overflow-hidden">
+      <span className="pointer-events-none absolute -top-40 left-1/3 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.22),transparent_65%)] blur-3xl cb-float-slow" />
+      <span className="pointer-events-none absolute bottom-[-200px] right-[-100px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(0,198,251,.18),transparent_65%)] blur-3xl cb-float" />
 
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center mb-4 sm:mb-5 md:mb-6"
-        >
-          <motion.span className="sec-badge inline-block" whileHover={{ scale: 1.05 }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2, repeat: Infinity }}>
-            FAQs
-          </motion.span>
-          <motion.h2
-            className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            Answers to{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
-              Common Questions
-            </span>
-          </motion.h2>
-        </motion.div>
-
-        <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map((faq, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.06 }}
-              className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
-            >
-              <button
-                onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-                className="w-full flex items-center justify-between gap-4 p-5 text-left"
-              >
-                <span className="text-base sm:text-lg font-semibold text-[#003F7D]">{faq.q}</span>
-                <div className="shrink-0 w-8 h-8 rounded-full bg-[#01ADF0]/10 flex items-center justify-center">
-                  {openIdx === idx ? (
-                    <ChevronUp className="w-4 h-4 text-[#008FD1]" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-[#008FD1]" />
-                  )}
-                </div>
-              </button>
-
-              <AnimatePresence>
-                {openIdx === idx && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-5 pb-5 pt-0">
-                      <div className="pt-3 border-t border-gray-100">
-                        <p className="text-sm text-gray-600 leading-relaxed">{faq.a}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ============================================
-// 10. FINAL CTA SECTION
-// ============================================
-const DataCTA = () => {
-  return (
-    <section className="relative py-10 sm:py-12 md:py-16 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(135deg, #0a1128 0%, #0d1b3e 50%, #0a1128 100%)' }}
-      />
-
-      {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-50"
-        style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.15) 0%, transparent 60%)' }} />
-
-      {/* Particles */}
-      {[...Array(20)].map((_, i) => {
-        const size = Math.random() * 4 + 2;
-        return (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${size}px`,
-              height: `${size}px`,
-              boxShadow: `0 0 ${size * 3}px rgba(96, 165, 250, 0.6)`,
-            }}
-            animate={{ opacity: [0.15, 0.8, 0.15], scale: [1, 1.4, 1] }}
-            transition={{ duration: 2 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3 }}
-          />
-        );
-      })}
-
-      <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <motion.span
-            className="sec-badge inline-block"
-            whileHover={{ scale: 1.05 }}
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            Let's Get Started
-          </motion.span>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 leading-tight">
-            Ready to Unlock the Power of{' '}
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#A855F7] bg-clip-text text-transparent">
-              Your Data?
-            </span>
-          </h2>
-
-          <p className="text-base sm:text-lg text-white/70 mt-5 max-w-2xl mx-auto">
-            Whether you're launching a new analytics initiative or transforming an existing one, TheCoderBox is ready to help.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <motion.a
-              href="/contact"
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] px-7 py-3.5 font-semibold text-white shadow-lg shadow-[#01ADF0]/30 hover:shadow-xl hover:shadow-[#01ADF0]/50 transition-all duration-300"
-            >
-              Start Your Data Journey
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </motion.a>
-            <motion.a
-              href="/contact"
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition-all duration-300"
-            >
-              Schedule a Free Consultation
-            </motion.a>
+      <div className="relative mx-auto w-[min(1180px,calc(100%-40px))]">
+        <div className="grid items-start gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-[80px]">
+          <div>
+            <DarkEyebrow>◆ Capabilities</DarkEyebrow>
+            <h2 className="mt-4 font-['Space_Grotesk'] text-[clamp(32px,4vw,52px)] font-bold leading-[1.05] tracking-[-.04em] text-[#f5f8ff]">
+              One team.
+              <br />
+              <span className="bg-gradient-to-r from-white via-[#54c9ff] to-[#0087bd] bg-clip-text text-transparent">
+                Every layer of the product.
+              </span>
+            </h2>
+            <p className="m-0 mt-6 text-[15px] leading-[1.75] text-[#9aaec5]">
+              Design, development, data, marketing and AI work better when they are connected.
+              Our multidisciplinary approach reduces handoff gaps and keeps the product focused on the outcome.
+            </p>
           </div>
 
-          <p className="text-xs sm:text-sm text-white/50 mt-6">
-            No commitment. No pressure. Just a conversation about your data goals.
-          </p>
-        </motion.div>
+          <div className="grid border-t border-[#66adff]/[.16] sm:grid-cols-2">
+            {CAPABILITIES.map(([title, stack], i) => (
+              <div
+                key={title}
+                className={`group border-b border-[#66adff]/[.16] py-[26px] transition-colors hover:bg-[#01ADF0]/[.05] ${
+                  i % 2 === 0 ? 'sm:border-r sm:border-[#66adff]/[.16] sm:pr-8' : 'sm:pl-8'
+                }`}
+              >
+                <strong className="mb-2 flex items-center gap-2 font-['Space_Grotesk'] text-[15px] font-semibold text-[#f5f8ff]">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#01ADF0] shadow-[0_0_10px_rgba(1,173,240,.9)] transition-transform duration-300 group-hover:scale-150" />
+                  {title}
+                </strong>
+                <span className="text-[13px] leading-[1.6] text-[#9aaec5]">{stack}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
-};
+}
 
-// ============================================
-// MAIN COMPONENT
-// ============================================
-const DataAnalytics = () => {
+/* ============================================================
+   PROCESS  ← dark
+   ============================================================ */
+function Process() {
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden font-sans">
-      <DataHero />
-      <DataOpportunity />
-      <DataServices />
-      <DataProcess />
-      <DataIndustries />
-      <DataWhyUs />
-      <DataTechStack />
-      <DataCaseStudies />
-      <DataFAQ />
-      <DataCTA />
+    <section className="relative border-y border-[#66adff]/[.16] bg-gradient-to-b from-[#0a1a2f] via-[#061225] to-[#040d19] px-0 py-[110px] overflow-hidden">
+      <span className="pointer-events-none absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.15),transparent_65%)] blur-3xl cb-float-slow" />
+      <span className="pointer-events-none absolute bottom-[-180px] right-[-80px] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(0,198,251,.12),transparent_65%)] blur-3xl cb-float" />
+
+      <div className="relative mx-auto w-[min(1180px,calc(100%-40px))]">
+        <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+          <div>
+            <DarkEyebrow>How we work</DarkEyebrow>
+            <h2 className="mt-4 font-['Space_Grotesk'] text-[clamp(32px,4vw,52px)] font-bold leading-[1.05] tracking-[-.04em] text-[#f5f8ff]">
+              From first idea
+              <br />
+              to measurable impact.
+            </h2>
+          </div>
+          <p className="m-0 max-w-[490px] leading-[1.7] text-[#9aaec5]">
+            A simple delivery model keeps decisions clear, feedback fast and every build tied to a business objective.
+          </p>
+        </div>
+
+        <div className="grid overflow-hidden rounded-[22px] border border-[#66adff]/[.16] bg-[#66adff]/[.12] sm:grid-cols-2 sm:gap-px lg:grid-cols-4">
+          {PROCESS_STEPS.map(([no, title, desc]) => (
+            <div
+              key={no}
+              className="group relative min-h-[230px] bg-[#061221]/95 p-[28px_24px] transition-colors hover:bg-[#0a1a30]"
+            >
+              <div className="font-['Space_Grotesk'] text-[13px] font-bold tracking-[.08em] text-[#28a9ff]">
+                {no}
+              </div>
+              <h3 className="mb-2.5 mt-[55px] font-['Space_Grotesk'] text-[19px] font-semibold leading-[1.15] text-white">
+                {title}
+              </h3>
+              <p className="m-0 text-[13px] leading-[1.6] text-[#9aaec5]">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+function CTA() {
+  return (
+    <section className="bg-[#f1f1f1] px-0 py-[120px] overflow-hidden">
+      <div className="mx-auto w-[min(1180px,calc(100%-40px))]">
+        <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-[#00C6FB] via-[#01ADF0] to-[#003F7D] p-8 shadow-2xl shadow-[#01ADF0]/30 sm:p-[56px]">
+          <span className="pointer-events-none absolute -bottom-24 left-[30%] h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.35),transparent_70%)] blur-2xl cb-float-slow" />
+          <span className="pointer-events-none absolute -top-20 right-[-40px] h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.25),transparent_70%)] blur-2xl cb-float" />
+
+          <div className="relative">
+            <span className="inline-block rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[.18em] text-white backdrop-blur-sm">
+              ✦ Let's build something useful
+            </span>
+
+            <h2 className="mt-5 max-w-[720px] font-['Space_Grotesk'] text-[clamp(32px,5vw,58px)] font-bold leading-[1.05] tracking-[-.04em] text-white">
+              Have a digital idea in mind?
+              <br />
+              <span className="bg-gradient-to-r from-white to-[#d6f4ff] bg-clip-text text-transparent">
+                Let's turn it into reality.
+              </span>
+            </h2>
+
+            <p className="relative m-0 mt-5 max-w-[620px] leading-[1.75] text-white/85">
+              Tell us what you are trying to achieve. We'll help you identify the right combination
+              of strategy, design, technology and growth.
+            </p>
+
+            <a
+              href="/contact"
+              className="group relative mt-[28px] inline-flex items-center gap-2 rounded-full bg-white px-[24px] py-[13px] font-semibold text-[#01ADF0] shadow-lg shadow-[#003F7D]/25 transition-transform hover:-translate-y-0.5"
+            >
+              Start a conversation <span className="arrow-right">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+export default function ServicesPage() {
+  return (
+    <div className="min-h-screen bg-[#f1f1f1] font-['DM_Sans',sans-serif] sec-text-dark">
+      <GlobalStyles />
+      <main>
+        <Hero />
+        <Marquee />
+        <ServicesSection />
+        <Capabilities />
+        <Process />
+        <CTA />
+      </main>
     </div>
   );
-};
-
-export default DataAnalytics;
+}
