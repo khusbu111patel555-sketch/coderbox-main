@@ -5511,7 +5511,6 @@
 
 
 
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Send, Mail, Phone, CheckCircle, AlertCircle } from 'lucide-react';
@@ -5525,7 +5524,6 @@ const Footer = () => {
   const [error, setError] = useState('');
   const currentYear = new Date().getFullYear();
 
-  // ============= NAVIGATION LINKS =============
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/aboutUs' },
@@ -5534,7 +5532,6 @@ const Footer = () => {
     { name: 'Contact Us', path: '/contact' },
   ];
 
-  // ============= SOCIAL LINKS =============
   const socialLinks = [
     {
       name: 'Facebook',
@@ -5578,7 +5575,6 @@ const Footer = () => {
     },
   ];
 
-  // ============= HANDLE SUBSCRIBE (SUPABASE) =============
   const handleSubscribe = async (e) => {
     e.preventDefault();
     setError('');
@@ -5592,7 +5588,7 @@ const Footer = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('subscribers')
         .insert([{ email: email }]);
 
@@ -5631,12 +5627,12 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-[#f8f8f8] border-t border-gray-200">
-      {/* ===== TOP BLUE LINE ===== */}
+      {/* TOP BLUE LINE */}
       <div className="h-1 w-full bg-[#01adf0] shadow-[0_0_10px_#01adf0]"></div>
 
       <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-14 flex flex-col items-center justify-center text-center">
 
-        {/* ===== LOGO ===== */}
+        {/* LOGO */}
         <motion.img
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -5651,7 +5647,7 @@ const Footer = () => {
           }}
         />
 
-        {/* ===== NAVIGATION LINKS ===== */}
+        {/* NAV LINKS */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -5670,7 +5666,7 @@ const Footer = () => {
           ))}
         </motion.div>
 
-        {/* ===== SOCIAL ICONS ===== */}
+        {/* SOCIAL ICONS */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -5696,7 +5692,7 @@ const Footer = () => {
           ))}
         </motion.div>
 
-        {/* ===== NEWSLETTER FORM (FIXED FOR MOBILE) ===== */}
+        {/* NEWSLETTER FORM */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -5724,9 +5720,7 @@ const Footer = () => {
               type="submit"
               disabled={isLoading}
               className={`flex-shrink-0 p-2.5 sm:px-5 sm:py-2.5 rounded-full flex items-center justify-center gap-2 transition-all duration-300 text-sm font-medium text-white ${
-                isLoading
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-[#01adf0] hover:bg-[#0196d1]'
+                isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#01adf0] hover:bg-[#0196d1]'
               }`}
               aria-label="Subscribe"
             >
@@ -5736,7 +5730,6 @@ const Footer = () => {
             </button>
           </form>
 
-          {/* Success Message */}
           <AnimatePresence>
             {isSuccess && (
               <motion.div
@@ -5753,7 +5746,6 @@ const Footer = () => {
             )}
           </AnimatePresence>
 
-          {/* Error Message */}
           <AnimatePresence>
             {error && (
               <motion.div
@@ -5771,7 +5763,7 @@ const Footer = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* ===== CONTACT INFO ===== */}
+        {/* CONTACT INFO */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -5789,11 +5781,26 @@ const Footer = () => {
           </span>
         </motion.div>
 
-        {/* ===== COPYRIGHT ===== */}
-        <div className="w-full border-t border-gray-200 pt-6">
-          <p className="text-xs text-gray-400">
-            © {currentYear} CoderBox. All rights reserved.
+        {/* COPYRIGHT — Left side, Links — Right side */}
+        <div className="w-full border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
+          <p className="text-xs text-gray-400 text-center sm:text-left order-2 sm:order-1">
+            Copyright © {currentYear} thecoderbox.com | All Rights Reserved
           </p>
+
+          <div className="flex items-center gap-4 sm:gap-6 order-1 sm:order-2">
+            <Link
+              to="/privacy-policy"
+              className="text-xs text-gray-500 hover:text-[#01adf0] transition-colors duration-200 underline-offset-4 hover:underline"
+            >
+              Privacy & Policy
+            </Link>
+            <Link
+              to="/terms-conditions"
+              className="text-xs text-gray-500 hover:text-[#01adf0] transition-colors duration-200 underline-offset-4 hover:underline"
+            >
+              Terms & Conditions
+            </Link>
+          </div>
         </div>
 
       </div>
