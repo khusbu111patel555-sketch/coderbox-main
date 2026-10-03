@@ -981,3 +981,115 @@
   }
 }
 
+/* ============================================
+   👇 ADDED CSS FOR DROPDOWN ARROW ALIGNMENT 👇
+   ============================================ */
+
+/* Target both Category and Status select dropdowns */
+.admin-field select,
+.admin-category-select {
+  /* Remove default browser arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Add custom arrow SVG */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  
+  /* Move the arrow to the left. Increase '16px' to move it further left */
+  background-position: right 16px center; 
+  background-size: 16px;
+  
+  /* Add padding so text doesn't overlap the arrow */
+  padding-right: 40px; 
+}
+
+
+/* ============================================
+   FEATURED IMAGE UPLOAD (MATCHING INPUT STYLE)
+   ============================================ */
+.admin-image-upload-wrap {
+  width: 100%;
+}
+
+/* Make the upload button look exactly like a text input */
+.admin-file-upload-compact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  height: 48px; /* Matches standard input height */
+  border: 1px solid #E0E3DC; /* Same border as inputs */
+  border-radius: 10px;
+  background: #FAFAF8; /* Same background as inputs */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%; /* Fills the column width */
+  box-sizing: border-box;
+}
+
+.admin-file-upload-compact:hover {
+  border-color: #0A5E93;
+  background: #fff;
+}
+
+.admin-file-upload-compact.uploading {
+  border-color: #0A5E93;
+  background: #F0F7FC;
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.admin-file-upload-compact span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #56627A;
+}
+
+.admin-file-upload-compact small {
+  font-size: 11.5px;
+  color: #9CA3AF;
+  margin-left: auto; /* Pushes text to the right */
+}
+
+/* Image preview box matching the same width */
+.admin-image-preview-small {
+  position: relative;
+  width: 100%;
+  height: 140px; /* Fixed height so it doesn't take too much space */
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #E0E3DC;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: #FAFAF8;
+}
+
+.admin-image-preview-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills the box neatly */
+  display: block;
+}
+
+.admin-image-remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.admin-image-remove:hover {
+  background: #DC2626;
+  transform: scale(1.1);
+}
