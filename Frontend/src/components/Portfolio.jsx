@@ -4339,8 +4339,6 @@
 
 
 
-
-
 import React, {
   useCallback,
   useEffect,
@@ -5267,7 +5265,8 @@ const CoderBoxGrowthPlans = () => {
         className="absolute w-[520px] h-[520px] -right-[180px] -top-[120px] rounded-full bg-[#dde8f3] blur-[80px] opacity-70 pointer-events-none"
       />
 
-      <div className="relative max-w-[1180px] mx-auto pt-[40px] px-4 pb-[70px] max-[600px]:pt-[28px] max-[600px]:pb-[50px]">
+      {/* Padding adjusted here to match the spaciousness of the Contact Us hero section */}
+      <div className="relative max-w-[1180px] mx-auto pt-[20px] px-4 pb-[50px] max-[600px]:pt-[10px] max-[600px]:pb-[30px]">
         <header className="text-center max-w-[760px] mx-auto">
           <span className="sec-badge inline-block">Growth Plans</span>
           <h2 id="cgp-title" className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight">
@@ -6414,8 +6413,14 @@ const renderFaceContent = (type) => {
         </>
       ),
       visual: (
-        <div className="relative w-full h-full bg-[#2a241c] flex items-center justify-center">
-          <div className="text-center">
+        <div className="relative w-full h-full bg-[#2a241c] flex items-center justify-center overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1000" 
+            alt="SR Infra Earthwork" 
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1813] via-transparent to-transparent opacity-80" />
+          <div className="relative z-10 text-center bg-black/40 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
             <div className="w-16 h-16 rounded-full bg-[#f2b705] flex items-center justify-center text-[#1c1813] font-extrabold text-[20px] mx-auto mb-3">SR</div>
             <p className="text-[#f2b705] text-[12px] font-bold tracking-widest">SR INFRA</p>
             <p className="text-[#cfc6b8] text-[9px] mt-1">Earth Work Solutions</p>
@@ -6456,8 +6461,14 @@ const renderFaceContent = (type) => {
         </>
       ),
       visual: (
-        <div className="relative w-full h-full bg-[#2a241c] flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-3">
+        <div className="relative w-full h-full bg-[#2a241c] flex items-center justify-center overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1000" 
+            alt="SR Infra Fleet" 
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1813] via-transparent to-transparent opacity-80" />
+          <div className="relative z-10 grid grid-cols-2 gap-3 p-4">
             {[
               { b: 14, s: 'Excavators' },
               { b: 30, s: 'Dumpers' },
@@ -6466,7 +6477,7 @@ const renderFaceContent = (type) => {
               { b: 2, s: 'Transport' },
               { b: 64, s: 'Total Fleet' },
             ].map((f, i) => (
-              <div key={i} className={`rounded-xl p-4 text-center ${i === 5 ? 'bg-[#f2b705] text-[#1c1813]' : 'bg-white/5 border border-white/10 text-[#f3ede3]'}`}>
+              <div key={i} className={`rounded-xl p-4 text-center backdrop-blur-md ${i === 5 ? 'bg-[#f2b705] text-[#1c1813]' : 'bg-black/50 border border-white/10 text-[#f3ede3]'}`}>
                 <b className={`block text-[28px] leading-none ${i === 5 ? 'text-[#1c1813]' : 'text-[#f2b705]'}`}>{f.b}</b>
                 <span className={`block text-[10px] mt-1 ${i === 5 ? 'text-[#1c1813]/80' : 'text-[#a89c89]'}`}>{f.s}</span>
               </div>
@@ -6494,8 +6505,14 @@ const renderFaceContent = (type) => {
         </>
       ),
       visual: (
-        <div className="relative w-full h-full bg-[#2a241c] flex flex-col justify-end">
-          <div className="overflow-hidden bg-[#1c1813]/85 backdrop-blur border-t border-[#f2b705]/35 py-2.5">
+        <div className="relative w-full h-full bg-[#2a241c] flex flex-col justify-end overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1000" 
+            alt="SR Infra Projects" 
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1813] via-transparent to-transparent opacity-90" />
+          <div className="relative z-10 overflow-hidden bg-black/60 backdrop-blur border-t border-[#f2b705]/35 py-2.5">
             <div className="flex gap-7 w-max text-[12px] font-bold tracking-[.08em] uppercase text-[#f3ede3]" style={{ animation: 'cbpMarq 26s linear infinite' }}>
               {[0, 1].map((k) => (
                 <React.Fragment key={k}>
@@ -6822,3 +6839,4 @@ const CombinedSection = () => {
 };
 
 export default CombinedSection;
+
