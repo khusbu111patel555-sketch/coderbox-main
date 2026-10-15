@@ -1,18 +1,3 @@
-
-// import HeroSection from '../components/home/HeroSection';
-// import HowWeWorkSection from '../components/home/HowWeWorkSection';
-// import AboutSection from '../components/home/AboutSection';
-// import ServicesSection from '../components/home/ServicesSection';
-// import WhyChooseUsSection from '../components/home/WhyChooseUsSection';
-// import TeamSection from '../components/home/TeamSection';
-// import TestimonialsSection from '../components/home/TestimonialsSection';
-// import BlogSection from '../components/home/BlogSection';
-// import FaqSection from '../components/home/FaqSection';
-// import ContactSection from '../components/home/ContactSection';
-// import FloatingChatButton from '../components/home/FloatingChatButton';
-
-
-
 import HeroSection from '../components/home/HeroSection';
 import AboutSection from '../components/home/AboutSection';
 import HowWeWorkSection from '../components/home/HowWeWorkSection';

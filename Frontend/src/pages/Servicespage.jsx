@@ -1,30 +1,5 @@
-// // import WebDevelopment from '../components/Services/WebDevelopment';
-// // import DataAnalytics from '../components/Services/DataAnalytics';
-// // import DataScience from '../components/Services/DataScience';
-
-// // const Servicespage = () => {
-// //   return (
-// //     <div className="min-h-screen bg-white overflow-x-hidden">
-// //       <WebDevelopment />
-// //       <DataAnalytics />
-// //       <DataScience />
-// //     </div>
-// //   );
-// // };
-
-// // export default Servicespage;
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect, useRef } from 'react';
+// import { motion } from 'framer-motion';
 
 // /* ============================================================
 //    GLOBAL STYLES (animations + effects)
@@ -62,6 +37,9 @@
 //     @keyframes cbFadeUp {
 //       0%   { opacity: 0; transform: translateY(20px); }
 //       100% { opacity: 1; transform: translateY(0); }
+//     }
+//     @keyframes cbDash {
+//       to { stroke-dashoffset: -200; }
 //     }
 
 //     .arrow-right { display: inline-block; animation: cbArrowRight 1.4s ease-in-out infinite; }
@@ -176,15 +154,304 @@
 //   'Shopify', 'WordPress', 'OpenAI', 'Supabase', 'PostgreSQL', 'AWS',
 // ];
 
+// /* Tech glyphs that float around like particles */
+// const TECH_GLYPHS = ['</>', '{ }', '( )', '< />', '⚛', '◈', '✦', '⌘', '⌁', '◎', '▣', '✧', '#', '//', '=>', '{}'];
+// /* Service-themed icons that orbit as nodes */
+// const SERVICE_NODES = ['Design', 'Code', 'AI', 'Growth', 'SEO', 'Data', 'Cloud', 'UX'];
+
 // /* ============================================================
-//    HERO
+//    NEW SERVICES HERO  ← top section (About Us particle style)
+//    ============================================================ */
+// function ServicesParticleHero() {
+//   return (
+//     <section
+//       className="relative min-h-[50vh] sm:min-h-[58vh] flex items-center justify-center overflow-hidden pt-20 pb-6 sm:pt-24 sm:pb-8 border-0 outline-none"
+//       style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
+//     >
+//       {/* ================= BACKGROUND LAYER ================= */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         {/* Central glow */}
+//         <div
+//           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full"
+//           style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.12) 0%, transparent 55%)' }}
+//         />
+//         {/* Vignette */}
+//         <div
+//           className="absolute inset-0"
+//           style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }}
+//         />
+
+//         {/* Floating glowing orbs */}
+//         <motion.div
+//           className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
+//           style={{
+//             background: 'radial-gradient(circle at 30% 30%, rgba(1, 173, 240, 0.65) 0%, rgba(0, 111, 166, 0.25) 55%, transparent 75%)',
+//             boxShadow: '0 0 60px rgba(1, 173, 240, 0.25)',
+//             filter: 'blur(2px)',
+//           }}
+//           animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0], scale: [1, 1.05, 1, 0.98, 1] }}
+//           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+//         />
+//         <motion.div
+//           className="absolute bottom-[10%] left-[10%] w-[180px] h-[180px] rounded-full"
+//           style={{
+//             background: 'radial-gradient(circle at 40% 40%, rgba(3, 180, 246, 0.55) 0%, rgba(0, 143, 209, 0.2) 60%, transparent 80%)',
+//             boxShadow: '0 0 70px rgba(3, 180, 246, 0.2)',
+//             filter: 'blur(2px)',
+//           }}
+//           animate={{ y: [0, 35, 0, -25, 0], x: [0, -25, 0, 30, 0] }}
+//           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+//         />
+//         <motion.div
+//           className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
+//           style={{
+//             background: 'radial-gradient(circle at 60% 40%, rgba(77, 211, 255, 0.5) 0%, rgba(1, 173, 240, 0.18) 60%, transparent 80%)',
+//             boxShadow: '0 0 70px rgba(77, 211, 255, 0.2)',
+//             filter: 'blur(2px)',
+//           }}
+//           animate={{ y: [0, -25, 0, 30, 0], x: [0, 25, 0, -20, 0] }}
+//           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+//         />
+
+//         {/* ---------------- SERVICE NETWORK GRAPH ---------------- */}
+//         <svg
+//           className="absolute inset-0 w-full h-full hidden md:block"
+//           viewBox="0 0 1440 900"
+//           preserveAspectRatio="xMidYMid slice"
+//         >
+//           <defs>
+//             <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+//               <stop offset="0%" stopColor="#00C6FB" stopOpacity="0" />
+//               <stop offset="50%" stopColor="#01ADF0" stopOpacity="0.55" />
+//               <stop offset="100%" stopColor="#00C6FB" stopOpacity="0" />
+//             </linearGradient>
+//           </defs>
+
+//           <g
+//             stroke="url(#lineGrad)"
+//             strokeWidth="1"
+//             fill="none"
+//             style={{ animation: 'cbDash 12s linear infinite' }}
+//             strokeDasharray="6 8"
+//           >
+//             <line x1="180" y1="180" x2="460" y2="320" />
+//             <line x1="460" y1="320" x2="720" y2="200" />
+//             <line x1="720" y1="200" x2="1080" y2="260" />
+//             <line x1="1080" y1="260" x2="1260" y2="500" />
+//             <line x1="260" y1="680" x2="520" y2="600" />
+//             <line x1="520" y1="600" x2="820" y2="700" />
+//             <line x1="820" y1="700" x2="1180" y2="620" />
+//             <line x1="180" y1="180" x2="260" y2="680" />
+//             <line x1="460" y1="320" x2="520" y2="600" />
+//             <line x1="720" y1="200" x2="820" y2="700" />
+//             <line x1="1080" y1="260" x2="1180" y2="620" />
+//           </g>
+
+//           {[
+//             { x: 180, y: 180, label: 'Design' },
+//             { x: 460, y: 320, label: 'Code' },
+//             { x: 720, y: 200, label: 'AI' },
+//             { x: 1080, y: 260, label: 'Growth' },
+//             { x: 1260, y: 500, label: 'SEO' },
+//             { x: 260, y: 680, label: 'Data' },
+//             { x: 520, y: 600, label: 'Cloud' },
+//             { x: 820, y: 700, label: 'UX' },
+//             { x: 1180, y: 620, label: 'Automation' },
+//           ].map((n, i) => (
+//             <g key={i}>
+//               <circle cx={n.x} cy={n.y} r="28" fill="rgba(1,173,240,0.05)" />
+//               <circle cx={n.x} cy={n.y} r="14" fill="rgba(1,173,240,0.12)">
+//                 <animate
+//                   attributeName="r"
+//                   values="12;18;12"
+//                   dur={`${3 + i * 0.3}s`}
+//                   repeatCount="indefinite"
+//                 />
+//                 <animate
+//                   attributeName="opacity"
+//                   values="0.4;0.9;0.4"
+//                   dur={`${3 + i * 0.3}s`}
+//                   repeatCount="indefinite"
+//                 />
+//               </circle>
+//               <circle cx={n.x} cy={n.y} r="4" fill="#8FCBF2" />
+//               <text
+//                 x={n.x}
+//                 y={n.y + 34}
+//                 textAnchor="middle"
+//                 fill="rgba(143,203,242,0.65)"
+//                 style={{
+//                   font: '600 10px DM Sans, sans-serif',
+//                   letterSpacing: '.18em',
+//                   textTransform: 'uppercase',
+//                 }}
+//               >
+//                 {n.label}
+//               </text>
+//             </g>
+//           ))}
+//         </svg>
+
+//         {/* ---------------- ROTATING SERVICE RING ---------------- */}
+//         <motion.div
+//           className="absolute top-1/2 left-1/2 hidden md:block"
+//           style={{ width: 900, height: 900, translateX: '-50%', translateY: '-50%' }}
+//           animate={{ rotate: 360 }}
+//           transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+//         >
+//           <svg viewBox="0 0 900 900" className="w-full h-full opacity-40">
+//             <circle cx="450" cy="450" r="420" fill="none" stroke="rgba(143,203,242,.2)" strokeWidth="1" strokeDasharray="4 8" />
+//             <circle cx="450" cy="450" r="330" fill="none" stroke="rgba(143,203,242,.12)" strokeWidth="1" />
+//             {Array.from({ length: 12 }).map((_, i) => {
+//               const angle = (i * 360) / 12;
+//               const rad = (angle * Math.PI) / 180;
+//               const x = 450 + Math.cos(rad) * 420;
+//               const y = 450 + Math.sin(rad) * 420;
+//               return <circle key={i} cx={x} cy={y} r="3" fill="#8FCBF2" opacity="0.75" />;
+//             })}
+//           </svg>
+//         </motion.div>
+
+//         {/* ---------------- FLOATING TECH GLYPH PARTICLES ---------------- */}
+//         {TECH_GLYPHS.map((glyph, i) => {
+//           const top = 8 + ((i * 37) % 84);
+//           const left = 4 + ((i * 53) % 92);
+//           const size = 12 + (i % 4) * 5;
+//           const dur = 6 + (i % 5) * 1.6;
+//           const delay = (i % 6) * 0.8;
+//           return (
+//             <motion.span
+//               key={`g-${i}`}
+//               className="absolute select-none font-['Space_Grotesk'] font-bold"
+//               style={{
+//                 top: `${top}%`,
+//                 left: `${left}%`,
+//                 fontSize: `${size}px`,
+//                 color: 'rgba(143,203,242,0.35)',
+//                 textShadow: '0 0 12px rgba(1,173,240,0.45)',
+//               }}
+//               animate={{
+//                 y: [0, -22, 0, 18, 0],
+//                 x: [0, 12, 0, -10, 0],
+//                 opacity: [0.15, 0.7, 0.15],
+//                 rotate: [0, 8, 0, -8, 0],
+//               }}
+//               transition={{ duration: dur, delay, repeat: Infinity, ease: 'easeInOut' }}
+//             >
+//               {glyph}
+//             </motion.span>
+//           );
+//         })}
+
+//         {/* ---------------- SPARKLE DUST ---------------- */}
+//         {[...Array(14)].map((_, i) => {
+//           const size = Math.random() * 3 + 2;
+//           return (
+//             <motion.div
+//               key={`s-${i}`}
+//               className="absolute rounded-full"
+//               style={{
+//                 top: `${Math.random() * 100}%`,
+//                 left: `${Math.random() * 100}%`,
+//                 width: `${size}px`,
+//                 height: `${size}px`,
+//                 background: 'rgba(180, 230, 255, 0.9)',
+//                 boxShadow: `0 0 ${size * 2}px rgba(120, 210, 255, 0.6)`,
+//               }}
+//               animate={{ opacity: [0.1, 0.6, 0.1], scale: [1, 1.3, 1] }}
+//               transition={{
+//                 duration: 2 + Math.random() * 3,
+//                 repeat: Infinity,
+//                 delay: Math.random() * 3,
+//                 ease: 'easeInOut',
+//               }}
+//             />
+//           );
+//         })}
+
+//         {/* ---------------- ORBITING SERVICE ICON CHIPS ---------------- */}
+//         <motion.div
+//           className="absolute top-1/2 left-1/2 hidden lg:block"
+//           style={{ width: 720, height: 720, translateX: '-50%', translateY: '-50%' }}
+//           animate={{ rotate: 360 }}
+//           transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+//         >
+//           {SERVICE_NODES.map((label, i) => {
+//             const angle = (i * 360) / SERVICE_NODES.length;
+//             const rad = (angle * Math.PI) / 180;
+//             const x = 360 + Math.cos(rad) * 360;
+//             const y = 360 + Math.sin(rad) * 360;
+//             return (
+//               <motion.div
+//                 key={`chip-${label}`}
+//                 className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-white/[.06] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[.14em] text-[#B8E2FF] backdrop-blur-sm"
+//                 style={{ left: x, top: y }}
+//                 animate={{ rotate: -360 }}
+//                 transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+//               >
+//                 {label}
+//               </motion.div>
+//             );
+//           })}
+//         </motion.div>
+//       </div>
+
+//       {/* ================= CONTENT ================= */}
+//       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
+//         <motion.div
+//           initial={{ opacity: 0, y: 15 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.4 }}
+//           className="text-center"
+//         >
+//           <motion.span
+//             initial={{ opacity: 0, y: 8 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.3, delay: 0.05 }}
+//             className="sec-badge inline-block"
+//             whileHover={{ scale: 1.05 }}
+//           >
+//             Our Services
+//           </motion.span>
+
+//           {/* Heading — mirrors the About Us structure */}
+//           <motion.h2
+//             className="sec-h2 text-white mt-2 sm:mt-3 leading-tight max-w-5xl mx-auto"
+//             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}
+//             initial={{ opacity: 0, y: 10 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.35, delay: 0.1 }}
+//           >
+//             Your Digital Transformation Journey Begins Here!{' '}
+//             <br />
+//             <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
+//               TheCoderBox
+//             </span>
+//           </motion.h2>
+
+//           {/* Subtitle */}
+//           <motion.p
+//             className="sec-p text-white/80 mt-3 max-w-3xl mx-auto"
+//             style={{ textShadow: '0 1px 10px rgba(0,0,0,0.35)' }}
+//             initial={{ opacity: 0, y: 10 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.35, delay: 0.15 }}
+//           >
+//             A full-service digital studio — strategy, design, technology, AI and growth — engineered
+//             to move your business forward under one roof.
+//           </motion.p>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// /* ============================================================
+//    HERO (moved down — secondary intro)
 //    ============================================================ */
 // function Hero() {
 //   return (
-//     <section
-//       className="relative bg-[#f1f1f1] overflow-hidden pb-16 lg:pb-24"
-//       style={{ paddingTop: '130px' }}
-//     >
+//     <section className="relative bg-[#f1f1f1] overflow-hidden py-16 lg:py-24">
 //       <div className="cb-dots absolute inset-0" aria-hidden="true" />
 
 //       <span className="cb-float-slow pointer-events-none absolute -right-[180px] -top-[180px] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.28),transparent_65%)] blur-3xl" />
@@ -507,7 +774,12 @@
 //     <div className="min-h-screen bg-[#f1f1f1] font-['DM_Sans',sans-serif] sec-text-dark">
 //       <GlobalStyles />
 //       <main>
+//         {/* NEW top particle hero — About Us style, services-themed */}
+//         <ServicesParticleHero />
+
+//         {/* Secondary light hero */}
 //         <Hero />
+
 //         <Marquee />
 //         <ServicesSection />
 //         <Capabilities />
@@ -520,12 +792,7 @@
 
 
 
-
-
-
-
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 /* ============================================================
@@ -681,13 +948,11 @@ const MARQUEE_ITEMS = [
   'Shopify', 'WordPress', 'OpenAI', 'Supabase', 'PostgreSQL', 'AWS',
 ];
 
-/* Tech glyphs that float around like particles */
 const TECH_GLYPHS = ['</>', '{ }', '( )', '< />', '⚛', '◈', '✦', '⌘', '⌁', '◎', '▣', '✧', '#', '//', '=>', '{}'];
-/* Service-themed icons that orbit as nodes */
 const SERVICE_NODES = ['Design', 'Code', 'AI', 'Growth', 'SEO', 'Data', 'Cloud', 'UX'];
 
 /* ============================================================
-   NEW SERVICES HERO  ← top section (About Us particle style)
+   SERVICES HERO
    ============================================================ */
 function ServicesParticleHero() {
   return (
@@ -695,20 +960,16 @@ function ServicesParticleHero() {
       className="relative min-h-[50vh] sm:min-h-[58vh] flex items-center justify-center overflow-hidden pt-20 pb-6 sm:pt-24 sm:pb-8 border-0 outline-none"
       style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
     >
-      {/* ================= BACKGROUND LAYER ================= */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Central glow */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.12) 0%, transparent 55%)' }}
         />
-        {/* Vignette */}
         <div
           className="absolute inset-0"
           style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }}
         />
 
-        {/* Floating glowing orbs */}
         <motion.div
           className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
           style={{
@@ -740,7 +1001,6 @@ function ServicesParticleHero() {
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
         />
 
-        {/* ---------------- SERVICE NETWORK GRAPH ---------------- */}
         <svg
           className="absolute inset-0 w-full h-full hidden md:block"
           viewBox="0 0 1440 900"
@@ -788,38 +1048,17 @@ function ServicesParticleHero() {
             <g key={i}>
               <circle cx={n.x} cy={n.y} r="28" fill="rgba(1,173,240,0.05)" />
               <circle cx={n.x} cy={n.y} r="14" fill="rgba(1,173,240,0.12)">
-                <animate
-                  attributeName="r"
-                  values="12;18;12"
-                  dur={`${3 + i * 0.3}s`}
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="opacity"
-                  values="0.4;0.9;0.4"
-                  dur={`${3 + i * 0.3}s`}
-                  repeatCount="indefinite"
-                />
+                <animate attributeName="r" values="12;18;12" dur={`${3 + i * 0.3}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.4;0.9;0.4" dur={`${3 + i * 0.3}s`} repeatCount="indefinite" />
               </circle>
               <circle cx={n.x} cy={n.y} r="4" fill="#8FCBF2" />
-              <text
-                x={n.x}
-                y={n.y + 34}
-                textAnchor="middle"
-                fill="rgba(143,203,242,0.65)"
-                style={{
-                  font: '600 10px DM Sans, sans-serif',
-                  letterSpacing: '.18em',
-                  textTransform: 'uppercase',
-                }}
-              >
+              <text x={n.x} y={n.y + 34} textAnchor="middle" fill="rgba(143,203,242,0.65)" style={{ font: '600 10px DM Sans, sans-serif', letterSpacing: '.18em', textTransform: 'uppercase' }}>
                 {n.label}
               </text>
             </g>
           ))}
         </svg>
 
-        {/* ---------------- ROTATING SERVICE RING ---------------- */}
         <motion.div
           className="absolute top-1/2 left-1/2 hidden md:block"
           style={{ width: 900, height: 900, translateX: '-50%', translateY: '-50%' }}
@@ -839,7 +1078,6 @@ function ServicesParticleHero() {
           </svg>
         </motion.div>
 
-        {/* ---------------- FLOATING TECH GLYPH PARTICLES ---------------- */}
         {TECH_GLYPHS.map((glyph, i) => {
           const top = 8 + ((i * 37) % 84);
           const left = 4 + ((i * 53) % 92);
@@ -850,19 +1088,8 @@ function ServicesParticleHero() {
             <motion.span
               key={`g-${i}`}
               className="absolute select-none font-['Space_Grotesk'] font-bold"
-              style={{
-                top: `${top}%`,
-                left: `${left}%`,
-                fontSize: `${size}px`,
-                color: 'rgba(143,203,242,0.35)',
-                textShadow: '0 0 12px rgba(1,173,240,0.45)',
-              }}
-              animate={{
-                y: [0, -22, 0, 18, 0],
-                x: [0, 12, 0, -10, 0],
-                opacity: [0.15, 0.7, 0.15],
-                rotate: [0, 8, 0, -8, 0],
-              }}
+              style={{ top: `${top}%`, left: `${left}%`, fontSize: `${size}px`, color: 'rgba(143,203,242,0.35)', textShadow: '0 0 12px rgba(1,173,240,0.45)' }}
+              animate={{ y: [0, -22, 0, 18, 0], x: [0, 12, 0, -10, 0], opacity: [0.15, 0.7, 0.15], rotate: [0, 8, 0, -8, 0] }}
               transition={{ duration: dur, delay, repeat: Infinity, ease: 'easeInOut' }}
             >
               {glyph}
@@ -870,33 +1097,19 @@ function ServicesParticleHero() {
           );
         })}
 
-        {/* ---------------- SPARKLE DUST ---------------- */}
         {[...Array(14)].map((_, i) => {
           const size = Math.random() * 3 + 2;
           return (
             <motion.div
               key={`s-${i}`}
               className="absolute rounded-full"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${size}px`,
-                height: `${size}px`,
-                background: 'rgba(180, 230, 255, 0.9)',
-                boxShadow: `0 0 ${size * 2}px rgba(120, 210, 255, 0.6)`,
-              }}
+              style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, width: `${size}px`, height: `${size}px`, background: 'rgba(180, 230, 255, 0.9)', boxShadow: `0 0 ${size * 2}px rgba(120, 210, 255, 0.6)` }}
               animate={{ opacity: [0.1, 0.6, 0.1], scale: [1, 1.3, 1] }}
-              transition={{
-                duration: 2 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: 'easeInOut',
-              }}
+              transition={{ duration: 2 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
             />
           );
         })}
 
-        {/* ---------------- ORBITING SERVICE ICON CHIPS ---------------- */}
         <motion.div
           className="absolute top-1/2 left-1/2 hidden lg:block"
           style={{ width: 720, height: 720, translateX: '-50%', translateY: '-50%' }}
@@ -923,25 +1136,12 @@ function ServicesParticleHero() {
         </motion.div>
       </div>
 
-      {/* ================= CONTENT ================= */}
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-center"
-        >
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.05 }}
-            className="sec-badge inline-block"
-            whileHover={{ scale: 1.05 }}
-          >
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-center">
+          <motion.span initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.05 }} className="sec-badge inline-block" whileHover={{ scale: 1.05 }}>
             Our Services
           </motion.span>
 
-          {/* Heading — mirrors the About Us structure */}
           <motion.h2
             className="sec-h2 text-white mt-2 sm:mt-3 leading-tight max-w-5xl mx-auto"
             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}
@@ -951,12 +1151,11 @@ function ServicesParticleHero() {
           >
             Your Digital Transformation Journey Begins Here!{' '}
             <br />
-            <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
+            <span className="text-[#01ADF0]">
               TheCoderBox
             </span>
           </motion.h2>
 
-          {/* Subtitle */}
           <motion.p
             className="sec-p text-white/80 mt-3 max-w-3xl mx-auto"
             style={{ textShadow: '0 1px 10px rgba(0,0,0,0.35)' }}
@@ -974,7 +1173,7 @@ function ServicesParticleHero() {
 }
 
 /* ============================================================
-   HERO (moved down — secondary intro)
+   HERO (secondary intro)
    ============================================================ */
 function Hero() {
   return (
@@ -990,22 +1189,20 @@ function Hero() {
           <Eyebrow>✦ What we build</Eyebrow>
         </div>
 
-        <h1 className="sec-h2 sec-text-dark cb-fade-up my-[24px] max-w-[900px] text-[clamp(48px,7vw,86px)] leading-[1.02] tracking-[-.055em]" style={{ animationDelay: '.1s' }}>
+        <h1
+          className="sec-h2 sec-text-dark cb-fade-up my-[24px] max-w-[900px] leading-[1.15] tracking-[-.04em] pb-2"
+          style={{ animationDelay: '.1s', fontSize: 'clamp(28px, 3.4vw, 46px)' }}
+        >
           Digital products,
           <br />
-          <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-[#00C6FB] via-[#01ADF0] to-[#0087bd] bg-clip-text text-transparent">
-              engineered to move
-            </span>
-            <span className="cb-shine pointer-events-none absolute inset-0 bg-clip-text text-transparent">
-              engineered to move
-            </span>
+          <span className="inline-block text-[#01ADF0]">
+            engineered to move
           </span>
           <br />
           your business forward.
         </h1>
 
-        <p className="sec-p sec-text-dark-soft cb-fade-up m-0 max-w-[700px] text-[18px] leading-[1.75]" style={{ animationDelay: '.2s' }}>
+        <p className="sec-p sec-text-dark-soft cb-fade-up m-0 max-w-[700px] text-[17px] leading-[1.75]" style={{ animationDelay: '.2s' }}>
           From brand and experience to technology, AI and growth — CoderBox brings the right capabilities
           together to solve real business problems and create digital experiences people remember.
         </p>
@@ -1057,10 +1254,7 @@ function Marquee() {
 
       <div className="cb-marquee-track">
         {items.map((item, i) => (
-          <span
-            key={i}
-            className="mx-8 text-[15px] font-semibold tracking-wide text-[#8fa3b8] whitespace-nowrap"
-          >
+          <span key={i} className="mx-8 text-[15px] font-semibold tracking-wide text-[#8fa3b8] whitespace-nowrap">
             <span className="mr-3 text-[#01ADF0]">◆</span>
             {item}
           </span>
@@ -1084,22 +1278,24 @@ function ServicesSection() {
       <span className="pointer-events-none absolute right-[-200px] top-[10%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(1,173,240,.08),transparent_70%)] blur-3xl" />
 
       <div className="relative mx-auto w-[min(1180px,calc(100%-40px))]">
-        <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <div>
-            <Eyebrow>Our services</Eyebrow>
-            <h2 className="sec-h2 sec-text-dark mt-4 text-[clamp(32px,4vw,52px)] leading-[1.05] tracking-[-.04em]">
-              Everything your digital
-              <br />
+        <div className="mb-12 text-center max-w-3xl mx-auto">
+          <Eyebrow>Our services</Eyebrow>
+          <h2
+            className="sec-h2 sec-text-dark mt-4 leading-[1.05] tracking-[-.035em]"
+            style={{ fontSize: 'clamp(28px, 3.2vw, 42px)' }}
+          >
+            Everything your digital{' '}
+            <span className="text-[#01ADF0]">
               product needs.
-            </h2>
-          </div>
-          <p className="sec-p sec-text-dark-soft m-0 max-w-[490px] leading-[1.7]">
+            </span>
+          </h2>
+          <p className="sec-p sec-text-dark-soft mt-4 max-w-2xl mx-auto leading-[1.7]">
             Choose a focused capability or combine multiple services into one integrated engagement.
             We design around the problem first, then bring the right specialists and technology to solve it.
           </p>
         </div>
 
-        <div className="mb-10 flex flex-wrap gap-2">
+        <div className="mb-10 flex flex-wrap justify-center gap-2">
           {CATEGORIES.map((c) => (
             <button
               key={c}
@@ -1134,7 +1330,10 @@ function ServicesSection() {
                 {s.icon}
               </div>
 
-              <h3 className="sec-h2 sec-text-dark mb-3 text-[22px] leading-[1.1]">
+              <h3
+                className="sec-text-dark mb-3 font-bold leading-[1.2] tracking-[-.01em] font-['Space_Grotesk']"
+                style={{ fontSize: 'clamp(18px, 2vw, 22px)' }}
+              >
                 {s.title}
               </h3>
 
@@ -1159,7 +1358,7 @@ function ServicesSection() {
 }
 
 /* ============================================================
-   CAPABILITIES  ← dark
+   CAPABILITIES
    ============================================================ */
 function Capabilities() {
   return (
@@ -1171,10 +1370,13 @@ function Capabilities() {
         <div className="grid items-start gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-[80px]">
           <div>
             <DarkEyebrow>◆ Capabilities</DarkEyebrow>
-            <h2 className="mt-4 font-['Space_Grotesk'] text-[clamp(32px,4vw,52px)] font-bold leading-[1.05] tracking-[-.04em] text-[#f5f8ff]">
+            <h2
+              className="mt-4 font-['Space_Grotesk'] font-bold leading-[1.05] tracking-[-.035em] text-[#f5f8ff]"
+              style={{ fontSize: 'clamp(28px, 3.2vw, 42px)' }}
+            >
               One team.
               <br />
-              <span className="bg-gradient-to-r from-white via-[#54c9ff] to-[#0087bd] bg-clip-text text-transparent">
+              <span className="text-[#01ADF0]">
                 Every layer of the product.
               </span>
             </h2>
@@ -1207,7 +1409,10 @@ function Capabilities() {
 }
 
 /* ============================================================
-   PROCESS  ← dark
+   PROCESS
+   ============================================================ */
+/* ============================================================
+   PROCESS  ← CENTER-ALIGNED HEADER with BADGE BOX
    ============================================================ */
 function Process() {
   return (
@@ -1216,17 +1421,23 @@ function Process() {
       <span className="pointer-events-none absolute bottom-[-180px] right-[-80px] h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(0,198,251,.12),transparent_65%)] blur-3xl cb-float" />
 
       <div className="relative mx-auto w-[min(1180px,calc(100%-40px))]">
-        <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <div>
-            <DarkEyebrow>How we work</DarkEyebrow>
-            <h2 className="mt-4 font-['Space_Grotesk'] text-[clamp(32px,4vw,52px)] font-bold leading-[1.05] tracking-[-.04em] text-[#f5f8ff]">
-              From first idea
-              <br />
+        {/* ✅ CENTERED HEADER with BADGE BOX */}
+        <div className="mb-12 text-center max-w-3xl mx-auto">
+          <Eyebrow>How we work</Eyebrow>
+          <h2
+            className="mt-4 font-['Space_Grotesk'] font-bold leading-[1.05] tracking-[-.035em] text-[#f5f8ff]"
+            style={{ fontSize: 'clamp(28px, 3.2vw, 42px)' }}
+          >
+            From first idea
+            <br />
+            <span className="text-[#01ADF0]">
               to measurable impact.
-            </h2>
-          </div>
-          <p className="m-0 max-w-[490px] leading-[1.7] text-[#9aaec5]">
-            A simple delivery model keeps decisions clear, feedback fast and every build tied to a business objective.
+            </span>
+          </h2>
+          <p className="m-0 mt-4 max-w-2xl mx-auto leading-[1.7] text-[#9aaec5]">
+            A simple delivery model keeps decisions clear, feedback fast
+            <br />
+            and every build tied to a business objective.
           </p>
         </div>
 
@@ -1250,7 +1461,6 @@ function Process() {
     </section>
   );
 }
-
 /* ============================================================
    CTA
    ============================================================ */
@@ -1267,10 +1477,13 @@ function CTA() {
               ✦ Let's build something useful
             </span>
 
-            <h2 className="mt-5 max-w-[720px] font-['Space_Grotesk'] text-[clamp(32px,5vw,58px)] font-bold leading-[1.05] tracking-[-.04em] text-white">
+            <h2
+              className="mt-5 max-w-[720px] font-['Space_Grotesk'] font-bold leading-[1.05] tracking-[-.035em] text-white"
+              style={{ fontSize: 'clamp(28px, 3.6vw, 48px)' }}
+            >
               Have a digital idea in mind?
               <br />
-              <span className="bg-gradient-to-r from-white to-[#d6f4ff] bg-clip-text text-transparent">
+              <span className="text-[#0B1526]">
                 Let's turn it into reality.
               </span>
             </h2>
@@ -1301,12 +1514,8 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-[#f1f1f1] font-['DM_Sans',sans-serif] sec-text-dark">
       <GlobalStyles />
       <main>
-        {/* NEW top particle hero — About Us style, services-themed */}
         <ServicesParticleHero />
-
-        {/* Secondary light hero */}
         <Hero />
-
         <Marquee />
         <ServicesSection />
         <Capabilities />
