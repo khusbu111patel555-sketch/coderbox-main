@@ -258,7 +258,7 @@ const AboutHero = () => (
 // ============================================
 const AboutContent = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const videoUrl = "https://thecoderbox.com/wp-content/uploads/2025/01/WhatsApp-Video-2025-01-03-at-18.07.03_dc978412.mp4";
+  const videoUrl = "WhatsApp-Video-2025-01-03-at-18.07.03_dc978412 (3).mp4";
 
   const founderData = {
     name: "Ashwin R. Singh", alias: "(AASHU SINGH)", title: "FOUNDER / CTO / CEO",
