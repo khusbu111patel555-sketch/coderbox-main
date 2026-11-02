@@ -12,7 +12,7 @@ const RING_CARDS = [
     stat: "3X",
     statLabel: "Traffic",
     go: 0,
-    img: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&q=80",
+    img: "Baby & Mom.webp",
     bgClass: "from-[#dbe9fd] to-[#9fc1f5]",
     imgContain: true,
   },
@@ -24,7 +24,7 @@ const RING_CARDS = [
     stat: "672+",
     statLabel: "Leads",
     go: 3,
-    img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+    img: "Lodha · Navi Mumba.webp",
     imgPos: "object-[30%_50%]",
   },
   {
@@ -35,7 +35,7 @@ const RING_CARDS = [
     stat: "250K+",
     statLabel: "Reach / mo",
     go: 6,
-    img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80",
+    img: "Ciora Cafe.webp",
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ const RING_CARDS = [
     stat: "4",
     statLabel: "Core screens",
     go: 13,
-    img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
+    img: "SmileCare.webp",
     smileBg: "radial-gradient(circle at 50% 30%,#fff,#bfe9e6 60%,#6cc8c2)",
   },
   {
@@ -78,7 +78,7 @@ const RING_CARDS = [
     stat: "15",
     statLabel: "Projects",
     go: 15,
-    img: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    img: "SR Infra.webp",
     imgPos: "object-[40%_50%]",
   },
   {

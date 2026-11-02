@@ -20,12 +20,12 @@ import {
    ========================================================= */
 const WhyChooseUsCarousel = () => {
   const carouselImages = [
-    { id: 1, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop&auto=format', title: 'Expert Team', description: '24+ skilled professionals' },
-    { id: 2, src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&auto=format', title: 'Global Reach', description: '10 countries worldwide' },
-    { id: 3, src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop&auto=format', title: 'Success Stories', description: '500+ projects delivered' },
-    { id: 4, src: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600&h=400&fit=crop&auto=format', title: 'Innovation Hub', description: 'Cutting-edge solutions' },
-    { id: 5, src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop&auto=format', title: 'Trusted Partner', description: '98% client satisfaction' },
-    { id: 6, src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&auto=format', title: 'Financial Growth', description: '10x revenue increase' },
+    { id: 1, src: 'Staffing.webp', title: 'Expert Team', description: '24+ skilled professionals' },
+    { id: 2, src: 'Consulting.webp', title: 'Global Reach', description: '10 countries worldwide' },
+    { id: 3, src: 'Success Stories.webp', title: 'Success Stories', description: '500+ projects delivered' },
+    { id: 4, src: 'Innovation Hub.webp', title: 'Innovation Hub', description: 'Cutting-edge solutions' },
+    { id: 5, src: 'Consulting.webp', title: 'Trusted Partner', description: '98% client satisfaction' },
+    { id: 6, src: 'Financial Growth.webp', title: 'Financial Growth', description: '10x revenue increase' },
   ];
 
   const features = [
