@@ -773,11 +773,3 @@ const AboutUs = () => (
 );
 export default AboutUs;
 
-
-
-
-
-<<<<<<< HEAD
-=======
-export default AboutUs;
->>>>>>> 596a2eaed9084377db86e81b2f9b7dda68e5036f
