@@ -24,8 +24,8 @@ const WhyChooseUsCarousel = () => {
     { id: 2, src: 'Consulting.webp', title: 'Global Reach', description: '10 countries worldwide' },
     { id: 3, src: 'Success Stories.webp', title: 'Success Stories', description: '500+ projects delivered' },
     { id: 4, src: 'Innovation Hub.webp', title: 'Innovation Hub', description: 'Cutting-edge solutions' },
-    { id: 5, src: 'Consulting.webp', title: 'Trusted Partner', description: '98% client satisfaction' },
-    { id: 6, src: 'Creative.webp', title: 'Financial Growth', description: '10x revenue increase' },
+    { id: 5, src: 'System Integration.webp', title: 'Trusted Partner', description: '98% client satisfaction' },
+    { id: 6, src: 'Financial Growth.webp', title: 'Financial Growth', description: '10x revenue increase' },
   ];
 
   const features = [
