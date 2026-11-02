@@ -13,31 +13,31 @@ const HowWeWorkSection = () => {
       number: '01',
       title: 'Requirement Analysis',
       description: 'We begin by understanding your business goals, target audience, and competitors to create a clear strategy tailored to your needs.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&h=600&fit=crop&crop=center'
+      image: 'Requirement Analysis.webp'
     },
     {
       number: '02',
       title: 'Planning & Strategy',
       description: 'Our team designs a customized roadmap including SEO planning, website structure, and marketing approach for maximum impact.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&h=600&fit=crop&crop=center'
+      image: 'Planning & Strategy.webp'
     },
     {
       number: '03',
       title: 'Design & Development',
       description: 'We create visually appealing, user-friendly, and responsive websites with smooth functionality and modern design standards.',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&h=600&fit=crop&crop=center'
+      image: 'Design & Development.webp'
     },
     {
       number: '04',
       title: 'Implementation & Optimization',
       description: 'We apply SEO techniques, optimize content, improve site speed, and ensure everything is aligned for better performance on search engines.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&h=600&fit=crop&crop=center'
+      image: 'Infrastructure Management Services.webp'
     },
     {
       number: '05',
       title: 'Monitoring & Growth',
       description: 'We continuously track performance, analyze results, and make improvements to ensure long-term growth, higher rankings, and better ROI.',
-      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1000&h=600&fit=crop&crop=center'
+      image: 'Monitoring & Growth.webp'
     }
   ];
 

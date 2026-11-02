@@ -28,7 +28,7 @@ const ServicesSection = () => {
       location: 'AI Intelligence',
       icon: Brain,
       gradient: 'from-[#01ADF0] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=500&fit=crop&crop=center',
+      image: 'AI.webp',
       badge: 'AI'
     },
     {
@@ -37,7 +37,7 @@ const ServicesSection = () => {
       location: 'AI Intelligence',
       icon: BarChart3,
       gradient: 'from-[#00C6FB] to-[#01ADF0]',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&crop=center',
+      image: 'Planning & Strategy.webp',
       badge: 'Analytics'
     },
     {
@@ -46,7 +46,7 @@ const ServicesSection = () => {
       location: 'AI Intelligence',
       icon: Database,
       gradient: 'from-[#03B4F6] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=500&fit=crop&crop=center',
+      image: 'Data Science.webp',
       badge: 'Data'
     },
     {
@@ -55,7 +55,7 @@ const ServicesSection = () => {
       location: 'AI Intelligence',
       icon: Zap,
       gradient: 'from-[#4DD3FF] to-[#006FA6]',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=500&fit=crop&crop=center',
+      image: 'Automation.webp',
       badge: 'Automation'
     },
     {
@@ -64,7 +64,7 @@ const ServicesSection = () => {
       location: 'AI Intelligence',
       icon: Workflow,
       gradient: 'from-[#A7E8FF] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=500&fit=crop&crop=center',
+      image: 'Business Process Automation.webp',
       badge: 'BPA'
     },
     {
@@ -73,7 +73,7 @@ const ServicesSection = () => {
       location: 'AI Intelligence',
       icon: MessageSquare,
       gradient: 'from-[#00C6FB] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=500&fit=crop&crop=center',
+      image: 'Chatbots.webp',
       badge: 'Chatbots'
     },
 
@@ -84,7 +84,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: Megaphone,
       gradient: 'from-[#01ADF0] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop&crop=center',
+      image: 'Marketing.webp',
       badge: 'Marketing'
     },
     {
@@ -93,7 +93,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: Search,
       gradient: 'from-[#03B4F6] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=800&h=500&fit=crop&crop=center',
+      image: 'SEO.webp',
       badge: 'SEO'
     },
     {
@@ -102,7 +102,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: MapPin,
       gradient: 'from-[#00C6FB] to-[#01ADF0]',
-      image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&h=500&fit=crop&crop=center',
+      image: 'Local SEO.webp',
       badge: 'Local'
     },
     {
@@ -111,7 +111,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: Target,
       gradient: 'from-[#01ADF0] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop&crop=center',
+      image: 'PPC Advertising.webp',
       badge: 'PPC'
     },
     {
@@ -120,7 +120,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: Share2,
       gradient: 'from-[#03B4F6] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&h=500&fit=crop&crop=center',
+      image: 'Social Media Marketing.webp',
       badge: 'Social'
     },
     {
@@ -129,7 +129,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: FileText,
       gradient: 'from-[#4DD3FF] to-[#006FA6]',
-      image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=500&fit=crop&crop=center',
+      image: 'Content Marketing.webp',
       badge: 'Content'
     },
     {
@@ -138,7 +138,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: Mail,
       gradient: 'from-[#A7E8FF] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&h=500&fit=crop&crop=center',
+      image: 'Local SEO.webp',
       badge: 'Email'
     },
     {
@@ -147,7 +147,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: TrendingUp,
       gradient: 'from-[#00C6FB] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&h=500&fit=crop&crop=center',
+      image: 'Performance.webp',
       badge: 'Performance'
     },
     {
@@ -156,7 +156,7 @@ const ServicesSection = () => {
       location: 'Digital Growth',
       icon: Users,
       gradient: 'from-[#01ADF0] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&crop=center',
+      image: 'Lead Generation.webp',
       badge: 'Leads'
     },
 
@@ -167,7 +167,7 @@ const ServicesSection = () => {
       location: 'Search Intelligence',
       icon: MessageSquare,
       gradient: 'from-[#03B4F6] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=500&fit=crop&crop=center',
+      image: 'AEO.webp',
       badge: 'AEO'
     },
     {
@@ -176,7 +176,7 @@ const ServicesSection = () => {
       location: 'Search Intelligence',
       icon: Sparkles,
       gradient: 'from-[#00C6FB] to-[#01ADF0]',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&crop=center',
+      image: 'Requirement Analysis.webp',
       badge: 'AI Search'
     },
     {
@@ -185,7 +185,7 @@ const ServicesSection = () => {
       location: 'Search Intelligence',
       icon: Building2,
       gradient: 'from-[#01ADF0] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=500&fit=crop&crop=center',
+      image: 'GMB(Google my Business).webp',
       badge: 'GMB'
     },
     {
@@ -194,7 +194,7 @@ const ServicesSection = () => {
       location: 'Search Intelligence',
       icon: Award,
       gradient: 'from-[#03B4F6] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=500&fit=crop&crop=center',
+      image: 'Reputation.webp',
       badge: 'Reputation'
     },
 
@@ -205,7 +205,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: Code,
       gradient: 'from-[#4DD3FF] to-[#006FA6]',
-      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=500&fit=crop&crop=center',
+      image: 'Popular.webp',
       badge: 'Popular'
     },
     {
@@ -214,7 +214,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: Monitor,
       gradient: 'from-[#A7E8FF] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&crop=center',
+      image: 'Responsive.webp',
       badge: 'Responsive'
     },
     {
@@ -223,7 +223,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: Layout,
       gradient: 'from-[#00C6FB] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop&crop=center',
+      image: 'Landing.webp',
       badge: 'Landing'
     },
     {
@@ -232,7 +232,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: ShoppingCart,
       gradient: 'from-[#01ADF0] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop&crop=center',
+      image: 'E-Commerce Website Development.webp',
       badge: 'E-Commerce'
     },
     {
@@ -241,7 +241,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: Code,
       gradient: 'from-[#03B4F6] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&crop=center',
+      image: 'Custom.webp',
       badge: 'Custom'
     },
     {
@@ -250,7 +250,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: PenTool,
       gradient: 'from-[#00C6FB] to-[#01ADF0]',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop&crop=center',
+      image: 'Creative.webp',
       badge: 'Creative'
     },
     {
@@ -259,7 +259,7 @@ const ServicesSection = () => {
       location: 'Web & E-Commerce',
       icon: Globe2,
       gradient: 'from-[#01ADF0] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=800&h=500&fit=crop&crop=center',
+      image: 'Metaverse.webp',
       badge: 'Metaverse'
     },
 
@@ -270,7 +270,7 @@ const ServicesSection = () => {
       location: 'IT Services',
       icon: UserCog,
       gradient: 'from-[#03B4F6] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&crop=center',
+      image: 'Consulting.webp',
       badge: 'Consulting'
     },
     {
@@ -279,7 +279,7 @@ const ServicesSection = () => {
       location: 'IT Services',
       icon: RefreshCw,
       gradient: 'from-[#00C6FB] to-[#01ADF0]',
-      image: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&h=500&fit=crop&crop=center',
+      image: 'Design & Development.webp',
       badge: 'Development'
     },
     {
@@ -288,7 +288,7 @@ const ServicesSection = () => {
       location: 'IT Services',
       icon: GitBranch,
       gradient: 'from-[#01ADF0] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&crop=center',
+      image: 'Infrastructure Management Services.webp',
       badge: 'Integration'
     },
     {
@@ -297,7 +297,7 @@ const ServicesSection = () => {
       location: 'IT Services',
       icon: Users,
       gradient: 'from-[#03B4F6] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop&crop=center',
+      image: 'Staffing.webp',
       badge: 'Staffing'
     },
     {
@@ -306,7 +306,7 @@ const ServicesSection = () => {
       location: 'IT Services',
       icon: Cloud,
       gradient: 'from-[#4DD3FF] to-[#006FA6]',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&crop=center',
+      image: 'Requirement Analysis.webp',
       badge: 'Cloud'
     },
     {
@@ -315,7 +315,7 @@ const ServicesSection = () => {
       location: 'IT Services',
       icon: GitBranch,
       gradient: 'from-[#A7E8FF] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop&crop=center',
+      image: 'System Integration.webp',
       badge: 'Systems'
     },
 
@@ -326,7 +326,7 @@ const ServicesSection = () => {
       location: 'Cybersecurity',
       icon: Server,
       gradient: 'from-[#00C6FB] to-[#008FD1]',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&crop=center',
+      image: 'Infrastructure Management Services.webp',
       badge: 'Infrastructure'
     },
     {
@@ -335,7 +335,7 @@ const ServicesSection = () => {
       location: 'Cybersecurity',
       icon: Lock,
       gradient: 'from-[#01ADF0] to-[#005B8F]',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop&crop=center',
+      image: 'Cybersecurity.webp',
       badge: 'Secure'
     },
     {
@@ -344,7 +344,7 @@ const ServicesSection = () => {
       location: 'Cybersecurity',
       icon: Radio,
       gradient: 'from-[#03B4F6] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=500&fit=crop&crop=center',
+      image: 'NOC Services.webp',
       badge: 'NOC'
     },
     {
@@ -353,7 +353,7 @@ const ServicesSection = () => {
       location: 'Cybersecurity',
       icon: Shield,
       gradient: 'from-[#00C6FB] to-[#01ADF0]',
-      image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&h=500&fit=crop&crop=center',
+      image: 'Business Continuity & Security.webp',
       badge: 'Business'
     },
 
@@ -364,7 +364,7 @@ const ServicesSection = () => {
       location: 'Mobile',
       icon: Smartphone,
       gradient: 'from-[#01ADF0] to-[#003F7D]',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop&crop=center',
+      image: 'Responsive.webp',
       badge: 'Mobile'
     },
     {
@@ -373,7 +373,7 @@ const ServicesSection = () => {
       location: 'Cloud',
       icon: Cloud,
       gradient: 'from-[#4DD3FF] to-[#006FA6]',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop&crop=center',
+      image: 'Requirement Analysis.webp',
       badge: 'Enterprise'
     },
   ];
