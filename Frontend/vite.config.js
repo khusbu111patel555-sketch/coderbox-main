@@ -11,6 +11,8 @@
 
 
 
+
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -24,9 +26,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Agar file node_modules se hai, toh use alag chunk mein daalein
+          // Saari node_modules files ko alag chunks mein daalein
           if (id.includes('node_modules')) {
-            // React aur Router ki libraries
+            // React ecosystem
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
               return 'vendor-react';
             }
@@ -34,11 +36,8 @@ export default defineConfig({
             if (id.includes('framer-motion') || id.includes('lucide-react')) {
               return 'vendor-ui';
             }
-            // Maps ki libraries
-            if (id.includes('leaflet') || id.includes('react-leaflet')) {
-              return 'vendor-maps';
-            }
-            // Baaki saari choti libraries
+            // Maps wali library ko yahan se hata dein taaki woh vendor mein chali jaye
+            // Baaki saari choti libraries ek hi vendor chunk mein rakhein
             return 'vendor';
           }
         },
