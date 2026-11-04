@@ -1,24 +1,20 @@
-// import react from '@vitejs/plugin-react'
-// import { defineConfig } from 'vite'
-// import tailwindcss from '@tailwindcss/vite'
-
-// // https://vite.dev/config/
-// export default defineConfig({
-//   plugins: [react(), tailwindcss()], esbuild: {
-//     jsx: 'automatic',   // 👈 ye line add karo
-//   },
-// })
-
-
-
-
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()], 
+  plugins: [
+    react(), 
+    tailwindcss(),
+    // 👇 Image Optimizer Plugin yahan add kiya hai
+    ViteImageOptimizer({
+      jpg: { quality: 80 },
+      jpeg: { quality: 80 },
+      png: { quality: 80 },
+      webp: { quality: 80 },
+    }),
+  ], 
   esbuild: {
     jsx: 'automatic', 
   },
@@ -26,18 +22,16 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Saari node_modules files ko alag chunks mein daalein
           if (id.includes('node_modules')) {
-            // React ecosystem
+            // React ecosystem ko alag karein
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
               return 'vendor-react';
             }
-            // UI/Animation libraries
+            // UI aur Animation libraries ko alag karein
             if (id.includes('framer-motion') || id.includes('lucide-react')) {
               return 'vendor-ui';
             }
-            // Maps wali library ko yahan se hata dein taaki woh vendor mein chali jaye
-            // Baaki saari choti libraries ek hi vendor chunk mein rakhein
+            // Baaki libraries vendor chunk mein jayengi
             return 'vendor';
           }
         },
