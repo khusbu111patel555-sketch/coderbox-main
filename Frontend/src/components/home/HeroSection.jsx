@@ -170,18 +170,22 @@ const HeroSection = () => {
                 pointerEvents: 'none'
               }}
             >
-              <iframe
-                src={video.url}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] min-w-[300%] min-h-[300%]"
-                style={{
-                  pointerEvents: 'none',
-                  border: 'none',
-                  objectFit: 'cover'
-                }}
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
-                allowFullScreen
-                title={`Background Video ${index + 1}`}
-              />
+              {/* Lazy load iframe: preload="none" taaki page load hote hi download na ho */}
+              {index === currentIndex && (
+                <iframe
+                  src={video.url}
+                  loading="lazy"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] min-w-[300%] min-h-[300%]"
+                  style={{
+                    pointerEvents: 'none',
+                    border: 'none',
+                    objectFit: 'cover'
+                  }}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allowFullScreen
+                  title={`Background Video ${index + 1}`}
+                />
+              )}
             </motion.div>
           ))}
         </div>
@@ -352,11 +356,13 @@ const HeroSection = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden border border-[#00c6fb]/30 shadow-2xl shadow-[#008df1]/30 bg-black"
             >
+              {/* VIDEO: preload="none" add kiya hai taaki jab tak user click na kare, tab tak load na ho */}
               <video
                 src={VIDEO_URL}
                 controls
                 autoPlay
                 playsInline
+                preload="none"
                 className="w-full h-full object-contain bg-black"
               >
                 Your browser does not support the video tag.
