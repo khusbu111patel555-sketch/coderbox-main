@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient';
 import {
   ArrowLeft, Calendar, Clock, User, Loader2,
@@ -75,7 +76,6 @@ const BlogDetailPage = () => {
   return (
     <div className="min-h-screen bg-white font-['DM_Sans'] overflow-x-hidden">
 
-      {/* HERO */}
       <section
         className="relative min-h-[55vh] sm:min-h-[65vh] flex items-center justify-center pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden"
         style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
@@ -86,8 +86,7 @@ const BlogDetailPage = () => {
           <div className="absolute inset-0"
                style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }} />
 
-          {/* Floating orbs */}
-          <motion.div
+          <m.div
             className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
             style={{
               background: 'radial-gradient(circle at 30% 30%, rgba(1, 173, 240, 0.65) 0%, rgba(0, 111, 166, 0.25) 55%, transparent 75%)',
@@ -97,7 +96,7 @@ const BlogDetailPage = () => {
             animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0], scale: [1, 1.05, 1, 0.98, 1] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
+          <m.div
             className="absolute bottom-[10%] left-[10%] w-[180px] h-[180px] rounded-full"
             style={{
               background: 'radial-gradient(circle at 40% 40%, rgba(3, 180, 246, 0.55) 0%, rgba(0, 143, 209, 0.2) 60%, transparent 80%)',
@@ -107,7 +106,7 @@ const BlogDetailPage = () => {
             animate={{ y: [0, 35, 0, -25, 0], x: [0, -25, 0, 30, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
+          <m.div
             className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
             style={{
               background: 'radial-gradient(circle at 60% 40%, rgba(77, 211, 255, 0.5) 0%, rgba(1, 173, 240, 0.18) 60%, transparent 80%)',
@@ -118,8 +117,7 @@ const BlogDetailPage = () => {
             transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           />
 
-          {/* Rotating wireframe diamond */}
-          <motion.svg
+          <m.svg
             className="absolute top-[8%] right-[15%] w-[400px] h-[400px] opacity-60 hidden sm:block"
             viewBox="0 0 500 500" fill="none"
             style={{ filter: 'drop-shadow(0 0 10px rgba(1, 173, 240, 0.25))' }}
@@ -133,13 +131,12 @@ const BlogDetailPage = () => {
                 <stop offset="100%" stopColor="#00C6FB" stopOpacity="0.5" />
               </linearGradient>
             </defs>
-            <motion.polygon points="250,40 460,250 250,460 40,250" stroke="url(#wireGrad)" strokeWidth="1.2" fill="none"
+            <m.polygon points="250,40 460,250 250,460 40,250" stroke="url(#wireGrad)" strokeWidth="1.2" fill="none"
               animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
-            <motion.polygon points="250,80 420,250 250,420 80,250" stroke="url(#wireGrad)" strokeWidth="0.8" fill="none" opacity="0.6"
+            <m.polygon points="250,80 420,250 250,420 80,250" stroke="url(#wireGrad)" strokeWidth="0.8" fill="none" opacity="0.6"
               animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
-          </motion.svg>
+          </m.svg>
 
-          {/* Blog-related floating icon particles */}
           {[
             { Icon: PenTool,       top: '12%', left: '10%', size: 26, delay: 0,   dur: 7 },
             { Icon: BookOpen,      top: '22%', left: '88%', size: 30, delay: 0.5, dur: 8 },
@@ -154,7 +151,7 @@ const BlogDetailPage = () => {
             { Icon: BookOpen,      top: '45%', left: '75%', size: 24, delay: 1.2, dur: 8 },
             { Icon: Sparkles,      top: '88%', left: '32%', size: 20, delay: 2.2, dur: 7 },
           ].map(({ Icon, top, left, size, delay, dur }, i) => (
-            <motion.div
+            <m.div
               key={i}
               className="absolute"
               style={{ top, left }}
@@ -175,23 +172,23 @@ const BlogDetailPage = () => {
                   opacity: 0.85,
                 }}
               />
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         <div className="relative max-w-4xl mx-auto px-5 text-center z-10">
           {blog.category_name && (
-            <motion.span
+            <m.span
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.05 }}
               className="inline-block px-4 py-2 rounded-full bg-[#01ADF0]/15 border border-[#01ADF0]/40 text-[#52dcff] text-[11px] font-bold uppercase tracking-[0.18em] mb-6"
             >
               {blog.category_name}
-            </motion.span>
+            </m.span>
           )}
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.1 }}
@@ -199,14 +196,13 @@ const BlogDetailPage = () => {
             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}
           >
             {blog.title}
-          </motion.h1>
+          </m.h1>
         </div>
       </section>
 
-      {/* FEATURED IMAGE */}
       {blog.featured_image && (
         <div className="relative max-w-6xl mx-auto px-4 sm:px-8 -mt-16 sm:-mt-24 z-20">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -217,9 +213,9 @@ const BlogDetailPage = () => {
               alt={blog.title}
               className="w-full h-[260px] sm:h-[380px] md:h-[460px] object-cover"
             />
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35 }}
@@ -242,11 +238,10 @@ const BlogDetailPage = () => {
                 </span>
               </>
             )}
-          </motion.div>
+          </m.div>
         </div>
       )}
 
-      {/* MAIN CONTENT + SIDEBAR */}
       <section className="py-12 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
@@ -282,12 +277,10 @@ const BlogDetailPage = () => {
                 </div>
               )}
 
-              {/* ✅ FOLLOW US — Footer wale Facebook & LinkedIn links */}
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm font-bold text-gray-900 uppercase tracking-wider">Follow Us:</span>
 
-                  {/* Facebook — Footer link */}
                   <a
                     href="https://www.facebook.com/thecoderbox/"
                     target="_blank"
@@ -300,7 +293,6 @@ const BlogDetailPage = () => {
                     </svg>
                   </a>
 
-                  {/* LinkedIn — Footer link */}
                   <a
                     href="https://www.linkedin.com/company/thecoderbox/home/"
                     target="_blank"
@@ -315,7 +307,6 @@ const BlogDetailPage = () => {
                 </div>
               </div>
 
-              {/* CTA — About Us wale button jaisa */}
               <div
                 className="relative mt-10 rounded-2xl p-8 sm:p-10 text-white overflow-hidden shadow-lg"
                 style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 55%, #001E3C 100%)' }}
@@ -336,19 +327,18 @@ const BlogDetailPage = () => {
                     className="sec-btn inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#0B1526] font-bold shadow-none hover:bg-[#F09A36] hover:text-[#0B1526] transition-all duration-300"
                   >
                     Start a conversation
-                    <motion.span
+                    <m.span
                       animate={{ x: [0, 6, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       <ArrowRight className="h-4 w-4" />
-                    </motion.span>
+                    </m.span>
                   </Link>
                 </div>
               </div>
 
             </article>
 
-            {/* SIDEBAR */}
             <aside className="lg:col-span-1 lg:sticky lg:top-24 self-start space-y-8">
               <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                 <h3 className="text-base font-bold text-gray-900 uppercase tracking-wider pb-3 mb-5 border-b-2 border-[#0A5E93]/20 relative">
@@ -435,12 +425,12 @@ const BlogDetailPage = () => {
                     className="sec-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#0B1526] text-sm font-bold hover:bg-[#F09A36] hover:text-[#0B1526] transition-all duration-300"
                   >
                     Contact Us
-                    <motion.span
+                    <m.span
                       animate={{ x: [0, 6, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
                       <ArrowRight className="w-4 h-4" />
-                    </motion.span>
+                    </m.span>
                   </Link>
                 </div>
               </div>

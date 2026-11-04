@@ -1,7 +1,8 @@
 // src/pages/admin/AdminDashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import { supabase } from "../../lib/supabaseClient";
 import { useAuth } from '../../hooks/useAuth';
 import {
@@ -103,7 +104,7 @@ const AdminDashboard = () => {
         ].map((s) => {
           const Icon = s.icon;
           return (
-            <motion.div
+            <m.div
               key={s.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -116,7 +117,7 @@ const AdminDashboard = () => {
                 <div className="admin-stat-value">{s.value}</div>
                 <div className="admin-stat-label">{s.label}</div>
               </div>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

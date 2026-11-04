@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient';
 import {
   Search, Loader2, Calendar, ArrowRight, FileText, ChevronRight,
@@ -63,7 +64,6 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen bg-[#F3F4F1] overflow-x-hidden">
 
-      {/* HERO — About Us style */}
       <section
         className="relative min-h-[55vh] sm:min-h-[65vh] flex items-center justify-center overflow-hidden pt-24 pb-8 sm:pt-28 sm:pb-10 border-0 outline-none"
         style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
@@ -74,26 +74,26 @@ const BlogPage = () => {
           <div className="absolute inset-0"
                style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }} />
 
-          <motion.div
+          <m.div
             className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
             style={{ background: 'radial-gradient(circle at 30% 30%, rgba(1, 173, 240, 0.65) 0%, rgba(0, 111, 166, 0.25) 55%, transparent 75%)', boxShadow: '0 0 60px rgba(1, 173, 240, 0.25)', filter: 'blur(2px)' }}
             animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0], scale: [1, 1.05, 1, 0.98, 1] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
+          <m.div
             className="absolute bottom-[10%] left-[10%] w-[180px] h-[180px] rounded-full"
             style={{ background: 'radial-gradient(circle at 40% 40%, rgba(3, 180, 246, 0.55) 0%, rgba(0, 143, 209, 0.2) 60%, transparent 80%)', boxShadow: '0 0 70px rgba(3, 180, 246, 0.2)', filter: 'blur(2px)' }}
             animate={{ y: [0, 35, 0, -25, 0], x: [0, -25, 0, 30, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
+          <m.div
             className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
             style={{ background: 'radial-gradient(circle at 60% 40%, rgba(77, 211, 255, 0.5) 0%, rgba(1, 173, 240, 0.18) 60%, transparent 80%)', boxShadow: '0 0 70px rgba(77, 211, 255, 0.2)', filter: 'blur(2px)' }}
             animate={{ y: [0, -25, 0, 30, 0], x: [0, 25, 0, -20, 0] }}
             transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           />
 
-          <motion.svg
+          <m.svg
             className="absolute top-[8%] right-[18%] w-[450px] h-[450px] opacity-70 hidden sm:block"
             viewBox="0 0 500 500" fill="none"
             style={{ filter: 'drop-shadow(0 0 10px rgba(1, 173, 240, 0.25))' }}
@@ -107,13 +107,13 @@ const BlogPage = () => {
                 <stop offset="100%" stopColor="#00C6FB" stopOpacity="0.5" />
               </linearGradient>
             </defs>
-            <motion.polygon points="250,40 460,250 250,460 40,250" stroke="url(#wireGrad)" strokeWidth="1.2" fill="none"
+            <m.polygon points="250,40 460,250 250,460 40,250" stroke="url(#wireGrad)" strokeWidth="1.2" fill="none"
               animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
-            <motion.polygon points="250,80 420,250 250,420 80,250" stroke="url(#wireGrad)" strokeWidth="0.8" fill="none" opacity="0.6"
+            <m.polygon points="250,80 420,250 250,420 80,250" stroke="url(#wireGrad)" strokeWidth="0.8" fill="none" opacity="0.6"
               animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '250px 250px' }} />
             <line x1="250" y1="40" x2="250" y2="460" stroke="url(#wireGrad)" strokeWidth="0.6" opacity="0.5" />
             <line x1="40" y1="250" x2="460" y2="250" stroke="url(#wireGrad)" strokeWidth="0.6" opacity="0.5" />
-          </motion.svg>
+          </m.svg>
 
           {[
             { Icon: PenTool,       top: '12%', left: '12%', size: 26, delay: 0,   dur: 7 },
@@ -125,7 +125,7 @@ const BlogPage = () => {
             { Icon: FileText,      top: '30%', left: '45%', size: 22, delay: 0.8, dur: 7 },
             { Icon: Hash,          top: '70%', left: '50%', size: 20, delay: 1.8, dur: 6 },
           ].map(({ Icon, top, left, size, delay, dur }, i) => (
-            <motion.div
+            <m.div
               key={i}
               className="absolute"
               style={{ top, left }}
@@ -134,13 +134,13 @@ const BlogPage = () => {
               transition={{ duration: dur, repeat: Infinity, delay, ease: 'easeInOut' }}
             >
               <Icon size={size} strokeWidth={1.5} style={{ color: '#52dcff', filter: 'drop-shadow(0 0 8px rgba(82, 220, 255, 0.6))', opacity: 0.85 }} />
-            </motion.div>
+            </m.div>
           ))}
 
           {[...Array(8)].map((_, i) => {
             const size = Math.random() * 3 + 2;
             return (
-              <motion.div
+              <m.div
                 key={`dot-${i}`}
                 className="absolute rounded-full"
                 style={{
@@ -159,8 +159,8 @@ const BlogPage = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-center">
-            <motion.span
+          <m.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-center">
+            <m.span
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.05 }}
@@ -168,9 +168,9 @@ const BlogPage = () => {
               whileHover={{ scale: 1.05 }}
             >
               Our Blog
-            </motion.span>
+            </m.span>
 
-            <motion.h2
+            <m.h2
               className="sec-h2 text-white mt-1.5 sm:mt-2 leading-tight"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}
               initial={{ opacity: 0, y: 10 }}
@@ -181,9 +181,9 @@ const BlogPage = () => {
               <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
                 Ideas
               </span>
-            </motion.h2>
+            </m.h2>
 
-            <motion.p
+            <m.p
               className="sec-p text-white/80 mt-1 max-w-2xl mx-auto"
               style={{ textShadow: '0 1px 10px rgba(0,0,0,0.35)' }}
               initial={{ opacity: 0, y: 10 }}
@@ -191,9 +191,9 @@ const BlogPage = () => {
               transition={{ duration: 0.35, delay: 0.15 }}
             >
               Follow our latest news and thoughts on design, technology, marketing and digital transformation.
-            </motion.p>
+            </m.p>
 
-            <motion.ul
+            <m.ul
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -204,16 +204,14 @@ const BlogPage = () => {
               </li>
               <li className="opacity-60">/</li>
               <li className="text-white/90">Blog</li>
-            </motion.ul>
-          </motion.div>
+            </m.ul>
+          </m.div>
         </div>
       </section>
 
-      {/* FILTERS */}
       <section className="max-w-[1320px] mx-auto px-5 pt-12 pb-6">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
           <div className="flex gap-2 flex-wrap">
-            {/* ✅ Active filter — Deep Blue #006FA6 */}
             <button
               onClick={() => setActiveCategory('all')}
               className={`px-4 py-2 rounded-full text-[13px] font-semibold transition ${
@@ -252,7 +250,6 @@ const BlogPage = () => {
         </div>
       </section>
 
-      {/* GRID */}
       <section className="max-w-[1320px] mx-auto px-5 pb-20">
         {loading ? (
           <div className="flex items-center justify-center py-32">
@@ -270,7 +267,7 @@ const BlogPage = () => {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {visibleBlogs.map((blog, i) => (
-                <motion.article
+                <m.article
                   key={blog.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -297,7 +294,6 @@ const BlogPage = () => {
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B1526]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                      {/* ✅ Read Article button — Recommended Gradient #00C6FB → #01ADF0 */}
                       <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] text-white font-bold text-[13px] rounded-full opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-xl shadow-[#01ADF0]/40">
                         Read Article
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -306,7 +302,6 @@ const BlogPage = () => {
 
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3 flex-wrap">
-                        {/* ✅ Category badge — Deep Blue #006FA6 */}
                         {blog.category_name && (
                           <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#006FA6] text-white text-[10.5px] font-bold uppercase tracking-[.08em]">
                             {blog.category_name}
@@ -329,18 +324,16 @@ const BlogPage = () => {
                         <p className="text-[14px] leading-[1.6] text-[#56627A] line-clamp-2">{blog.excerpt}</p>
                       )}
 
-                      {/* ✅ Read More link — Deep Blue #006FA6 */}
                       <span className="inline-flex items-center gap-1.5 mt-4 text-[13.5px] font-bold text-[#006FA6] group-hover:gap-2.5 transition-all">
                         Read More
                         <ChevronRight className="w-4 h-4" />
                       </span>
                     </div>
                   </Link>
-                </motion.article>
+                </m.article>
               ))}
             </div>
 
-            {/* ✅ Load More — Deep Blue #006FA6 */}
             {hasMore && (
               <div className="flex justify-center mt-14">
                 <button

@@ -42,11 +42,9 @@ const CreateBlog = () => {
   const [error, setError] = useState('');
   const [uploading, setUploading] = useState(false); 
 
-  /* ---------- CATEGORIES STATE ---------- */
   const [categories, setCategories] = useState([]);
   const [loadingCats, setLoadingCats] = useState(true);
 
-  /* ---------- CATEGORY MANAGER MODAL ---------- */
   const [showCatModal, setShowCatModal] = useState(false);
   const [newCat, setNewCat] = useState({ name: '', slug: '' });
   const [catSaving, setCatSaving] = useState(false);
@@ -54,12 +52,10 @@ const CreateBlog = () => {
   const [catSuccess, setCatSuccess] = useState('');
   const [catSlugTouched, setCatSlugTouched] = useState(false);
 
-  /* ---------- EDIT / DELETE STATE ---------- */
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({ name: '', slug: '' });
   const [deletingId, setDeletingId] = useState(null);
 
-  /* ---------- BLOG FORM STATE ---------- */
   const [form, setForm] = useState({
     title: '', slug: '', excerpt: '', content: '',
     featured_image: '', featured_image_alt: '',
@@ -69,9 +65,6 @@ const CreateBlog = () => {
     og_image: '', twitter_title: '', twitter_description: '', twitter_image: '',
   });
 
-  /* ============================================================
-     LOAD CATEGORIES
-     ============================================================ */
   const loadCategories = async () => {
     setLoadingCats(true);
     const { data, error } = await supabase
@@ -92,9 +85,6 @@ const CreateBlog = () => {
     loadCategories();
   }, []);
 
-  /* ============================================================
-     IMAGE UPLOAD HANDLER
-     ============================================================ */
   const handleImageUpload = async (e) => {
     try {
       setUploading(true);
@@ -137,9 +127,6 @@ const CreateBlog = () => {
     setForm((prev) => ({ ...prev, featured_image: '' }));
   };
 
-  /* ============================================================
-     BLOG FORM
-     ============================================================ */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -169,9 +156,6 @@ const CreateBlog = () => {
     navigate('/admin/dashboard');
   };
 
-  /* ============================================================
-     CATEGORY MODAL — OPEN/CLOSE
-     ============================================================ */
   const openCatModal = () => {
     setNewCat({ name: '', slug: '' });
     setCatError('');
@@ -192,9 +176,6 @@ const CreateBlog = () => {
     setDeletingId(null);
   };
 
-  /* ============================================================
-     ADD CATEGORY
-     ============================================================ */
   const handleCatNameChange = (e) => {
     const value = e.target.value;
     setNewCat((prev) => ({
@@ -241,9 +222,6 @@ const CreateBlog = () => {
     setTimeout(() => setCatSuccess(''), 2500);
   };
 
-  /* ============================================================
-     EDIT CATEGORY
-     ============================================================ */
   const startEdit = (cat) => {
     setEditingId(cat.id);
     setEditForm({ name: cat.name, slug: cat.slug });
@@ -301,9 +279,6 @@ const CreateBlog = () => {
     setTimeout(() => setCatSuccess(''), 2500);
   };
 
-  /* ============================================================
-     DELETE CATEGORY
-     ============================================================ */
   const handleDeleteClick = (id) => {
     setDeletingId(id);
     setCatError('');
@@ -328,9 +303,6 @@ const CreateBlog = () => {
     setTimeout(() => setCatSuccess(''), 2500);
   };
 
-  /* ============================================================
-     RENDER
-     ============================================================ */
   return (
     <div className="admin-form-page">
       <div className="admin-form-header">
@@ -343,7 +315,6 @@ const CreateBlog = () => {
       {error && <div className="admin-form-error">{error}</div>}
 
       <form className="admin-form">
-        {/* ============ BASIC ============ */}
         <Section title="Basic Information">
           <Field label="Title *">
             <input name="title" value={form.title} onChange={handleChange} required />
@@ -358,7 +329,6 @@ const CreateBlog = () => {
             <textarea name="content" rows={12} value={form.content} onChange={handleChange} required />
           </Field>
           
-          {/* 👇 UPDATED: Removed "full" prop to match Image Alt Text width 👇 */}
           <Field label="Featured Image">
             <div className="admin-image-upload-wrap">
               {form.featured_image ? (
@@ -404,7 +374,6 @@ const CreateBlog = () => {
           </Field>
         </Section>
 
-        {/* ============ CLASSIFICATION ============ */}
         <Section title="Classification">
           <Field label="Category">
             <div className="admin-category-row">
@@ -457,7 +426,6 @@ const CreateBlog = () => {
           </Field>
         </Section>
 
-        {/* ============ SEO ============ */}
         <Section title="SEO / Meta">
           <Field label="Meta Title">
             <input name="meta_title" value={form.meta_title} onChange={handleChange} />
@@ -473,7 +441,6 @@ const CreateBlog = () => {
           </Field>
         </Section>
 
-        {/* ============ SOCIAL ============ */}
         <Section title="Social Sharing">
           <Field label="OG Title">
             <input name="og_title" value={form.og_title} onChange={handleChange} />
@@ -495,7 +462,6 @@ const CreateBlog = () => {
           </Field>
         </Section>
 
-        {/* ============ ACTIONS ============ */}
         <div className="admin-form-actions">
           <button
             type="button"
@@ -518,16 +484,12 @@ const CreateBlog = () => {
         </div>
       </form>
 
-      {/* ============================================================
-          CATEGORY MANAGER MODAL
-         ============================================================ */}
       {showCatModal && (
         <div className="admin-modal-backdrop" onClick={closeCatModal}>
           <div
             className="admin-modal admin-modal-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
             <div className="admin-modal-header">
               <div>
                 <h3>Manage Categories</h3>
@@ -544,7 +506,6 @@ const CreateBlog = () => {
               </button>
             </div>
 
-            {/* Alerts */}
             {catError && (
               <div className="admin-modal-alert admin-modal-alert-error">
                 <AlertCircle className="w-4 h-4" />
@@ -558,9 +519,6 @@ const CreateBlog = () => {
               </div>
             )}
 
-            {/* ============================================================
-                ADD NEW FORM (inline at top)
-               ============================================================ */}
             <form onSubmit={handleAddCategory} className="admin-add-cat-form">
               <div className="admin-add-cat-form-title">
                 <Plus className="w-4 h-4" /> Add New Category
@@ -595,9 +553,6 @@ const CreateBlog = () => {
               </div>
             </form>
 
-            {/* ============================================================
-                CATEGORIES TABLE
-               ============================================================ */}
             <div className="admin-cat-table-wrap">
               {loadingCats ? (
                 <div className="admin-cat-loading">

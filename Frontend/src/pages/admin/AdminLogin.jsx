@@ -1,121 +1,7 @@
-// // src/pages/admin/AdminLogin.jsx
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { motion } from 'framer-motion';
-// import { supabase } from "../../lib/supabaseClient";
-// import { Lock, Mail, Loader2, AlertCircle } from 'lucide-react';
-// import './Admin.css';
-
-// const AdminLogin = () => {
-//   const navigate = useNavigate();
-//   const [form, setForm] = useState({ email: '', password: '' });
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-//     setError('');
-
-//     const { data, error } = await supabase.auth.signInWithPassword({
-//       email: form.email,
-//       password: form.password,
-//     });
-
-//     setLoading(false);
-
-//     if (error) {
-//       setError(error.message);
-//       return;
-//     }
-
-//     if (data.user) {
-//       navigate('/admin/dashboard');
-//     }
-//   };
-
-//   return (
-//     <div className="admin-login-wrapper">
-//       {/* Background effects */}
-//       <div className="admin-login-bg" />
-//       <div className="admin-login-orb orb-1" />
-//       <div className="admin-login-orb orb-2" />
-
-//       <motion.div
-//         initial={{ opacity: 0, y: 30 }}
-//         animate={{ opacity: 1, y: 0 }}
-//         transition={{ duration: 0.5 }}
-//         className="admin-login-card"
-//       >
-//         <div className="admin-login-header">
-//           <span className="admin-login-icon">
-//             <Lock className="w-6 h-6" />
-//           </span>
-//           <h1>Admin Login</h1>
-//           <p>Sign in to manage blogs & content</p>
-//         </div>
-
-//         {error && (
-//           <div className="admin-login-error">
-//             <AlertCircle className="w-4 h-4" />
-//             <span>{error}</span>
-//           </div>
-//         )}
-
-//         <form onSubmit={handleSubmit} className="admin-login-form">
-//           <div className="admin-field">
-//             <label>Email Address</label>
-//             <div className="admin-input-wrap">
-//               <Mail className="admin-input-icon" />
-//               <input
-//                 type="email"
-//                 required
-//                 placeholder="admin@thecoderbox.com"
-//                 value={form.email}
-//                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-//               />
-//             </div>
-//           </div>
-
-//           <div className="admin-field">
-//             <label>Password</label>
-//             <div className="admin-input-wrap">
-//               <Lock className="admin-input-icon" />
-//               <input
-//                 type="password"
-//                 required
-//                 placeholder="••••••••"
-//                 value={form.password}
-//                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-//               />
-//             </div>
-//           </div>
-
-//           <button type="submit" disabled={loading} className="admin-submit-btn">
-//             {loading ? (
-//               <>
-//                 <Loader2 className="w-4 h-4 animate-spin" />
-//                 Signing in...
-//               </>
-//             ) : (
-//               'Sign In'
-//             )}
-//           </button>
-//         </form>
-//       </motion.div>
-//     </div>
-//   );
-// };
-
-// export default AdminLogin;
-
-
-
-
-// src/pages/admin/AdminLogin.jsx
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import { supabase } from "../../lib/supabaseClient";
 import { Lock, Mail, Loader2, AlertCircle, Eye, EyeOff, ArrowRight, ShieldCheck } from 'lucide-react';
 import './Admin.css';
@@ -127,7 +13,6 @@ const AdminLogin = () => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // ✅ Refs to remove readOnly on focus (stops Chrome autofill)
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -155,15 +40,13 @@ const AdminLogin = () => {
 
   return (
     <div className="admin-login-wrapper">
-      {/* Background effects */}
       <div className="admin-login-bg" />
       <div className="admin-login-orb orb-1" />
       <div className="admin-login-orb orb-2" />
       <div className="admin-login-grid" />
 
-      {/* Floating particles */}
       {[...Array(12)].map((_, i) => (
-        <motion.div
+        <m.div
           key={i}
           className="admin-particle"
           style={{
@@ -184,58 +67,53 @@ const AdminLogin = () => {
         />
       ))}
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="admin-login-card"
       >
-        {/* Top gradient bar */}
         <div className="admin-card-topbar" />
 
-        {/* Header */}
         <div className="admin-login-header">
-          <motion.span
+          <m.span
             className="admin-login-icon"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.4, type: 'spring' }}
           >
             <ShieldCheck className="w-7 h-7" />
-          </motion.span>
+          </m.span>
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.4 }}
           >
             Admin <span>Login</span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.4 }}
           >
             Sign in to manage blogs & content
-          </motion.p>
+          </m.p>
         </div>
 
-        {/* Error */}
         {error && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             className="admin-login-error"
           >
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
             <span>{error}</span>
-          </motion.div>
+          </m.div>
         )}
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="admin-login-form" autoComplete="off">
-          {/* Email */}
           <div className="admin-field">
             <label>Email Address</label>
             <div className="admin-input-wrap">
@@ -257,7 +135,6 @@ const AdminLogin = () => {
             </div>
           </div>
 
-          {/* Password */}
           <div className="admin-field">
             <label>Password</label>
             <div className="admin-input-wrap">
@@ -287,8 +164,7 @@ const AdminLogin = () => {
             </div>
           </div>
 
-          {/* Submit */}
-          <motion.button
+          <m.button
             type="submit"
             disabled={loading}
             className="admin-submit-btn"
@@ -306,15 +182,14 @@ const AdminLogin = () => {
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
-          </motion.button>
+          </m.button>
         </form>
 
-        {/* Footer note */}
         <div className="admin-login-footer">
           <span className="admin-lock-dot" />
           Secure admin access only
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 };
