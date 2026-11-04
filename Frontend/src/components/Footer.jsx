@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Send, Mail, Phone, CheckCircle, AlertCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabaseClient';
 
 const Footer = () => {
@@ -114,13 +115,11 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-[#f8f8f8] border-t border-gray-200">
-      {/* TOP BLUE LINE */}
       <div className="h-1 w-full bg-[#01adf0] shadow-[0_0_10px_#01adf0]"></div>
 
       <div className="container mx-auto px-4 sm:px-6 py-10 sm:py-14 flex flex-col items-center justify-center text-center">
 
-        {/* LOGO */}
-        <motion.img
+        <m.img
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -134,8 +133,7 @@ const Footer = () => {
           }}
         />
 
-        {/* NAV LINKS */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -151,10 +149,9 @@ const Footer = () => {
               {link.name}
             </Link>
           ))}
-        </motion.div>
+        </m.div>
 
-        {/* SOCIAL ICONS */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -162,7 +159,7 @@ const Footer = () => {
           className="flex items-center justify-center gap-3 mb-8"
         >
           {socialLinks.map((social, index) => (
-            <motion.a
+            <m.a
               key={index}
               href={social.href}
               target="_blank"
@@ -175,12 +172,11 @@ const Footer = () => {
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#01adf0'; }}
             >
               {social.icon}
-            </motion.a>
+            </m.a>
           ))}
-        </motion.div>
+        </m.div>
 
-        {/* NEWSLETTER FORM */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -219,7 +215,7 @@ const Footer = () => {
 
           <AnimatePresence>
             {isSuccess && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0, marginTop: 0 }}
                 animate={{ opacity: 1, height: 'auto', marginTop: 10 }}
                 exit={{ opacity: 0, height: 0, marginTop: 0 }}
@@ -229,13 +225,13 @@ const Footer = () => {
                   <CheckCircle className="h-3.5 w-3.5" />
                   Subscribed successfully! Thank you.
                 </p>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 
           <AnimatePresence>
             {error && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0, marginTop: 0 }}
                 animate={{ opacity: 1, height: 'auto', marginTop: 10 }}
                 exit={{ opacity: 0, height: 0, marginTop: 0 }}
@@ -245,13 +241,12 @@ const Footer = () => {
                   <AlertCircle className="h-3.5 w-3.5 shrink-0" />
                   <span className="text-center">{error}</span>
                 </p>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
 
-        {/* CONTACT INFO */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -266,9 +261,8 @@ const Footer = () => {
             <Phone size={12} className="text-[#01adf0]" />
             +91 89288 09025
           </span>
-        </motion.div>
+        </m.div>
 
-        {/* COPYRIGHT — Left side, Links — Right side */}
         <div className="w-full border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
           <p className="text-xs text-gray-400 text-center sm:text-left order-2 sm:order-1">
             Copyright © {currentYear} thecoderbox.com | All Rights Reserved

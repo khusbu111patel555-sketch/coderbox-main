@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m, useInView } from 'framer-motion';
 import { Users, Briefcase, Globe, Quote, CircleCheck, Sparkles, TrendingUp } from 'lucide-react';
 import { FaInstagram, FaLinkedinIn, FaFacebookF } from 'react-icons/fa';
 import AnimatedSection from './AnimatedSection';
@@ -77,19 +78,16 @@ const TeamSection = () => {
   return (
     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 bg-[#0a0a1a] overflow-hidden">
 
-      {/* Tech Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
 
-      {/* Radial glow overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(0,141,241,0.15),transparent)] pointer-events-none" />
 
-      {/* Animated orbs */}
-      <motion.div
+      <m.div
         className="absolute top-1/4 -left-40 w-[500px] h-[500px] rounded-full bg-[#008df1]/10 blur-[100px] pointer-events-none"
         animate={{ x: [0, 60, -60, 0], y: [0, -40, 40, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <m.div
         className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] rounded-full bg-[#005b8f]/15 blur-[100px] pointer-events-none"
         animate={{ x: [0, -60, 60, 0], y: [0, 40, -40, 0] }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
@@ -97,18 +95,17 @@ const TeamSection = () => {
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
 
-        {/* ===== HEADER (Same classes as ServicesSection) ===== */}
         <AnimatedSection className="text-center mb-4 sm:mb-5 md:mb-6">
-          <motion.span
+          <m.span
             className="sec-badge inline-block"
             whileHover={{ scale: 1.05 }}
             animate={{ y: [0, -3, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             Meet Our Founder
-          </motion.span>
+          </m.span>
 
-          <motion.h2
+          <m.h2
             className="sec-h2 text-white mt-1.5 sm:mt-2 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,23 +115,21 @@ const TeamSection = () => {
             <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
               CoderBox
             </span>
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p
             className="sec-p text-white/70 mt-1 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             A tech entrepreneur driving innovation and digital transformation across industries.
-          </motion.p>
+          </m.p>
         </AnimatedSection>
 
-        {/* ===== BENTO GRID LAYOUT ===== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 auto-rows-auto">
 
-          {/* ===== HERO CARD ===== */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -154,7 +149,7 @@ const TeamSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/80 via-transparent to-transparent" />
 
                   <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <motion.a
+                    <m.a
                       href={member.socials.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -162,8 +157,8 @@ const TeamSection = () => {
                       className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md hover:bg-[#00c6fb] flex items-center justify-center text-white border border-white/20 transition-all"
                     >
                       <FaInstagram className="h-3.5 w-3.5" />
-                    </motion.a>
-                    <motion.a
+                    </m.a>
+                    <m.a
                       href={member.socials.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -171,8 +166,8 @@ const TeamSection = () => {
                       className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md hover:bg-[#008df1] flex items-center justify-center text-white border border-white/20 transition-all"
                     >
                       <FaLinkedinIn className="h-3.5 w-3.5" />
-                    </motion.a>
-                    <motion.a
+                    </m.a>
+                    <m.a
                       href={member.socials.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -180,7 +175,7 @@ const TeamSection = () => {
                       className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md hover:bg-[#006fa6] flex items-center justify-center text-white border border-white/20 transition-all"
                     >
                       <FaFacebookF className="h-3.5 w-3.5" />
-                    </motion.a>
+                    </m.a>
                   </div>
                 </div>
               </div>
@@ -212,10 +207,9 @@ const TeamSection = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
-          {/* ===== STATS CARD WITH COUNT-UP ===== */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -232,7 +226,7 @@ const TeamSection = () => {
 
               <div className="space-y-5">
                 {member.stats.map((stat, idx) => (
-                  <motion.div
+                  <m.div
                     key={idx}
                     whileHover={{ x: 4 }}
                     className="flex items-center justify-between border-b border-white/5 pb-4 last:border-0 last:pb-0"
@@ -246,14 +240,13 @@ const TeamSection = () => {
                     <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-br from-white to-gray-500 bg-clip-text text-transparent tracking-tight tabular-nums">
                       <CountUp end={stat.end} suffix={stat.suffix} duration={1500 + idx * 300} />
                     </span>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
-          {/* ===== BACKGROUND CARD ===== */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -272,10 +265,9 @@ const TeamSection = () => {
                 </p>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
-          {/* ===== VENTURES CARD ===== */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -290,7 +282,7 @@ const TeamSection = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {member.ventures.map((v, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   whileHover={{ y: -4 }}
                   className="relative group/venture rounded-2xl bg-white/[0.03] backdrop-blur-sm p-4 border border-white/10 hover:border-[#00c6fb]/50 transition-all duration-300 overflow-hidden"
@@ -303,13 +295,12 @@ const TeamSection = () => {
                   </div>
                   <p className="text-sm font-bold text-white mb-1 pr-6 leading-snug">{v.name}</p>
                   <p className="text-[10px] text-[#00c6fb]/80 font-semibold tracking-wider uppercase">{v.industry}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
-          {/* ===== INDUSTRIES CARD ===== */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -324,20 +315,19 @@ const TeamSection = () => {
 
             <div className="flex flex-wrap gap-2">
               {member.industries.map((ind, i) => (
-                <motion.span
+                <m.span
                   key={i}
                   whileHover={{ scale: 1.05, y: -2 }}
                   className="flex items-center gap-2 px-4 py-2 bg-white/5 text-white/80 text-xs font-bold tracking-wide rounded-full border border-white/10 hover:border-[#00c6fb] hover:bg-[#00c6fb] hover:text-[#0a0a1a] transition-all duration-300 cursor-default"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00c6fb]" />
                   {ind}
-                </motion.span>
+                </m.span>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
-          {/* ===== FOUNDER'S NOTE ===== */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -372,7 +362,7 @@ const TeamSection = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

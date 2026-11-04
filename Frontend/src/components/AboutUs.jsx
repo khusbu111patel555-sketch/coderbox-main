@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import {
   Briefcase, Quote, Play, X, ArrowRight, CircleCheck, Globe,
   ChevronLeft, ChevronRight,
@@ -111,27 +112,23 @@ const SharedStyles = () => (
       transform: translateZ(0);
     }
 
-    /* ====== DESKTOP / LAPTOP — HOVER ====== */
     @media (hover: hover) and (pointer: fine) {
       .pillar-card:hover .pillar-title { color: #01ADF0 !important; }
       .pillar-card:hover .pillar-desc  { color: #01ADF0 !important; }
       .pillar-card:hover .pillar-icon-box { background-color: #0D86CF !important; color: #ffffff !important; }
       .pillar-card:hover .pillar-num { color: #01ADF0 !important; }
 
-      /* ✅ Value card: Title AND Desc both BLACK on hover */
       .value-card:hover .value-title { color: #0B1526 !important; }
       .value-card:hover .value-desc  { color: #0B1526 !important; }
       .value-card:hover .value-icon-box { background-color: #0B1526 !important; }
     }
 
-    /* ====== MOBILE / TABLET — TAP ====== */
     @media (hover: none) {
       .pillar-card:active .pillar-title { color: #01ADF0 !important; }
       .pillar-card:active .pillar-desc  { color: #01ADF0 !important; }
       .pillar-card:active .pillar-icon-box { background-color: #0D86CF !important; color: #ffffff !important; }
       .pillar-card:active .pillar-num { color: #01ADF0 !important; }
 
-      /* ✅ Value card: Title AND Desc both BLACK on tap */
       .value-card:active .value-title { color: #0B1526 !important; }
       .value-card:active .value-desc  { color: #0B1526 !important; }
       .value-card:active .value-icon-box { background-color: #0B1526 !important; }
@@ -159,13 +156,13 @@ const AboutHero = () => (
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.12) 0%, transparent 55%)' }} />
       <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }} />
 
-      <motion.div
+      <m.div
         className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
         style={{ background: 'radial-gradient(circle at 30% 30%, rgba(1,173,240,.65) 0%, rgba(0,111,166,.25) 55%, transparent 75%)', boxShadow: '0 0 60px rgba(1,173,240,.25)', filter: 'blur(2px)', willChange: 'transform' }}
         animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
+      <m.div
         className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
         style={{ background: 'radial-gradient(circle at 60% 40%, rgba(77,211,255,.5) 0%, rgba(1,173,240,.18) 60%, transparent 80%)', boxShadow: '0 0 70px rgba(77,211,255,.2)', filter: 'blur(2px)', willChange: 'transform' }}
         animate={{ y: [0, -25, 0, 30, 0], x: [0, 25, 0, -20, 0] }}
@@ -175,7 +172,7 @@ const AboutHero = () => (
       {HERO_ICONS.map(({ Icon, label, color }, i) => {
         const positions = [{ top: '12%', left: '6%' }, { top: '68%', left: '8%' }, { top: '22%', right: '7%' }, { top: '72%', right: '9%' }];
         return (
-          <motion.div
+          <m.div
             key={label}
             className="absolute flex items-center gap-2 rounded-2xl border border-white/12 bg-white/[.06] px-3 py-2 backdrop-blur-sm select-none"
             style={{ ...positions[i], boxShadow: `0 10px 30px -12px ${color}55`, willChange: 'transform' }}
@@ -186,12 +183,12 @@ const AboutHero = () => (
               <Icon className="h-3.5 w-3.5" />
             </span>
             <span className="text-[10px] font-bold uppercase tracking-[.16em]" style={{ color }}>{label}</span>
-          </motion.div>
+          </m.div>
         );
       })}
 
       {HERO_GLYPHS.map((glyph, i) => (
-        <motion.span
+        <m.span
           key={`g-${i}`}
           className="absolute select-none font-['Space_Grotesk'] font-bold"
           style={{ top: `${8 + ((i * 41) % 84)}%`, left: `${4 + ((i * 59) % 90)}%`, fontSize: `${14 + (i % 4) * 6}px`, color: 'rgba(143,203,242,0.42)', textShadow: '0 0 14px rgba(1,173,240,0.55)', willChange: 'transform, opacity' }}
@@ -199,13 +196,13 @@ const AboutHero = () => (
           transition={{ duration: 6 + (i % 5) * 1.6, delay: (i % 6) * 0.8, repeat: Infinity, ease: 'easeInOut' }}
         >
           {glyph}
-        </motion.span>
+        </m.span>
       ))}
 
       {[...Array(6)].map((_, i) => {
         const size = Math.random() * 3 + 2;
         return (
-          <motion.div
+          <m.div
             key={i}
             className="absolute rounded-full"
             style={{ top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, width: `${size}px`, height: `${size}px`, background: 'rgba(180,230,255,.9)', boxShadow: `0 0 ${size * 2}px rgba(120,210,255,.6)`, willChange: 'opacity' }}
@@ -215,7 +212,7 @@ const AboutHero = () => (
         );
       })}
 
-      <motion.div
+      <m.div
         className="absolute top-1/2 left-1/2 hidden lg:block"
         style={{ width: 720, height: 720, translateX: '-50%', translateY: '-50%', willChange: 'transform' }}
         animate={{ rotate: 360 }}
@@ -224,7 +221,7 @@ const AboutHero = () => (
         {HERO_TAGS.map((label, i) => {
           const rad = ((i * 360) / HERO_TAGS.length * Math.PI) / 180;
           return (
-            <motion.div
+            <m.div
               key={`tag-${label}`}
               className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-white/[.06] px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-[.16em] text-[#B8E2FF] backdrop-blur-sm whitespace-nowrap"
               style={{ left: 360 + Math.cos(rad) * 360, top: 360 + Math.sin(rad) * 360, willChange: 'transform' }}
@@ -232,14 +229,14 @@ const AboutHero = () => (
               transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
             >
               {label}
-            </motion.div>
+            </m.div>
           );
         })}
-      </motion.div>
+      </m.div>
     </div>
 
     <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
-      <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-center">
+      <m.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="text-center">
         <span className="sec-badge inline-block">About Us</span>
         <h2 className="sec-h2 text-white mt-1.5 sm:mt-2 leading-tight" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}>
           Your Journey of Digital Transformation Begins Here! <br />
@@ -248,7 +245,7 @@ const AboutHero = () => (
         <p className="sec-p text-white/80 mt-1 max-w-2xl mx-auto">
           A group of creative thinkers gathered under one roof collaboratively striving forward with a motto to take business developments to its pinnacle.
         </p>
-      </motion.div>
+      </m.div>
     </div>
   </section>
 );
@@ -278,7 +275,7 @@ const AboutContent = () => {
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.5, ease: "easeOut" }} className="relative flex justify-center">
+          <m.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.5, ease: "easeOut" }} className="relative flex justify-center">
             <div className="relative w-full max-w-xl aspect-[3/4] bg-[#003F7D] rounded-[40px] overflow-hidden shadow-2xl shadow-[#005B8F]/20 border border-white/10">
               <div className="absolute inset-4 rounded-[30px] overflow-hidden border-2 border-white/10">
                 <div className="relative w-full h-full">
@@ -297,9 +294,9 @@ const AboutContent = () => {
                 </div>
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}>
+          <m.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}>
             <span className="sec-badge inline-block">Leadership</span>
             <h2 className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight">
               Meet Our <span className={GRADIENT_BLUE}>Founder</span>
@@ -371,7 +368,7 @@ const AboutContent = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
@@ -684,9 +681,9 @@ const ClosingCTA = () => (
         </p>
         <Link to="/contact" className="sec-btn bg-white text-[#0B1526] shadow-none hover:bg-[#F09A36] hover:text-[#0B1526]">
           Connect With CoderBox
-          <motion.span animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+          <m.span animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
             <ArrowRight className="h-4 w-4" />
-          </motion.span>
+          </m.span>
         </Link>
       </div>
     </div>
@@ -772,4 +769,3 @@ const AboutUs = () => (
   </div>
 );
 export default AboutUs;
-

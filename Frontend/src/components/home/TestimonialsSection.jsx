@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 const TestimonialsSection = () => {
@@ -86,10 +87,8 @@ const TestimonialsSection = () => {
   };
 
   return (
-    // Section padding ko Services jaisa kar diya gaya hai
     <section className="relative py-6 sm:py-8 md:py-10 lg:py-12 overflow-hidden bg-gradient-to-br from-[#f8f9fc] via-[#f5f6fa] to-[#f0f2f8]">
 
-      {/* ===== BACKGROUND DECORATION ===== */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-0 w-[400px] h-[400px] opacity-[0.35]">
           <svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" preserveAspectRatio="none">
@@ -135,26 +134,23 @@ const TestimonialsSection = () => {
 
       <div className="container mx-auto px-4 sm:px-8 lg:px-16 relative z-10 max-w-7xl">
 
-        {/* ===== HEADER (Ab bilkul ServicesSection jaisa) ===== */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="text-center mb-4 sm:mb-5 md:mb-6"
         >
-          {/* Badge */}
-          <motion.span
+          <m.span
             className="sec-badge inline-block"
             whileHover={{ scale: 1.05 }}
             animate={{ y: [0, -3, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             Testimonials
-          </motion.span>
+          </m.span>
 
-          {/* Heading - Gradient text ke saath */}
-          <motion.h2
+          <m.h2
             className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -164,26 +160,23 @@ const TestimonialsSection = () => {
             <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
               Clients Say
             </span>
-          </motion.h2>
+          </m.h2>
 
-          {/* Subtitle */}
-          <motion.p
+          <m.p
             className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             Real stories from real businesses that trusted us to build, scale and succeed.
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
 
-        {/* ===== CAROUSEL ===== */}
         <div
           className="relative"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Navigation Buttons */}
           <button
             onClick={handlePrev}
             className="absolute left-0 sm:left-2 lg:left-4 top-1/2 -translate-y-1/2 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-lg hover:shadow-2xl border border-gray-100 hover:border-[#008df1] flex items-center justify-center transition-all duration-300 group"
@@ -198,13 +191,12 @@ const TestimonialsSection = () => {
             <ChevronRight className="h-4 w-4 text-gray-600 group-hover:text-[#008df1] transition-colors" />
           </button>
 
-          {/* Cards Container */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-center px-8 sm:px-16 lg:px-20 pt-6">
             {getVisibleTestimonials().map((testimonial, idx) => {
               const isCenter = testimonial.position === 'center';
 
               return (
-                <motion.div
+                <m.div
                   key={`${currentIndex}-${idx}`}
                   initial={{ opacity: 0, scale: isCenter ? 0.9 : 0.95 }}
                   animate={{
@@ -258,13 +250,12 @@ const TestimonialsSection = () => {
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
         </div>
 
-        {/* ===== DOT INDICATORS ===== */}
         <div className="flex items-center justify-center gap-1.5 mt-8">
           {testimonials.map((_, idx) => (
             <button
@@ -280,8 +271,7 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* ===== BOTTOM STATS ===== */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -298,15 +288,13 @@ const TestimonialsSection = () => {
                 key={idx}
                 className={`text-center ${idx < 2 ? 'sm:border-r sm:border-gray-200' : ''}`}
               >
-                {/* Value - sec-h2 ke size ke saath match */}
-                <motion.p
+                <m.p
                   className="sec-h2 font-bold mb-1"
                   style={{ color: stat.color }}
                   whileHover={{ scale: 1.05 }}
                 >
                   {stat.value}
-                </motion.p>
-                {/* Label - sec-p ke size ke saath match */}
+                </m.p>
                 <p className="sec-p text-gray-600 font-medium">
                   {stat.label}
                 </p>
@@ -314,7 +302,7 @@ const TestimonialsSection = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
       </div>
     </section>

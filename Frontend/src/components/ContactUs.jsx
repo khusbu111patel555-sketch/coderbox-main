@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+// 👇 motion ki jagah m import kiya hai
+import { m } from "framer-motion";
 import { supabase } from "../lib/supabaseClient";
 
 /* ============================================
@@ -16,7 +17,6 @@ const HOURS = { open: 9 * 60, close: 18 * 60 };
 const SERVICES = ["Web design", "Development", "Branding", "SEO & growth", "Something else"];
 const ZOOM = 2.2;
 
-/* Contact-themed particles for hero */
 const HERO_GLYPHS = ['@', '✉', '☎', '✆', '⌘', '✧', '✦', '☏', '✉', '@', '☎'];
 const HERO_TAGS = ['EMAIL', 'CALL', 'VISIT', 'CHAT', 'SUPPORT', '24/7', 'REPLY', 'HELLO'];
 
@@ -397,7 +397,6 @@ const ContactUs = () => {
   return (
     <main className="flex-grow overflow-hidden bg-gradient-to-b from-[#E6F8FF] to-white">
 
-      {/* INLINE KEYFRAMES & UTILITIES */}
       <style>{`
         @keyframes chIn { to { opacity: 1; transform: none; } }
         @keyframes wipe { to { clip-path: inset(0 0 0 0 round 24px); } }
@@ -425,33 +424,25 @@ const ContactUs = () => {
         .fl input:focus::placeholder, .fl textarea:focus::placeholder { color: #9AA5B8; }
         .land-label { fill: #6F8FB8; font-family: 'JetBrains Mono', monospace; font-size: 7px; letter-spacing: 2px; text-anchor: middle; }
         .land-label.sea { fill: #4C6C95; font-style: italic; }
-        /* Hide scrollbar for tab bar */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* ============================================================
-          HERO SECTION
-         ============================================================ */}
       <section
         className="relative min-h-[55vh] sm:min-h-[65vh] flex items-center justify-center overflow-hidden pt-24 pb-8 sm:pt-28 sm:pb-10 border-0 outline-none"
         style={{ background: 'linear-gradient(135deg, #001E3C 0%, #003F7D 45%, #001E3C 100%)' }}
       >
-        {/* ============== PARTICLE LAYER ============== */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Central glow */}
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full"
             style={{ background: 'radial-gradient(circle, rgba(1, 173, 240, 0.12) 0%, transparent 55%)' }}
           />
-          {/* Vignette */}
           <div
             className="absolute inset-0"
             style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%)' }}
           />
 
-          {/* Floating orbs */}
-          <motion.div
+          <m.div
             className="absolute top-[10%] left-[5%] w-[160px] h-[160px] rounded-full"
             style={{
               background: 'radial-gradient(circle at 30% 30%, rgba(1, 173, 240, 0.65) 0%, rgba(0, 111, 166, 0.25) 55%, transparent 75%)',
@@ -461,7 +452,7 @@ const ContactUs = () => {
             animate={{ y: [0, -30, 0, 20, 0], x: [0, 20, 0, -15, 0], scale: [1, 1.05, 1, 0.98, 1] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
+          <m.div
             className="absolute bottom-[10%] left-[10%] w-[180px] h-[180px] rounded-full"
             style={{
               background: 'radial-gradient(circle at 40% 40%, rgba(3, 180, 246, 0.55) 0%, rgba(0, 143, 209, 0.2) 60%, transparent 80%)',
@@ -471,7 +462,7 @@ const ContactUs = () => {
             animate={{ y: [0, 35, 0, -25, 0], x: [0, -25, 0, 30, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
+          <m.div
             className="absolute top-[55%] right-[5%] w-[170px] h-[170px] rounded-full"
             style={{
               background: 'radial-gradient(circle at 60% 40%, rgba(77, 211, 255, 0.5) 0%, rgba(1, 173, 240, 0.18) 60%, transparent 80%)',
@@ -482,8 +473,7 @@ const ContactUs = () => {
             transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           />
 
-          {/* Rotating wireframe SVG */}
-          <motion.svg
+          <m.svg
             className="absolute top-[8%] right-[18%] w-[450px] h-[450px] opacity-70 hidden sm:block"
             viewBox="0 0 500 500" fill="none"
             style={{ filter: 'drop-shadow(0 0 10px rgba(1, 173, 240, 0.25))' }}
@@ -497,14 +487,14 @@ const ContactUs = () => {
                 <stop offset="100%" stopColor="#00C6FB" stopOpacity="0.5" />
               </linearGradient>
             </defs>
-            <motion.polygon
+            <m.polygon
               points="250,40 460,250 250,460 40,250"
               stroke="url(#cuWireGrad)" strokeWidth="1.2" fill="none"
               animate={{ rotate: 360 }}
               transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
               style={{ transformOrigin: '250px 250px' }}
             />
-            <motion.polygon
+            <m.polygon
               points="250,80 420,250 250,420 80,250"
               stroke="url(#cuWireGrad)" strokeWidth="0.8" fill="none" opacity="0.6"
               animate={{ rotate: 360 }}
@@ -513,9 +503,8 @@ const ContactUs = () => {
             />
             <line x1="250" y1="40" x2="250" y2="460" stroke="url(#cuWireGrad)" strokeWidth="0.6" opacity="0.5" />
             <line x1="40" y1="250" x2="460" y2="250" stroke="url(#cuWireGrad)" strokeWidth="0.6" opacity="0.5" />
-          </motion.svg>
+          </m.svg>
 
-          {/* Floating contact glyphs (@ ✉ ☎ ✆ ⌘ ✧ ✦ ☏) */}
           {HERO_GLYPHS.map((glyph, i) => {
             const top = 8 + ((i * 41) % 84);
             const left = 4 + ((i * 59) % 90);
@@ -523,7 +512,7 @@ const ContactUs = () => {
             const dur = 6 + (i % 5) * 1.6;
             const delay = (i % 6) * 0.8;
             return (
-              <motion.span
+              <m.span
                 key={`cg-${i}`}
                 className="absolute select-none font-['Space_Grotesk'] font-bold"
                 style={{
@@ -541,15 +530,14 @@ const ContactUs = () => {
                 transition={{ duration: dur, delay, repeat: Infinity, ease: 'easeInOut' }}
               >
                 {glyph}
-              </motion.span>
+              </m.span>
             );
           })}
 
-          {/* Sparkle dust */}
           {[...Array(16)].map((_, i) => {
             const size = Math.random() * 3 + 2;
             return (
-              <motion.div
+              <m.div
                 key={`cs-${i}`}
                 className="absolute rounded-full"
                 style={{
@@ -569,8 +557,7 @@ const ContactUs = () => {
             );
           })}
 
-          {/* Orbiting contact-themed chips */}
-          <motion.div
+          <m.div
             className="absolute top-1/2 left-1/2 hidden lg:block"
             style={{ width: 720, height: 720, translateX: '-50%', translateY: '-50%' }}
             animate={{ rotate: 360 }}
@@ -582,7 +569,7 @@ const ContactUs = () => {
               const x = 360 + Math.cos(rad) * 360;
               const y = 360 + Math.sin(rad) * 360;
               return (
-                <motion.div
+                <m.div
                   key={`ctag-${label}`}
                   className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-white/[.06] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[.14em] text-[#B8E2FF] backdrop-blur-sm"
                   style={{ left: x, top: y }}
@@ -590,21 +577,20 @@ const ContactUs = () => {
                   transition={{ duration: 70, repeat: Infinity, ease: 'linear' }}
                 >
                   {label}
-                </motion.div>
+                </m.div>
               );
             })}
-          </motion.div>
+          </m.div>
         </div>
 
-        {/* ============== CONTENT ============== */}
         <div className="container mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-32 relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="text-center"
           >
-            <motion.span
+            <m.span
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
@@ -612,9 +598,9 @@ const ContactUs = () => {
               whileHover={{ scale: 1.05 }}
             >
               Contact Us
-            </motion.span>
+            </m.span>
 
-            <motion.h2
+            <m.h2
               className="sec-h2 text-white mt-1.5 sm:mt-2 leading-tight"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.35)' }}
               initial={{ opacity: 0, y: 10 }}
@@ -625,9 +611,9 @@ const ContactUs = () => {
               <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
                 Worldwide
               </span>
-            </motion.h2>
+            </m.h2>
 
-            <motion.p
+            <m.p
               className="sec-p text-white/80 mt-1 max-w-2xl mx-auto"
               style={{ textShadow: '0 1px 10px rgba(0,0,0,0.35)' }}
               initial={{ opacity: 0, y: 10 }}
@@ -636,58 +622,53 @@ const ContactUs = () => {
             >
               Five offices across India and the UAE. One team ready to answer your questions,
               discuss your ideas, and start your next big project.
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
         </div>
       </section>
 
-      {/* CONTACT SECTION */}
       <section className="relative py-24 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 [background-image:radial-gradient(#D8E0EC_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,#000_0%,#000_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_60%,transparent_100%)] pointer-events-none" />
 
         <div className="relative max-w-[1248px] mx-auto z-10">
-          {/* HEADER */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="text-center mb-8 sm:mb-10 md:mb-12"
           >
-            <motion.span
+            <m.span
               className="sec-badge inline-block"
               whileHover={{ scale: 1.05 }}
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               Let&apos;s Talk!
-            </motion.span>
+            </m.span>
 
-            <motion.h2
+            <m.h2
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mt-3 sm:mt-4 mb-3 sm:mb-4 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
               Contact <span style={{ color: '#008df1' }}>Us</span>
-            </motion.h2>
+            </m.h2>
 
-            <motion.p
+            <m.p
               className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               Benefit of the society where we operate. A success website obviously needs great.
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_420px] gap-8 items-start">
 
-            {/* LEFT (MAP) */}
             <div className="flex flex-col gap-4 min-w-0">
-
-              {/* Tabs Container - Responsive Scrollable on Mobile */}
               <div className="relative flex overflow-x-auto md:grid md:grid-cols-5 gap-1.5 p-1.5 bg-white border border-[#E3E8F1] rounded-[18px] shadow-sm scrollbar-hide" role="tablist">
                 <span ref={tabIndRef} className="absolute top-1.5 bottom-1.5 left-0 rounded-[13px] bg-[#0062D6] shadow-[0_10px_22px_-8px_rgba(0,98,214,0.6)] transition-all duration-[600ms] [transition-timing-function:cubic-bezier(0.22,0.8,0.18,1)] opacity-0" aria-hidden="true" />
                 {OFFICES.map((o, i) => {
@@ -709,7 +690,6 @@ const ContactUs = () => {
                           tabButtonsRef.current[n]?.focus();
                         }
                       }}
-                      // 👇 CHANGED: w-[130px] to w-[155px] to fix "Navi Mumbai" cut off
                       className={`relative z-10 flex shrink-0 w-[155px] md:w-auto items-center gap-2 md:gap-2.5 min-h-[58px] px-3 rounded-[13px] text-left transition-colors duration-500 ${isActive ? "text-white" : "text-[#0B1220]"}`}
                     >
                       <span className={`flex-none w-8 h-8 rounded-[10px] grid place-items-center text-xs font-semibold transition-all duration-500 ${isActive ? "bg-white/20 text-white" : "bg-[#EEF2F8] text-[#3C4A63]"}`} style={{ fontFamily: "'JetBrains Mono', monospace" }}>
@@ -879,7 +859,6 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* RIGHT (FORM) */}
             <aside
               className="relative rounded-[24px] bg-white border border-[#E6EBF3] shadow-[0_1px_2px_rgba(16,24,40,0.04),0_28px_56px_-18px_rgba(16,24,40,0.16)] p-5 sm:p-8 min-h-0 md:min-h-[712px] flex flex-col overflow-hidden"
               onMouseMove={handleFormMove}

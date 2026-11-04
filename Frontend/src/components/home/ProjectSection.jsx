@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, forwardRef } from 'react';
-import { motion } from 'framer-motion';
+// 👇 motion ki jagah m import kiya hai
+import { m } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 /* ---------- RING CARDS DATA ---------- */
@@ -148,7 +149,6 @@ const RingCard = forwardRef(({ card, onClick }, ref) => {
         backfaceVisibility: "hidden",
       }}
     >
-      {/* Background */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${card.bgClass || ""}`}
         style={
@@ -171,7 +171,6 @@ const RingCard = forwardRef(({ card, onClick }, ref) => {
           />
         )}
 
-        {/* CSS orbit art (Shomi / Fairbanks) */}
         {card.isOrbit && (
           <>
             <div
@@ -201,7 +200,6 @@ const RingCard = forwardRef(({ card, onClick }, ref) => {
           </>
         )}
 
-        {/* CSS bottle art (Ultra Fragrance) */}
         {card.isBottle && (
           <div
             className="absolute left-1/2 top-[14%] w-[92px] h-[138px] -translate-x-1/2 rounded-[20px] rounded-b-[26px]"
@@ -225,15 +223,12 @@ const RingCard = forwardRef(({ card, onClick }, ref) => {
         )}
       </div>
 
-      {/* Gradient overlay */}
       <span className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050c1c]/85 pointer-events-none" />
 
-      {/* Tag (top-left) */}
       <span className="absolute top-3 left-3 z-[2] bg-[#0ea5e9] text-white text-[11px] font-bold px-2.5 py-1.5 rounded-full shadow-[0_0_0_2px_rgba(255,255,255,.35)]">
         {card.tag}
       </span>
 
-      {/* Stat (top-right) — HIDDEN on mobile (shows from sm and up) */}
       {card.stat && (
         <span className="hidden sm:block absolute top-3 right-3 z-[2] bg-white/95 text-[#0f1a2c] font-extrabold text-[12px] rounded-[10px] px-2.5 py-1.5 leading-[1.1] text-center">
           {card.stat}
@@ -243,7 +238,6 @@ const RingCard = forwardRef(({ card, onClick }, ref) => {
         </span>
       )}
 
-      {/* Name + sub (bottom) */}
       <div className="absolute left-[18px] right-[18px] bottom-4 z-[2]">
         <b className="block text-[19px] font-bold tracking-[-.01em]">{card.name}</b>
         <small className="block text-[12px] opacity-85 mt-1">{card.sub} · View case study →</small>
@@ -269,13 +263,11 @@ const ClientRingCarousel = ({ onSelectCard }) => {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- LAYOUT ---------- */
   const layout = useCallback(() => {
     if (!stageRef.current || !ringRef.current) return;
     const w = window.innerWidth;
     const cw = w < 600 ? Math.min(230, w * 0.6) : w < 900 ? 250 : 280;
     stageRef.current.style.setProperty("--cw", `${cw}px`);
-    /* Stage height — enough for cards to fit but not leave huge empty space */
     stageRef.current.style.setProperty(
       "--rh",
       `${Math.round(cw * 1.12 + (w < 600 ? 60 : 90))}px`
@@ -289,7 +281,6 @@ const ClientRingCarousel = ({ onSelectCard }) => {
     });
   }, [RN, RSTEP]);
 
-  /* ---------- RING FRAME LOOP ---------- */
   useEffect(() => {
     if (reduce) return;
     let raf;
@@ -334,7 +325,6 @@ const ClientRingCarousel = ({ onSelectCard }) => {
     return () => window.removeEventListener("resize", layout);
   }, [layout]);
 
-  /* ---------- DRAG ---------- */
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage || reduce) return;
@@ -406,8 +396,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
         @keyframes cbpFloat { 50% { transform: translateY(-10px) rotate(2deg); } }
       `}</style>
 
-      {/* ===== RING STAGE ===== */}
-      <motion.div
+      <m.div
         ref={stageRef}
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -431,10 +420,9 @@ const ClientRingCarousel = ({ onSelectCard }) => {
             />
           ))}
         </div>
-      </motion.div>
+      </m.div>
 
-      {/* ===== RING NAV ===== */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -459,7 +447,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
         >
           <ArrowRight className="w-4 h-4" />
         </button>
-      </motion.div>
+      </m.div>
     </div>
   );
 };
@@ -473,30 +461,27 @@ const ClientPortfoliosSection = () => {
       id="client-portfolios"
       className="relative bg-[#f0f1f3] text-[#0f1a2c] overflow-clip pt-[60px] pb-[60px]"
     >
-      {/* Background blurs */}
       <div className="absolute -left-36 -top-24 w-[460px] h-[460px] rounded-full bg-[#dde8f2] blur-[80px] opacity-60 pointer-events-none z-0" />
       <div className="absolute -right-44 top-[520px] w-[560px] h-[560px] rounded-full bg-[#e4eef8] blur-[80px] opacity-60 pointer-events-none z-0" />
 
       <div className="relative z-10 max-w-[1180px] mx-auto px-4">
-        {/* ===== HEADER (matches ServicesSection typography) ===== */}
-        <motion.header
+        <m.header
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center max-w-[760px] mx-auto"
         >
-          <motion.span
+          <m.span
             className="sec-badge inline-block"
             whileHover={{ scale: 1.05 }}
             animate={{ y: [0, -3, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             Client Portfolios
-          </motion.span>
+          </m.span>
 
-          {/* Uses sec-h2 → Space Grotesk 700 — same weight as ServicesSection */}
-          <motion.h2
+          <m.h2
             className="sec-h2 sec-text-dark mt-1.5 sm:mt-2 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -506,49 +491,47 @@ const ClientPortfoliosSection = () => {
             <span className="bg-gradient-to-r from-[#00C6FB] to-[#01ADF0] bg-clip-text text-transparent">
               Real growth.
             </span>
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p
             className="sec-p sec-text-dark-soft mt-1 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             From D2C, real estate and cafés to wellness, healthcare, orthodontics and infrastructure: the strategy, creative and numbers behind the brands we partner with.
-          </motion.p>
-        </motion.header>
+          </m.p>
+        </m.header>
 
-        {/* ===== RING CAROUSEL (cards sit below header, no overlap) ===== */}
         <div className="mt-4 sm:mt-6">
           <ClientRingCarousel />
         </div>
 
-        {/* ===== EXPLORE OUR PORTFOLIO CTA ===== */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center mt-8 sm:mt-10"
         >
-          <motion.a
+          <m.a
             href="/portfolio"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.96 }}
             className="sec-btn"
           >
             Explore Our Portfolio
-            <motion.span
+            <m.span
               animate={{ x: [0, 6, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
               <ArrowRight className="w-4 h-4" />
-            </motion.span>
-          </motion.a>
-        </motion.div>
+            </m.span>
+          </m.a>
+        </m.div>
       </div>
     </section>
   );
 };
 
-export default ClientPortfoliosSection;
+export default ClientPortfoliosSection; 
