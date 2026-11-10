@@ -263,6 +263,22 @@ const ClientRingCarousel = ({ onSelectCard }) => {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const [isStageVisible, setIsStageVisible] = useState(false);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || !("IntersectionObserver" in window)) {
+      setIsStageVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsStageVisible(entry.isIntersecting);
+    });
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
+
   const layout = useCallback(() => {
     if (!stageRef.current || !ringRef.current) return;
     const w = window.innerWidth;
@@ -282,7 +298,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
   }, [RN, RSTEP]);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !isStageVisible) return;
     let raf;
     const frame = () => {
       const s = ringState.current;
@@ -317,7 +333,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
     };
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
-  }, [reduce]);
+  }, [isStageVisible, reduce]);
 
   useEffect(() => {
     layout();

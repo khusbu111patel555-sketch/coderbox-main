@@ -621,42 +621,12 @@
 
 
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 // 👇 motion ki jagah m import kiya hai
 import { m, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle, Phone } from 'lucide-react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet';
 import { supabase } from '../../lib/supabaseClient';
-
-// ✅ Fix default marker icons (Leaflet + bundler issue)
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
-
-// ✅ Custom blue marker icon
-const blueIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-// ✅ Component to fly map to selected location
-const FlyToLocation = ({ position }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (position) {
-      map.flyTo([position.lat, position.lng], 12, { duration: 1.2 });
-    }
-  }, [position, map]);
-  return null;
-};
+import DeferredContactMap from './DeferredContactMap';
 
 const ContactSection = () => {
   // ===== LOCATIONS DATA =====
@@ -919,47 +889,12 @@ const ContactSection = () => {
               })}
             </div>
 
-            {/* ✅ LEAFLET MAP — No API key needed, 100% free */}
-            <div className="w-full h-[280px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] rounded-xl overflow-hidden shadow-lg border border-gray-200 relative z-0">
-              <MapContainer
-                center={defaultCenter}
-                zoom={4}
-                scrollWheelZoom={true}
-                style={{ width: '100%', height: '100%', zIndex: 0 }}
-              >
-                {/* OpenStreetMap tiles — free, no key */}
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-
-                {/* Auto fly to selected location */}
-                <FlyToLocation position={selectedLocation?.position} />
-
-                {/* Markers */}
-                {locations.map((location) => (
-                  <Marker
-                    key={location.id}
-                    position={[location.position.lat, location.position.lng]}
-                    icon={blueIcon}
-                    eventHandlers={{
-                      click: () => setSelectedLocation(location),
-                    }}
-                  >
-                    <Popup>
-                      <div className="max-w-[200px] sm:max-w-[240px] p-1">
-                        <h3 className="font-semibold text-sm sm:text-base text-slate-900">
-                          {location.city}
-                        </h3>
-                        <p className="mt-1 text-xs sm:text-sm text-slate-600">
-                          {location.address}
-                        </p>
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
-              </MapContainer>
-            </div>
+            <DeferredContactMap
+              locations={locations}
+              defaultCenter={defaultCenter}
+              selectedLocation={selectedLocation}
+              onLocationSelect={setSelectedLocation}
+            />
           </m.div>
 
           {/* ===== RIGHT SIDE — FORM ===== */}
