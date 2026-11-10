@@ -77,14 +77,17 @@ const HeroSection = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [hasActivatedBackgroundVideo, setHasActivatedBackgroundVideo] = useState(false);
 
   useEffect(() => {
+    if (hasActivatedBackgroundVideo) return undefined;
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % videos.length);
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [videos.length]);
+  }, [hasActivatedBackgroundVideo, videos.length]);
 
   useEffect(() => {
     if (isVideoOpen) {
@@ -107,6 +110,7 @@ const HeroSection = () => {
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
+    setHasActivatedBackgroundVideo(true);
   };
 
   const currentVideo = videos[currentIndex];
@@ -145,7 +149,17 @@ const HeroSection = () => {
     <>
       <section className="relative h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-black/60 z-10"></div>
+          <img
+            src="/AI.webp"
+            alt=""
+            width="800"
+            height="500"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden="true"
+          />
+          <div className={`absolute inset-0 ${hasActivatedBackgroundVideo ? 'bg-black/60' : 'bg-black/30'} z-10`}></div>
 
           {videos.map((video, index) => (
             <m.div
@@ -162,12 +176,9 @@ const HeroSection = () => {
                 pointerEvents: 'none'
               }}
             >
-              {/* 👇 Yahan key mein currentIndex daala hai taaki video change hone par browser purani video ko release kar de */}
-              {index === currentIndex && (
+              {index === currentIndex && hasActivatedBackgroundVideo && (
                 <iframe
-                  key={currentIndex}
                   src={video.url}
-                  loading="lazy"
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] min-w-[300%] min-h-[300%]"
                   style={{
                     pointerEvents: 'none',
@@ -175,7 +186,6 @@ const HeroSection = () => {
                     objectFit: 'cover'
                   }}
                   allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
-                  allowFullScreen
                   title={`Background Video ${index + 1}`}
                 />
               )}

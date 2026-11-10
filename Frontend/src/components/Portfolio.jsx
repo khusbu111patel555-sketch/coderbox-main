@@ -1630,7 +1630,7 @@ const renderFaceContent = (type) => {
       ),
       visual: (
         <div className="relative w-full h-full bg-[#2a241c] flex items-center justify-center overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1000" alt="SR Infra Earthwork" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1000" alt="SR Infra Earthwork" width="1000" height="667" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-80" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1813] via-transparent to-transparent opacity-80" />
           <div className="relative z-10 text-center bg-black/40 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
             <div className="w-16 h-16 rounded-full bg-[#f2b705] flex items-center justify-center text-[#1c1813] font-extrabold text-[20px] mx-auto mb-3">SR</div>
@@ -1662,7 +1662,7 @@ const renderFaceContent = (type) => {
       ),
       visual: (
         <div className="relative w-full h-full bg-[#2a241c] flex items-center justify-center overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1000" alt="SR Infra Fleet" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1000" alt="SR Infra Fleet" width="1000" height="667" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-80" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1813] via-transparent to-transparent opacity-80" />
           <div className="relative z-10 grid grid-cols-2 gap-3 p-4">
             {[
@@ -1694,7 +1694,7 @@ const renderFaceContent = (type) => {
       ),
       visual: (
         <div className="relative w-full h-full bg-[#2a241c] flex flex-col justify-end overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1000" alt="SR Infra Projects" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1000" alt="SR Infra Projects" width="1000" height="667" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-80" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1c1813] via-transparent to-transparent opacity-90" />
           <div className="relative z-10 overflow-hidden bg-black/60 backdrop-blur border-t border-[#f2b705]/35 py-2.5">
             <div className="flex gap-7 w-max text-[12px] font-bold tracking-[.08em] uppercase text-[#f3ede3]" style={{ animation: 'cbpMarq 26s linear infinite' }}>

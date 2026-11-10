@@ -284,7 +284,10 @@ const BlogPage = () => {
                         <img
                           src={blog.featured_image}
                           alt={blog.featured_image_alt || blog.title}
+                          width="800"
+                          height="500"
                           loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       ) : (

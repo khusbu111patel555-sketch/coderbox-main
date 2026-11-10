@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as m, AnimatePresence } from "framer-motion";
 import {
   Menu, X, ChevronDown, Zap, ChevronRight, ArrowRight,
   Layers, Brain, Monitor, Server, Shield, Code, Globe2, ShoppingCart,
@@ -602,19 +602,19 @@ const Navbar = () => {
       >
         <nav className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
           <div className="flex items-center justify-between">
-            <motion.a
+            <m.a
               href="/"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className="flex items-center flex-shrink-0"
             >
-              <img src="/coderBoxlogo3.png" alt="CoderBox Logo" className="h-8 sm:h-10 md:h-12 w-auto object-contain" />
-            </motion.a>
+              <img src="/coderBoxlogo3.png" alt="CoderBox Logo" width="200" height="70" className="h-8 sm:h-10 md:h-12 w-auto object-contain" />
+            </m.a>
 
             <ul className="hidden lg:flex items-center space-x-0.5">
               {navItems.map((item, index) => (
-                <motion.li
+                <m.li
                   key={item.name}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -647,12 +647,12 @@ const Navbar = () => {
                       />
                     )}
                   </a>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
 
             <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 flex-shrink-0">
-              <motion.a
+              <m.a
                 href="/contact"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -663,10 +663,10 @@ const Navbar = () => {
               >
                 <Zap className="h-3.5 w-3.5" />
                 Start a Project
-                <motion.span animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+                <m.span animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
                   <ArrowRight className="h-3.5 w-3.5 xl:h-4 xl:w-4" />
-                </motion.span>
-              </motion.a>
+                </m.span>
+              </m.a>
             </div>
 
             <button
@@ -682,7 +682,7 @@ const Navbar = () => {
         <AnimatePresence>
           {activeDropdown === "Our Services" && (
             <>
-              <motion.div
+              <m.div
                 key="mm-backdrop"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -692,7 +692,7 @@ const Navbar = () => {
                 onClick={() => setActiveDropdown(null)}
               />
 
-              <motion.div
+              <m.div
                 key="mm-panel"
                 variants={dropdownVariants}
                 initial="hidden"
@@ -991,7 +991,7 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </>
           )}
         </AnimatePresence>
@@ -1001,7 +1001,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            <motion.div
+            <m.div
               ref={mobileDrawerRef} // Added ref here
               variants={mobileMenuVariants}
               initial="hidden"
@@ -1012,7 +1012,7 @@ const Navbar = () => {
               <div className="p-5 sm:p-6">
                 <div className="flex items-center justify-between mb-6">
                   <a href="/" className="flex items-center">
-                    <img src="/coderBoxlogo2.png" alt="CoderBox Logo" className="h-10 sm:h-12 w-auto object-contain" />
+                    <img src="/coderBoxlogo2.png" alt="CoderBox Logo" width="1000" height="505" className="h-10 sm:h-12 w-auto object-contain" />
                   </a>
                   <button onClick={() => setIsOpen(false)} className="text-gray-700 hover:text-[#01ADF0] p-2">
                     <X className="h-6 w-6" />
@@ -1099,15 +1099,15 @@ const Navbar = () => {
                   >
                     <Zap className="h-4 w-4" />
                     Start a Project
-                    <motion.span animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+                    <m.span animate={{ x: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
                       <ArrowRight className="h-4 w-4" />
-                    </motion.span>
+                    </m.span>
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

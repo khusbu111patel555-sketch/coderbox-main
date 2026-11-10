@@ -154,7 +154,7 @@ const WhyChooseUsCarousel = () => {
                 return (
                   <m.div key={image.id} className="absolute top-1/2 left-1/2" style={{ x, y, translateX: '-50%', translateY: '-50%', zIndex }} animate={{ scale, opacity, zIndex, x, y }} transition={{ duration: 0.9, ease: [0.215, 0.61, 0.355, 1] }}>
                     <div className={`relative rounded-lg sm:rounded-xl overflow-hidden shadow-2xl transition-all duration-500 ${isActive ? 'shadow-[#008df1]/60 border-2 border-[#00c6fb]/50' : 'shadow-[#008df1]/10 border border-white/10'}`} style={{ width: isActive ? imageSize.w * 1.12 : imageSize.w, height: isActive ? imageSize.h * 1.12 : imageSize.h }}>
-                      <img src={image.src} alt={image.title} className="w-full h-full object-cover" loading="lazy" />
+                      <img src={image.src} alt={image.title} width={imageSize.w} height={imageSize.h} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                       {isActive && (
                         <m.div className="absolute bottom-0 left-0 right-0 p-2 sm:p-2.5" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>

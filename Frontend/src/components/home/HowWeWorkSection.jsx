@@ -739,6 +739,10 @@ const HowWeWorkSection = () => {
                             <img
                               src={step.image}
                               alt={step.title}
+                              width="640"
+                              height="416"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-44 sm:h-52 object-cover"
                             />
                           </div>

@@ -165,7 +165,11 @@ const RingCard = forwardRef(({ card, onClick }, ref) => {
           <img
             src={card.img}
             alt={card.name}
+            width="304"
+            height="337"
             draggable="false"
+            loading="lazy"
+            decoding="async"
             className={`w-full h-full object-cover ${card.imgPos || ""}`}
             style={card.imgContain ? { objectFit: "contain", paddingTop: 30, mixBlendMode: "multiply" } : undefined}
           />

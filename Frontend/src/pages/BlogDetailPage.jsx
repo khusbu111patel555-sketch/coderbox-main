@@ -211,6 +211,8 @@ const BlogDetailPage = () => {
             <img
               src={blog.featured_image}
               alt={blog.title}
+              width="1200"
+              height="720"
               className="w-full h-[260px] sm:h-[380px] md:h-[460px] object-cover"
             />
           </m.div>
@@ -386,7 +388,7 @@ const BlogDetailPage = () => {
                       <Link key={p.id} to={`/blog/${p.slug}`} className="group flex gap-3 items-start">
                         {p.featured_image && (
                           <div className="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
-                            <img src={p.featured_image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                            <img src={p.featured_image} alt={p.title} width="80" height="80" loading="lazy" decoding="async" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                           </div>
                         )}
                         <div className="min-w-0 flex-1">

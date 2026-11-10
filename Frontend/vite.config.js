@@ -19,6 +19,6 @@ export default defineConfig({
     jsx: 'automatic', 
   },
   build: {
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
   },
 })

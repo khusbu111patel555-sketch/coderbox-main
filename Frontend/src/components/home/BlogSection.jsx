@@ -611,8 +611,11 @@ const BlogCard = ({ blog }) => {
           <img
             src={blog.featured_image}
             alt={blog.title}
+            width="800"
+            height="750"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105"
             loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-105">

@@ -279,7 +279,7 @@ const AboutContent = () => {
             <div className="relative w-full max-w-xl aspect-[3/4] bg-[#003F7D] rounded-[40px] overflow-hidden shadow-2xl shadow-[#005B8F]/20 border border-white/10">
               <div className="absolute inset-4 rounded-[30px] overflow-hidden border-2 border-white/10">
                 <div className="relative w-full h-full">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZzSpL3Jdz_jPNDd9aN5_0YiS4IuR1O1A5e0Fx5kX1o2DjzWcuN74buxc&s=10" alt="CoderBox Team" className="w-full h-full object-cover" loading="lazy" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZzSpL3Jdz_jPNDd9aN5_0YiS4IuR1O1A5e0Fx5kX1o2DjzWcuN74buxc&s=10" alt="CoderBox Team" width="600" height="800" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                   <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                 </div>
               </div>

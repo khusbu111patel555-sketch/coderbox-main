@@ -1087,8 +1087,11 @@ const ServicesSection = () => {
                       <img
                         src={service.image}
                         alt={service.title}
+                        width="1200"
+                        height="1000"
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
 
                       <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-60 mix-blend-multiply`}></div>

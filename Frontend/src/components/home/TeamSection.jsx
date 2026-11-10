@@ -144,6 +144,10 @@ const TeamSection = () => {
                   <img
                     src={member.image}
                     alt={member.name}
+                    width="600"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a]/80 via-transparent to-transparent" />
