@@ -1,36 +1,42 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(), 
+    tailwindcss(),
+    // 👇 Image Optimizer Plugin yahan add kiya hai
+    ViteImageOptimizer({
+      jpg: { quality: 80 },
+      jpeg: { quality: 80 },
+      png: { quality: 80 },
+      webp: { quality: 80 },
+    }),
+  ], 
   esbuild: {
-    jsx: 'automatic',
+    jsx: 'automatic', 
   },
   build: {
-    target: 'es2020',
-    sourcemap: false,
-    cssCodeSplit: true,
-    reportCompressedSize: false,
-    chunkSizeWarningLimit: 900,
-    assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
+            // React ecosystem ko alag karein
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-              return 'react-vendor'
+              return 'vendor-react';
             }
+            // UI aur Animation libraries ko alag karein
             if (id.includes('framer-motion') || id.includes('lucide-react')) {
-              return 'ui-vendor'
+              return 'vendor-ui';
             }
-            if (id.includes('leaflet') || id.includes('@vis.gl') || id.includes('swiper')) {
-              return 'map-vendor'
-            }
-            return 'vendor'
+            // Baaki libraries vendor chunk mein jayengi
+            return 'vendor';
           }
         },
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
 })
