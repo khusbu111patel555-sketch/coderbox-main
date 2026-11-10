@@ -40,7 +40,7 @@ const AnimatedSection = ({ children, className = '', delay = 0, direction = 'up'
       variants={variants}
       className={className}
     >
-      {children}
+      {children} 
     </motion.div>
   );
 };
