@@ -149,16 +149,19 @@ const HeroSection = () => {
     <>
       <section className="relative h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
-          <img
-            src="/AI.webp"
-            alt=""
-            width="800"
-            height="500"
-            fetchPriority="high"
-            decoding="async"
-            className="absolute inset-0 h-full w-full object-cover"
-            aria-hidden="true"
-          />
+          <picture>
+            <source media="(max-width: 640px)" srcSet="/Chatbots.webp" />
+            <img
+              src="/AI.webp"
+              alt=""
+              width="800"
+              height="500"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden="true"
+            />
+          </picture>
           <div className={`absolute inset-0 ${hasActivatedBackgroundVideo ? 'bg-black/60' : 'bg-black/30'} z-10`}></div>
 
           {videos.map((video, index) => (

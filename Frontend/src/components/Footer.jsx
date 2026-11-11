@@ -126,6 +126,8 @@ const Footer = () => {
           viewport={{ once: true }}
           src="/coderBoxlogo3.png"
           alt="CoderBox Logo"
+          width="200"
+          height="70"
           className="h-10 sm:h-12 w-auto object-contain mb-6"
           onError={(e) => {
             e.target.onerror = null;

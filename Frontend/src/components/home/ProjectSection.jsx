@@ -256,6 +256,8 @@ const ClientRingCarousel = ({ onSelectCard }) => {
   const stageRef = useRef(null);
   const ringRef = useRef(null);
   const cardRefs = useRef([]);
+  const rafRef = useRef(null);
+  const scheduleFrameRef = useRef(() => {});
   const ringState = useRef({ angle: 0, target: 0, radius: 0, dragging: false, hover: false, last: 0, front: -1 });
   const [ringName, setRingName] = useState(RING_CARDS[0].name);
   const [ringSub, setRingSub] = useState(RING_CARDS[0].sub);
@@ -303,11 +305,12 @@ const ClientRingCarousel = ({ onSelectCard }) => {
 
   useEffect(() => {
     if (reduce || !isStageVisible) return;
-    let raf;
+
     const frame = () => {
+      rafRef.current = null;
       const s = ringState.current;
-      if (!s.dragging && !s.hover && Date.now() - s.last > 3500) s.target -= 0.06;
       s.angle += (s.target - s.angle) * 0.09;
+      if (Math.abs(s.target - s.angle) < 0.05) s.angle = s.target;
       const tilt = Math.max(-8, Math.min(8, (s.target - s.angle) * 0.4));
       if (ringRef.current) {
         ringRef.current.style.transform = `translateZ(${-s.radius}px) rotateX(${
@@ -333,10 +336,21 @@ const ClientRingCarousel = ({ onSelectCard }) => {
         setRingName(RING_CARDS[best].name);
         setRingSub(RING_CARDS[best].sub);
       }
-      raf = requestAnimationFrame(frame);
+      if (s.dragging || Math.abs(s.target - s.angle) >= 0.05) {
+        rafRef.current = requestAnimationFrame(frame);
+      }
     };
-    raf = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(raf);
+
+    scheduleFrameRef.current = () => {
+      if (rafRef.current === null) rafRef.current = requestAnimationFrame(frame);
+    };
+    scheduleFrameRef.current();
+
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+      scheduleFrameRef.current = () => {};
+    };
   }, [isStageVisible, reduce]);
 
   useEffect(() => {
@@ -353,6 +367,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
       dragging = true; moved = 0; sx = e.clientX; sa = ringState.current.target;
       ringState.current.dragging = true;
       stage.classList.add("cursor-grabbing");
+      scheduleFrameRef.current();
     };
     const onMove = (e) => {
       if (!dragging) return;
@@ -360,6 +375,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
       moved = Math.max(moved, Math.abs(dx));
       ringState.current.target = sa + dx * 0.35;
       ringState.current.last = Date.now();
+      scheduleFrameRef.current();
     };
     const onUp = () => {
       if (!dragging) return;
@@ -370,6 +386,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
         ringState.current.target = Math.round(ringState.current.target / RSTEP) * RSTEP;
       }
       ringState.current.last = Date.now();
+      scheduleFrameRef.current();
     };
     stage.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
@@ -386,6 +403,7 @@ const ClientRingCarousel = ({ onSelectCard }) => {
     const k = Math.round((ringState.current.target - want) / 360);
     ringState.current.target = want + k * 360;
     ringState.current.last = Date.now();
+    scheduleFrameRef.current();
   };
 
   const handleRingCardClick = (i) => (e) => {
@@ -403,10 +421,12 @@ const ClientRingCarousel = ({ onSelectCard }) => {
   const handlePrev = () => {
     ringState.current.last = Date.now();
     ringState.current.target = Math.round(ringState.current.target / RSTEP) * RSTEP + RSTEP;
+    scheduleFrameRef.current();
   };
   const handleNext = () => {
     ringState.current.last = Date.now();
     ringState.current.target = Math.round(ringState.current.target / RSTEP) * RSTEP - RSTEP;
+    scheduleFrameRef.current();
   };
 
   return (

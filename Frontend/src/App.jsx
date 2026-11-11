@@ -9,7 +9,9 @@ import {
 
 // Layout
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import DeferredSection from "./components/DeferredSection";
+
+const Footer = lazy(() => import('./components/Footer'));
 
 // Lazy Loaded Public Pages
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -74,7 +76,7 @@ const AppLayout = () => {
         </Routes>
       </Suspense>
 
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <DeferredSection component={Footer} minHeight="28rem" rootMargin="800px" />}
     </>
   );
 };

@@ -406,6 +406,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 const HowWeWorkSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
+  const isSectionActiveRef = useRef(false);
   const isCooldownRef = useRef(false);
   const touchStartY = useRef(null);
 
@@ -443,15 +444,23 @@ const HowWeWorkSection = () => {
   ];
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !('IntersectionObserver' in window)) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isSectionActiveRef.current = entry.isIntersecting;
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return undefined;
+
     const handleWheel = (e) => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const isInViewport = rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4;
-
-      if (!isInViewport) return;
+      if (!isSectionActiveRef.current) return;
 
       const isScrollingDown = e.deltaY > 0;
       const isScrollingUp = e.deltaY < 0;
@@ -481,14 +490,7 @@ const HowWeWorkSection = () => {
     const handleTouchMove = (e) => {
       if (!touchStartY.current) return;
 
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const isInViewport = rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4;
-
-      if (!isInViewport) return;
+      if (!isSectionActiveRef.current) return;
 
       const touchEndY = e.touches[0].clientY;
       const deltaY = touchStartY.current - touchEndY;
@@ -517,15 +519,15 @@ const HowWeWorkSection = () => {
       touchStartY.current = null;
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: false });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    section.addEventListener('wheel', handleWheel, { passive: false });
+    section.addEventListener('touchstart', handleTouchStart, { passive: true });
+    section.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
+      section.removeEventListener('wheel', handleWheel);
+      section.removeEventListener('touchstart', handleTouchStart);
+      section.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [activeIndex, processSteps.length]);
