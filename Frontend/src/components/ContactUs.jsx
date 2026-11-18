@@ -17,6 +17,9 @@ const HOURS = { open: 9 * 60, close: 18 * 60 };
 const SERVICES = ["Web design", "Development", "Branding", "SEO & growth", "Something else"];
 const ZOOM = 2.2;
 
+// 👇 यहाँ आपका Google Apps Script का URL है
+const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwx3upZ7SIfC9R-GDkxaYLKp2CDB6FkWVMePY7ftU41i4jbZWZss0AgMmPnIR5zFyUFEQ/exec";
+
 const HERO_GLYPHS = ['@', '✉', '☎', '✆', '⌘', '✧', '✦', '☏', '✉', '@', '☎'];
 const HERO_TAGS = ['EMAIL', 'CALL', 'VISIT', 'CHAT', 'SUPPORT', '24/7', 'REPLY', 'HELLO'];
 
@@ -349,16 +352,38 @@ const ContactUs = () => {
 
     const serviceValue = chips.length > 0 ? chips.join(", ") : formData.service;
 
+    // 1) Supabase के लिए डेटा (office field हटा दिया गया है ताकि 400 error न आए)
+    const supabasePayload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone,
+      service: serviceValue,
+      message: formData.message.trim(),
+    };
+
+    // 2) Gmail (Apps Script) के लिए डेटा (इसमें office भी शामिल है)
+    const emailPayload = {
+      ...supabasePayload,
+      office: OFFICES[active].city,
+    };
+
     try {
-      const { error } = await supabase.from("contacts").insert([{
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone,
-        service: serviceValue,
-        message: formData.message.trim(),
-      }]);
+      // Supabase में सेव करें
+      const { error } = await supabase.from("contacts").insert([supabasePayload]);
       if (error) throw error;
 
+      // Gmail पर ईमेल भेजें
+      try {
+        await fetch(GAS_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" }, // text/plain जरूरी है
+          body: JSON.stringify(emailPayload),
+        });
+      } catch (emailErr) {
+        console.warn("Gmail notification failed:", emailErr);
+      }
+
+      // सक्सेस एनिमेशन और स्टेट रीसेट
       const pin = pinsRef.current?.querySelectorAll(".pin")[active];
       if (pin) {
         pin.classList.remove("landed");
@@ -371,6 +396,7 @@ const ContactUs = () => {
         setErrors({ name: "", email: "", phone: "", service: "", message: "" });
         setChips([]);
       }, 700);
+
     } catch (error) {
       console.error("Supabase Error:", error);
       setErrors((prev) => ({ ...prev, message: "Failed to send message. Please try again later." }));
